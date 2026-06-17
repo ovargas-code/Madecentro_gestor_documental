@@ -42,6 +42,7 @@ from app.core.settings import (
     EXCEL_TEMPLATES_DIR,
     INPUT_DIR,
     LOGO_DIR,
+    MASTER_DATA_EXPORT_PATH,
     OUTPUT_DIR,
     PDF_TEMPLATES_DIR,
     SIGNATURE_DIR,
@@ -113,6 +114,7 @@ class MainWindow(QMainWindow):
         self._build_certificate_tab()
         self._build_instructions_tab()
         self.refresh_all()
+        self._sync_master_data_file()
 
     def _build_brand_header(self) -> QFrame:
         header = QFrame()
@@ -845,6 +847,7 @@ class MainWindow(QMainWindow):
             if not items:
                 raise ValueError("El archivo no contiene filas validas.")
             count = self.db.bulk_upsert_master_data(items)
+            self._sync_master_data_file()
         except (OSError, ValueError, ValidationError) as exc:
             self._show_error("No se pudieron importar los datos", exc)
             return
@@ -935,6 +938,7 @@ class MainWindow(QMainWindow):
             return
         try:
             count = self.db.apply_form_import(selected, source)
+            self._sync_master_data_file()
         except (OSError, sqlite3.DatabaseError) as exc:
             self._show_error("No se pudieron actualizar los datos maestros", exc)
             return
@@ -1046,6 +1050,7 @@ class MainWindow(QMainWindow):
             return
         self.clear_master_selection()
         self.refresh_all()
+        self._sync_master_data_file()
 
     def load_selected_master_row(self) -> None:
         row = self._selected_master_row()
@@ -1091,6 +1096,7 @@ class MainWindow(QMainWindow):
         self.db.delete_master_data_by_id(self.selected_master_id)
         self.clear_master_selection()
         self.refresh_all()
+        self._sync_master_data_file()
 
     def clear_master_selection(self) -> None:
         self.selected_master_id = None
@@ -2066,8 +2072,24 @@ class MainWindow(QMainWindow):
         selected = dialog.selected_changes()
         if selected:
             self.db.apply_form_import(selected, source)
+            self._sync_master_data_file()
             self.refresh_master_table()
             self.refresh_mapping_combos()
+
+    def _sync_master_data_file(self) -> None:
+        rows = self.db.list_master_data()
+        MASTER_DATA_EXPORT_PATH.parent.mkdir(parents=True, exist_ok=True)
+        with MASTER_DATA_EXPORT_PATH.open("w", encoding="utf-8-sig", newline="") as file:
+            writer = csv.DictWriter(file, fieldnames=["clave", "valor", "categoria"])
+            writer.writeheader()
+            for row in rows:
+                writer.writerow(
+                    {
+                        "clave": row["clave"],
+                        "valor": row["valor"],
+                        "categoria": row["categoria"],
+                    }
+                )
 
     def _clear_template_state(self) -> None:
         self.current_template_id = None

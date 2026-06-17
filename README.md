@@ -118,6 +118,23 @@ necesitar una copia diligenciada:
 El mapeo queda asociado a la plantilla y se reutiliza tanto al diligenciar como
 al importar futuras copias del mismo formulario.
 
+## Datos maestros
+
+`data/maestros/datos_maestros.csv` es el archivo general de claves y valores
+que usa el diligenciamiento de formularios. La aplicacion lo actualiza como
+respaldo visible cada vez que se importan, editan, eliminan o aprueban cambios
+de datos maestros.
+
+El archivo debe tener estas columnas:
+
+- `clave`
+- `valor`
+- `categoria`
+
+`data/maestros/clientes_certificados.xlsx` es independiente: solo alimenta el
+buscador de clientes para certificados y no reemplaza los datos maestros
+generales.
+
 ## Certificados de clientes
 
 Desde `Datos maestros`, use `Importar clientes certificados` para cargar un

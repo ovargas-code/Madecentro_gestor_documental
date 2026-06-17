@@ -2,11 +2,11 @@
 
 import csv
 import os
+import re
 import shutil
 import sqlite3
 import subprocess
 import sys
-import uuid
 from datetime import datetime
 from pathlib import Path
 
@@ -1179,7 +1179,7 @@ class MainWindow(QMainWindow):
                 "Use un formulario PDF, XLSX o DOCX.",
             )
             return
-        version_dir = target_dir / uuid.uuid4().hex
+        version_dir = self._template_storage_dir(target_dir, name)
         target = version_dir / empty_source.name
         reference = version_dir / (
             f"{completed_source.stem}_referencia{completed_source.suffix.lower()}"
@@ -1290,7 +1290,7 @@ class MainWindow(QMainWindow):
         if set(mapping.values()) & CUSTOMER_KEYS:
             payload["purpose"] = "certificate"
 
-        version_dir = PDF_TEMPLATES_DIR / uuid.uuid4().hex
+        version_dir = self._template_storage_dir(PDF_TEMPLATES_DIR, name)
         target = version_dir / source.name
         mapping_name = f"mapeo_{name}"
         try:
@@ -2090,6 +2090,18 @@ class MainWindow(QMainWindow):
                         "categoria": row["categoria"],
                     }
                 )
+
+    def _template_storage_dir(self, base_dir: Path, template_name: str) -> Path:
+        folder_name = re.sub(r'[<>:"/\\|?*]+', "-", template_name).strip(" .")
+        folder_name = re.sub(r"\s+", " ", folder_name)
+        if not folder_name:
+            folder_name = "Plantilla"
+        candidate = base_dir / folder_name
+        index = 2
+        while candidate.exists():
+            candidate = base_dir / f"{folder_name}-v{index}"
+            index += 1
+        return candidate
 
     def _clear_template_state(self) -> None:
         self.current_template_id = None

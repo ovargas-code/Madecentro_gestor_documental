@@ -1,0 +1,272 @@
+{
+  "name": "mapeo_Sarlaft Universidad Cooperativa de Colombia",
+  "format": "docx",
+  "template_file": "Sarlaft Universidad Cooperativa de Colombia vacio.docx",
+  "reference_file": "Sarlaft Universidad Cooperativa de Colombia diligenciado.docx",
+  "fields": [
+    {
+      "field_id": "sdt-index:1",
+      "kind": "checkbox",
+      "location": "sdt-index:1",
+      "label": "Control 1",
+      "empty_value": "☐",
+      "sample_value": "☒",
+      "master_key": "",
+      "preserve_reference": true,
+      "reference_value": "☒"
+    },
+    {
+      "field_id": "sdt-index:4",
+      "kind": "checkbox",
+      "location": "sdt-index:4",
+      "label": "Control 4",
+      "empty_value": "☐",
+      "sample_value": "☒",
+      "master_key": "",
+      "preserve_reference": true,
+      "reference_value": "☒"
+    },
+    {
+      "field_id": "sdt-index:13",
+      "kind": "checkbox",
+      "location": "sdt-index:13",
+      "label": "Control 13",
+      "empty_value": "☐",
+      "sample_value": "☒",
+      "master_key": "",
+      "preserve_reference": true,
+      "reference_value": "☒"
+    },
+    {
+      "field_id": "sdt-index:16",
+      "kind": "checkbox",
+      "location": "sdt-index:16",
+      "label": "Control 16",
+      "empty_value": "☐",
+      "sample_value": "☒",
+      "master_key": "",
+      "preserve_reference": true,
+      "reference_value": "☒"
+    },
+    {
+      "field_id": "table:1:2:1",
+      "kind": "table_cell",
+      "location": "table:1:2:1",
+      "label": "Fecha de diligenciamiento: (DD MM AAAA)",
+      "empty_value": "Fecha de diligenciamiento: (DD MM AAAA)",
+      "sample_value": "Fecha de diligenciamiento: ( 31/03/2026",
+      "master_key": "",
+      "value_transform": "current_date",
+      "date_format": "%d/%m/%Y",
+      "value_format": "Fecha de diligenciamiento: {value}"
+    },
+    {
+      "field_id": "table:1:6:1",
+      "kind": "table_cell",
+      "location": "table:1:6:1",
+      "label": "Nombre o Razón Social:",
+      "empty_value": "Nombre o Razón Social:",
+      "sample_value": "MADECENTRO COLOMBIA SAS",
+      "master_key": "razon_social",
+      "value_format": "Nombre o Razón Social: {value}"
+    },
+    {
+      "field_id": "table:1:8:1",
+      "kind": "table_cell",
+      "location": "table:1:8:1",
+      "label": "País :",
+      "empty_value": "País :",
+      "sample_value": "COLOMBIA",
+      "master_key": "pais",
+      "value_format": "País : {value}"
+    },
+    {
+      "field_id": "table:1:8:2",
+      "kind": "table_cell",
+      "location": "table:1:8:2",
+      "label": "Ciudad :",
+      "empty_value": "Ciudad :",
+      "sample_value": "Medellin",
+      "master_key": "ciudad",
+      "value_format": "Ciudad : {value}"
+    },
+    {
+      "field_id": "table:1:8:3",
+      "kind": "table_cell",
+      "location": "table:1:8:3",
+      "label": "Dirección :",
+      "empty_value": "Dirección :",
+      "sample_value": "Calle 7 Sur 42-70 Ofc. 505 Ed. Forum",
+      "master_key": "direccion",
+      "value_format": "Dirección : {value}"
+    },
+    {
+      "field_id": "table:1:9:1",
+      "kind": "table_cell",
+      "location": "table:1:9:1",
+      "label": "Código (CIIU):",
+      "empty_value": "Código (CIIU):",
+      "sample_value": "4752",
+      "master_key": "actividad_principal",
+      "value_format": "Código (CIIU): {value}"
+    },
+    {
+      "field_id": "table:1:9:2",
+      "kind": "table_cell",
+      "location": "table:1:9:2",
+      "label": "Descripción de actividad Principal:",
+      "empty_value": "Descripción de actividad Principal:",
+      "sample_value": "Comercio al x menor de artículos de ferretería, pintura etc…",
+      "master_key": "descripcion_actividad_principal",
+      "value_format": "Descripción de actividad Principal: {value}"
+    },
+    {
+      "field_id": "table:1:12:2",
+      "kind": "table_cell",
+      "location": "table:1:12:2",
+      "label": "Nombre completo del Representante Legal Principa l o Suplente :",
+      "empty_value": "",
+      "sample_value": "ADRIAN QUINTERO A.",
+      "master_key": "representante_legal"
+    },
+    {
+      "field_id": "table:1:13:2",
+      "kind": "table_cell",
+      "location": "table:1:13:2",
+      "label": "N° Identificación:",
+      "empty_value": "N° Identificación:",
+      "sample_value": "98.554.901",
+      "master_key": "representante_id",
+      "value_format": "N° Identificación: {value}"
+    },
+    {
+      "field_id": "table:1:16:1",
+      "kind": "table_cell",
+      "location": "table:1:16:1",
+      "label": "Tipo",
+      "empty_value": "",
+      "sample_value": "C.E",
+      "master_key": "accionista_1_tipo_id"
+    },
+    {
+      "field_id": "table:1:16:2",
+      "kind": "table_cell",
+      "location": "table:1:16:2",
+      "label": "Número",
+      "empty_value": "",
+      "sample_value": "69838",
+      "master_key": "accionista_1_id"
+    },
+    {
+      "field_id": "table:1:16:3",
+      "kind": "table_cell",
+      "location": "table:1:16:3",
+      "label": "Nombre completo",
+      "empty_value": "",
+      "sample_value": "GEM RETAIL SL",
+      "master_key": "accionista_1_nombre"
+    },
+    {
+      "field_id": "table:1:16:4",
+      "kind": "table_cell",
+      "location": "table:1:16:4",
+      "label": "%",
+      "empty_value": "",
+      "sample_value": "33.66%",
+      "master_key": "accionista_1_porcentaje"
+    },
+    {
+      "field_id": "table:1:17:1",
+      "kind": "table_cell",
+      "location": "table:1:17:1",
+      "label": "table:1:17:1",
+      "empty_value": "",
+      "sample_value": "C.E",
+      "master_key": "accionista_2_tipo_id"
+    },
+    {
+      "field_id": "table:1:17:2",
+      "kind": "table_cell",
+      "location": "table:1:17:2",
+      "label": "table:1:17:2",
+      "empty_value": "",
+      "sample_value": "4176468",
+      "master_key": "accionista_2_id"
+    },
+    {
+      "field_id": "table:1:17:3",
+      "kind": "table_cell",
+      "location": "table:1:17:3",
+      "label": "table:1:17:3",
+      "empty_value": "",
+      "sample_value": "BLACKEYE FINANCE LLC",
+      "master_key": "accionista_2_nombre"
+    },
+    {
+      "field_id": "table:1:17:4",
+      "kind": "table_cell",
+      "location": "table:1:17:4",
+      "label": "table:1:17:4",
+      "empty_value": "",
+      "sample_value": "16.36%",
+      "master_key": "accionista_2_porcentaje"
+    },
+    {
+      "field_id": "table:1:28:2",
+      "kind": "table_cell",
+      "location": "table:1:28:2",
+      "label": "Indique el País:",
+      "empty_value": "Indique el País:",
+      "sample_value": "PANAMA",
+      "master_key": "operacion_exterior_pais",
+      "value_format": "Indique el País: {value}"
+    },
+    {
+      "field_id": "table:1:28:3",
+      "kind": "table_cell",
+      "location": "table:1:28:3",
+      "label": "Nombre de la Entidad Financiera:",
+      "empty_value": "Nombre de la Entidad Financiera:",
+      "sample_value": "BANCOLOMBIA",
+      "master_key": "operacion_exterior_entidad",
+      "value_format": "Nombre de la Entidad Financiera: {value}"
+    },
+    {
+      "field_id": "table:1:29:1",
+      "kind": "table_cell",
+      "location": "table:1:29:1",
+      "label": "Tipo de transacción : Envío y/o recepción de giros ☐ Transferencias ☐ Ex portaciones ☐ Importaciones ☐ Otras ☐ ________________________________",
+      "empty_value": "Tipo de transacción : Envío y/o recepción de giros ☐ Transferencias ☐ Ex portaciones ☐ Importaciones ☐ Otras ☐ ________________________________",
+      "sample_value": "Tipo de transacción : Envío y/o recepción de giros ☐ Transferencias ☐ Ex portaciones X ☐ Importaciones X ☐ Otras ☐ ________________________________",
+      "master_key": "",
+      "preserve_reference": true,
+      "reference_value": "Tipo de transacción : Envío y/o recepción de giros ☐ Transferencias ☐ Ex portaciones X ☐ Importaciones X ☐ Otras ☐ ________________________________"
+    },
+    {
+      "field_id": "table:1:30:1",
+      "kind": "table_cell",
+      "location": "table:1:30:1",
+      "label": "¿Realiza operaciones en la Bolsa de Valores de Colombia?         Si ☐ No ☐ Rol: Inversionista ☐ Emisor ☐",
+      "empty_value": "¿Realiza operaciones en la Bolsa de Valores de Colombia?         Si ☐ No ☐ Rol: Inversionista ☐ Emisor ☐",
+      "sample_value": "¿Realiza operaciones en la Bolsa de Valores de Colombia?         Si ☐ No X ☐ Rol: Inversionista ☐ Emisor ☐",
+      "master_key": "",
+      "preserve_reference": true,
+      "reference_value": "¿Realiza operaciones en la Bolsa de Valores de Colombia?         Si ☐ No X ☐ Rol: Inversionista ☐ Emisor ☐"
+    }
+  ],
+  "signature": {
+    "enabled": true,
+    "mode": "learned",
+    "table": 1,
+    "row": 32,
+    "cell": 1,
+    "paragraph": 4,
+    "width_emu": 1200150,
+    "height_emu": 556770
+  },
+  "schema_version": 2,
+  "template_fingerprint": "050c8f37c9fd32a3fe58dca95bd76b5cdf31157ccb77b0bce6547978b4f406eb",
+  "description": "Formulario Sarlaft Universidad Cooperativa de Colombia",
+  "template_id": 4,
+  "template_version": 1
+}

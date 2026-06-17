@@ -1,0 +1,76 @@
+{
+  "name": "mapeo_Hoja Membrete Madecentro",
+  "format": "pdf",
+  "schema_version": 2,
+  "purpose": "certificate",
+  "template_file": "Hoja Membrete Madecentro vacio.pdf",
+  "mapping": {
+    "dia_expedicion": "dia_expedicion",
+    "mes_expedicion": "mes_expedicion",
+    "ano_expedicion": "ano_expedicion",
+    "cliente_razon_social": "cliente_razon_social",
+    "cliente_nit": "cliente_nit",
+    "cliente_ano_vinculacion": "cliente_ano_vinculacion",
+    "firma_png": ""
+  },
+  "samples": {
+    "dia_expedicion": "",
+    "mes_expedicion": "",
+    "ano_expedicion": "",
+    "cliente_razon_social": "",
+    "cliente_nit": "",
+    "cliente_ano_vinculacion": "",
+    "firma_png": ""
+  },
+  "field_metadata": [
+    {
+      "field_id": "dia_expedicion",
+      "field_type": "text",
+      "page": 1,
+      "options": []
+    },
+    {
+      "field_id": "mes_expedicion",
+      "field_type": "text",
+      "page": 1,
+      "options": []
+    },
+    {
+      "field_id": "ano_expedicion",
+      "field_type": "text",
+      "page": 1,
+      "options": []
+    },
+    {
+      "field_id": "cliente_razon_social",
+      "field_type": "text",
+      "page": 1,
+      "options": []
+    },
+    {
+      "field_id": "cliente_nit",
+      "field_type": "text",
+      "page": 1,
+      "options": []
+    },
+    {
+      "field_id": "cliente_ano_vinculacion",
+      "field_type": "text",
+      "page": 1,
+      "options": []
+    },
+    {
+      "field_id": "firma_png",
+      "field_type": "button",
+      "page": 1,
+      "options": []
+    }
+  ],
+  "signature": {
+    "enabled": true,
+    "mode": "auto"
+  },
+  "template_fingerprint": "5cc002736df19bfc16a1740783b5b3ddb70e8dbcf7eabc0c0ba199b8d27c7698",
+  "template_id": 3,
+  "template_version": 1
+}

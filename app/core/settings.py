@@ -68,4 +68,8 @@ def logo_path() -> Path | None:
 
 
 def signature_path() -> Path | None:
+    for pattern in ("00_firma_activa.png", "00_firma_activa.jpg", "00_firma_activa.jpeg", "00_firma_activa.webp"):
+        active = SIGNATURE_DIR / pattern
+        if active.is_file():
+            return active
     return first_image(SIGNATURE_DIR)

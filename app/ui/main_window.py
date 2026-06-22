@@ -10,7 +10,7 @@ import sys
 from datetime import datetime
 from pathlib import Path
 
-from openpyxl import load_workbook
+from openpyxl import Workbook, load_workbook
 from pydantic import ValidationError
 from PySide6.QtCore import Qt
 from PySide6.QtGui import QIcon, QPixmap
@@ -26,6 +26,8 @@ from PySide6.QtWidgets import (
     QInputDialog,
     QLabel,
     QLineEdit,
+    QListWidget,
+    QListWidgetItem,
     QMainWindow,
     QMessageBox,
     QPushButton,
@@ -107,10 +109,9 @@ class MainWindow(QMainWindow):
         central_layout.addWidget(self.tabs, 1)
         self.setCentralWidget(central)
 
-        self._build_master_tab()
         self._build_templates_tab()
         self._build_mapping_tab()
-        self._build_fill_tab()
+        self._build_master_tab()
         self._build_certificate_tab()
         self._build_instructions_tab()
         self.refresh_all()
@@ -207,6 +208,7 @@ class MainWindow(QMainWindow):
 
     def _build_master_tab(self) -> None:
         tab = QWidget()
+        self.master_tab = tab
         layout = QVBoxLayout(tab)
         layout.setContentsMargins(24, 22, 24, 24)
         layout.setSpacing(16)
@@ -220,17 +222,28 @@ class MainWindow(QMainWindow):
         import_card, import_layout = self._card()
         import_layout.addWidget(self._section_title("Importar información"))
         import_actions = QHBoxLayout()
-        import_btn = QPushButton("Importar CSV/XLSX maestros")
+        import_btn = QPushButton("Cargar CSV/XLSX maestros")
         import_customers_btn = QPushButton("Importar clientes certificados")
-        import_form_btn = QPushButton("Importar formulario diligenciado")
+        import_form_btn = QPushButton("Actualizar maestros desde formulario")
+        sync_csv_btn = QPushButton("Sincronizar CSV maestros")
+        export_xlsx_btn = QPushButton("Exportar maestros XLSX")
         history_btn = QPushButton("Historial de importaciones")
         import_form_btn.setProperty("role", "primary")
         import_actions.addWidget(import_btn)
         import_actions.addWidget(import_customers_btn)
         import_actions.addWidget(import_form_btn)
+        import_actions.addWidget(sync_csv_btn)
+        import_actions.addWidget(export_xlsx_btn)
         import_actions.addWidget(history_btn)
         import_actions.addStretch()
         import_layout.addLayout(import_actions)
+        sync_note = QLabel(
+            "madecentro.db es la base principal; datos_maestros.csv se actualiza "
+            "cuando apruebas cambios o al sincronizarlo manualmente."
+        )
+        sync_note.setObjectName("mutedText")
+        sync_note.setWordWrap(True)
+        import_layout.addWidget(sync_note)
         layout.addWidget(import_card)
 
         edit_card, edit_layout = self._card()
@@ -275,6 +288,8 @@ class MainWindow(QMainWindow):
         import_btn.clicked.connect(self.import_master_data)
         import_customers_btn.clicked.connect(self.import_certificate_customers)
         import_form_btn.clicked.connect(self.import_completed_form)
+        sync_csv_btn.clicked.connect(self.sync_master_data_file_clicked)
+        export_xlsx_btn.clicked.connect(self.export_master_data_xlsx)
         history_btn.clicked.connect(self.show_import_history)
         save_btn.clicked.connect(self.save_master_row)
         edit_btn.clicked.connect(self.edit_selected_master_row)
@@ -285,41 +300,32 @@ class MainWindow(QMainWindow):
 
     def _build_templates_tab(self) -> None:
         tab = QWidget()
+        self.templates_tab = tab
         layout = QVBoxLayout(tab)
         layout.setContentsMargins(24, 22, 24, 24)
         layout.setSpacing(16)
         layout.addLayout(
             self._page_intro(
-                "Plantillas",
-                "Registra una versión vacía y una diligenciada para aprender su estructura.",
+                "Formularios",
+                "Selecciona una plantilla, registra una nueva si hace falta y crea el formulario diligenciado.",
             )
         )
-
-        register_card, register_layout = self._card()
-        register_layout.addWidget(self._section_title("Registrar formulario"))
-        actions = QGridLayout()
-        learn_pdf_btn = QPushButton("Aprender plantilla")
-        load_btn = QPushButton("Registrar vacia + diligenciada")
-        list_btn = QPushButton("Listar campos detectados")
-        delete_btn = QPushButton("Eliminar plantilla seleccionada")
-        learn_pdf_btn.setProperty("role", "primary")
-        delete_btn.setProperty("role", "danger")
-        self.template_name_input = QLineEdit()
-        self.template_name_input.setPlaceholderText("Ej. Formulario de vinculación")
-        actions.addWidget(QLabel("Nombre de la plantilla"), 0, 0, 1, 2)
-        actions.addWidget(self.template_name_input, 1, 0)
-        actions.addWidget(learn_pdf_btn, 1, 1)
-        actions.addWidget(load_btn, 1, 2)
-        actions.addWidget(list_btn, 1, 3)
-        actions.addWidget(delete_btn, 1, 4)
-        actions.setColumnStretch(0, 1)
-        register_layout.addLayout(actions)
-        layout.addWidget(register_card)
 
         self.template_table = QTableWidget(0, 5)
         self.template_table.setHorizontalHeaderLabels(
             ["ID", "Nombre", "Formato", "Plantilla vacia", "Referencia"]
         )
+        self.template_search_input = QLineEdit()
+        self.template_search_input.setPlaceholderText(
+            "Buscar por nombre, formato o archivo"
+        )
+        template_search_btn = QPushButton("Buscar plantilla")
+        template_clear_btn = QPushButton("Limpiar")
+        self.template_count_label = QLabel()
+        self.template_count_label.setObjectName("mutedText")
+        self.template_list = QListWidget()
+        self.template_list.setObjectName("templateList")
+        self.template_list.setSpacing(4)
         self.field_table = QTableWidget(0, 4)
         self.field_table.setHorizontalHeaderLabels(
             ["Campo", "Tipo", "Ubicacion", "Valor de referencia"]
@@ -327,31 +333,105 @@ class MainWindow(QMainWindow):
         self._prepare_table(self.template_table)
         self._prepare_table(self.field_table)
 
+        main_area = QHBoxLayout()
+        main_area.setSpacing(16)
+
         templates_card, templates_layout = self._card()
-        templates_layout.addWidget(self._section_title("Plantillas registradas"))
-        templates_layout.addWidget(self.template_table)
-        layout.addWidget(templates_card, 1)
+        templates_layout.addWidget(self._section_title("1. Elegir plantilla"))
+        search_actions = QHBoxLayout()
+        search_actions.addWidget(self.template_search_input, 1)
+        search_actions.addWidget(template_search_btn)
+        search_actions.addWidget(template_clear_btn)
+        templates_layout.addLayout(search_actions)
+        templates_layout.addWidget(self.template_count_label)
+        self.template_list.setMinimumHeight(340)
+        templates_layout.addWidget(self.template_list, 1)
+        main_area.addWidget(templates_card, 3)
+
+        side_layout = QVBoxLayout()
+        side_layout.setSpacing(16)
+
+        action_card, action_layout = self._card()
+        action_layout.addWidget(self._section_title("2. Crear formulario"))
+        self.selected_pdf_label = QLabel("Plantilla: sin seleccionar")
+        self.selected_mapping_label = QLabel("Mapeo: sin guardar")
+        self.logo_status_label = QLabel()
+        self.signature_status_label = QLabel()
+        self.selected_pdf_label.setObjectName("summaryText")
+        self.selected_mapping_label.setObjectName("summaryText")
+        self.logo_status_label.setObjectName("summaryText")
+        self.signature_status_label.setObjectName("summaryText")
+        fill_actions = QHBoxLayout()
+        fill_btn = QPushButton("Crear formulario diligenciado")
+        open_btn = QPushButton("Abrir carpeta de salida")
+        signature_btn = QPushButton("Elegir firma")
+        fill_btn.setProperty("role", "primary")
+        fill_actions.addWidget(fill_btn)
+        fill_actions.addWidget(open_btn)
+        fill_actions.addStretch()
+        fill_actions.addWidget(signature_btn)
+        action_layout.addLayout(fill_actions)
+        side_layout.addWidget(action_card)
+
+        register_card, register_layout = self._card()
+        register_layout.addWidget(self._section_title("Agregar plantilla"))
+        actions = QGridLayout()
+        learn_pdf_btn = QPushButton("Registrar PDF editable")
+        load_btn = QPushButton("Registrar plantilla con ejemplo")
+        list_btn = QPushButton("Ver campos")
+        delete_btn = QPushButton("Eliminar plantilla seleccionada")
+        load_btn.setProperty("role", "primary")
+        delete_btn.setProperty("role", "danger")
+        self.template_name_input = QLineEdit()
+        self.template_name_input.setPlaceholderText("Ej. Formulario de vinculación")
+        actions.addWidget(QLabel("Nombre"), 0, 0, 1, 2)
+        actions.addWidget(self.template_name_input, 1, 0, 1, 2)
+        actions.addWidget(load_btn, 2, 0)
+        actions.addWidget(learn_pdf_btn, 2, 1)
+        actions.setColumnStretch(0, 1)
+        actions.setColumnStretch(1, 1)
+        register_layout.addLayout(actions)
+        side_layout.addWidget(register_card)
 
         fields_card, fields_layout = self._card()
-        fields_layout.addWidget(self._section_title("Campos detectados"))
+        fields_layout.addWidget(self._section_title("Avanzado"))
+        detail_actions = QHBoxLayout()
+        detail_actions.addWidget(list_btn)
+        detail_actions.addWidget(delete_btn)
+        detail_actions.addStretch()
+        fields_layout.addLayout(detail_actions)
+        self.field_table.setMaximumHeight(240)
         fields_layout.addWidget(self.field_table)
-        layout.addWidget(fields_card, 1)
+        side_layout.addWidget(fields_card, 1)
+
+        main_area.addLayout(side_layout, 2)
+        layout.addLayout(main_area, 1)
 
         learn_pdf_btn.clicked.connect(self.learn_pdf_template)
         load_btn.clicked.connect(self.load_template)
         list_btn.clicked.connect(self.list_pdf_fields)
         delete_btn.clicked.connect(self.delete_selected_template)
+        template_search_btn.clicked.connect(self.apply_template_search)
+        template_clear_btn.clicked.connect(self.clear_template_search)
+        self.template_search_input.returnPressed.connect(self.apply_template_search)
+        self.template_search_input.textChanged.connect(self.apply_template_search)
+        self.template_list.itemClicked.connect(self.select_template_from_list)
         self.template_table.cellClicked.connect(self.select_template_from_table)
-        self.tabs.addTab(tab, "Plantillas")
+        fill_btn.clicked.connect(self.fill_pdf)
+        open_btn.clicked.connect(self.open_output_folder)
+        signature_btn.clicked.connect(self.choose_signature_file)
+        self._refresh_asset_status()
+        self.tabs.addTab(tab, "Formularios")
 
     def _build_mapping_tab(self) -> None:
         tab = QWidget()
+        self.mapping_tab = tab
         layout = QVBoxLayout(tab)
         layout.setContentsMargins(24, 22, 24, 24)
         layout.setSpacing(16)
         layout.addLayout(
             self._page_intro(
-                "Mapeo de campos",
+                "Mapeo",
                 "Relaciona cada campo del formulario con su dato maestro correspondiente.",
             )
         )
@@ -360,7 +440,7 @@ class MainWindow(QMainWindow):
         actions_layout.addWidget(self._section_title("Acciones de mapeo"))
         actions = QHBoxLayout()
         create_btn = QPushButton("Crear mapeo")
-        suggest_btn = QPushButton("Sugerir mapeo automatico")
+        suggest_btn = QPushButton("Sugerir mapeo con IA")
         load_btn = QPushButton("Cargar mapeo")
         save_btn = QPushButton("Guardar mapeo")
         save_btn.setProperty("role", "primary")
@@ -388,76 +468,7 @@ class MainWindow(QMainWindow):
         suggest_btn.clicked.connect(self.suggest_mapping)
         load_btn.clicked.connect(self.load_mapping)
         save_btn.clicked.connect(self.save_mapping)
-        self.tabs.addTab(tab, "Mapeo de campos")
-
-    def _build_fill_tab(self) -> None:
-        tab = QWidget()
-        layout = QVBoxLayout(tab)
-        layout.setContentsMargins(24, 22, 24, 24)
-        layout.setSpacing(16)
-        layout.addLayout(
-            self._page_intro(
-                "Diligenciar formulario",
-                "Genera una copia utilizando la plantilla seleccionada y los datos maestros.",
-            )
-        )
-
-        selection_card, selection_layout = self._card()
-        selection_layout.addWidget(self._section_title("Selección actual"))
-        self.selected_pdf_label = QLabel("Plantilla: sin seleccionar")
-        self.selected_mapping_label = QLabel("Mapeo: sin guardar")
-        self.selected_pdf_label.setObjectName("statusReady")
-        self.selected_mapping_label.setObjectName("statusReady")
-        selection_layout.addWidget(self.selected_pdf_label)
-        selection_layout.addWidget(self.selected_mapping_label)
-        layout.addWidget(selection_card)
-
-        resources_card, resources_layout = self._card()
-        resources_layout.addWidget(self._section_title("Recursos de marca"))
-        resource_grid = QGridLayout()
-        self.logo_status_label = QLabel()
-        self.signature_status_label = QLabel()
-        logo_btn = QPushButton("Abrir carpeta del logo")
-        signature_btn = QPushButton("Abrir carpeta de la firma")
-        resource_grid.addWidget(self.logo_status_label, 0, 0)
-        resource_grid.addWidget(logo_btn, 0, 1)
-        resource_grid.addWidget(self.signature_status_label, 1, 0)
-        resource_grid.addWidget(signature_btn, 1, 1)
-        resource_grid.setColumnStretch(0, 1)
-        resources_layout.addLayout(resource_grid)
-        note = QLabel(
-            "Usa archivos PNG con fondo transparente. La ubicación de la firma "
-            "debe definirse en cada plantilla para evitar insertarla sobre contenido."
-        )
-        note.setObjectName("mutedText")
-        note.setWordWrap(True)
-        resources_layout.addWidget(note)
-        layout.addWidget(resources_card)
-
-        action_card, action_layout = self._card()
-        action_layout.addWidget(self._section_title("Generar documento"))
-        actions = QHBoxLayout()
-        fill_btn = QPushButton("Diligenciar formulario seleccionado")
-        open_btn = QPushButton("Abrir carpeta de salida")
-        fill_btn.setProperty("role", "primary")
-        actions.addWidget(fill_btn)
-        actions.addWidget(open_btn)
-        actions.addStretch()
-        action_layout.addLayout(actions)
-        formats = QLabel(
-            "Formatos compatibles: PDF AcroForm, Excel XLSX y Word DOCX estructurado."
-        )
-        formats.setObjectName("mutedText")
-        action_layout.addWidget(formats)
-        layout.addWidget(action_card)
-        layout.addStretch()
-
-        fill_btn.clicked.connect(self.fill_pdf)
-        open_btn.clicked.connect(self.open_output_folder)
-        logo_btn.clicked.connect(lambda: self._open_directory(LOGO_DIR))
-        signature_btn.clicked.connect(lambda: self._open_directory(SIGNATURE_DIR))
-        self._refresh_asset_status()
-        self.tabs.addTab(tab, "Diligenciar formulario")
+        self.tabs.addTab(tab, "Mapeo")
 
     def _build_certificate_tab(self) -> None:
         tab = QWidget()
@@ -543,16 +554,15 @@ class MainWindow(QMainWindow):
         layout.addLayout(
             self._page_intro(
                 "Instructivo de uso",
-                "Guía paso a paso para registrar, revisar y diligenciar formularios.",
+                "Guía rápida para crear formularios y mantener la información actualizada.",
             )
         )
 
         intro_card, intro_layout = self._card()
-        intro_layout.addWidget(self._section_title("Antes de comenzar"))
+        intro_layout.addWidget(self._section_title("Flujo principal"))
         intro = QLabel(
-            "Prepare dos versiones del mismo formulario: una completamente vacía "
-            "y otra correctamente diligenciada. Ambas deben tener el mismo formato "
-            "y conservar exactamente la misma estructura."
+            "Para el uso diario: seleccione una plantilla en Formularios, pulse "
+            "Crear formulario diligenciado y revise el archivo generado en la carpeta de salida."
         )
         intro.setWordWrap(True)
         intro_layout.addWidget(intro)
@@ -560,72 +570,54 @@ class MainWindow(QMainWindow):
 
         steps = [
             (
-                "1. Preparar los archivos",
+                "1. Crear un formulario",
                 [
-                    "Guarde el formulario vacío y el diligenciado en la carpeta de entrada.",
-                    "Compruebe que ambos sean PDF, XLSX o DOCX del mismo tipo.",
-                    "Cierre los archivos en Excel, Word o el lector de PDF antes de continuar.",
+                    "Abra Formularios y busque la plantilla.",
+                    "Seleccione la plantilla correcta.",
+                    "Pulse Crear formulario diligenciado.",
+                    "Revise el archivo en la carpeta de salida antes de enviarlo.",
                 ],
+                "forms",
             ),
             (
-                "2. Registrar la plantilla",
+                "2. Registrar una plantilla nueva",
                 [
-                    "Abra la pestaña Plantillas.",
-                    "Escriba un nombre fácil de identificar, por ejemplo: Vinculación de proveedores.",
-                    "Pulse Registrar plantilla vacía + diligenciada.",
-                    "Seleccione primero el formulario vacío y después el diligenciado.",
-                    "Revise los datos detectados y confirme solamente los que sean correctos.",
+                    "Use esta opción solo cuando el formulario no exista en la lista.",
+                    "Tenga listo un archivo vacío y otro diligenciado del mismo formato.",
+                    "En Formularios escriba el nombre y pulse Registrar plantilla con ejemplo.",
+                    "Confirme únicamente los datos detectados que sean correctos.",
                 ],
+                "input",
             ),
             (
-                "3. Revisar los datos maestros",
+                "3. Revisar el mapeo",
                 [
-                    "Abra la pestaña Datos maestros.",
-                    "Verifique empresa, NIT, dirección, representante legal, bancos y junta directiva.",
-                    "Para corregir un dato, seleccione la fila, edítela y pulse Guardar fila.",
-                    "No elimine una clave si todavía se utiliza en el mapeo de una plantilla.",
+                    "Use Mapeo cuando una plantilla nueva no complete bien sus campos.",
+                    "Pulse Sugerir mapeo con IA para una primera propuesta.",
+                    "Corrija manualmente los campos importantes y guarde el mapeo.",
                 ],
+                "mapping",
             ),
             (
-                "4. Revisar el mapeo",
+                "4. Actualizar datos maestros",
                 [
-                    "Abra la pestaña Mapeo de campos.",
-                    "Confirme que cada campo importante esté relacionado con la clave correcta.",
-                    "Puede escribir una clave nueva cuando no exista en la lista.",
-                    "Pulse Guardar mapeo antes de generar el documento.",
+                    "Use Datos maestros para actualizar la información fuente.",
+                    "Puede cargar CSV/XLSX, actualizar desde un formulario diligenciado o editar una fila.",
+                    "Al aprobar cambios se actualiza madecentro.db y se sincroniza datos_maestros.csv.",
                 ],
+                "masters",
             ),
             (
-                "5. Diligenciar el formulario",
+                "5. Firma y control final",
                 [
-                    "Seleccione la plantilla requerida en la pestaña Plantillas.",
-                    "Abra Diligenciar formulario.",
-                    "Compruebe que aparecen la plantilla y el mapeo seleccionados.",
-                    "Pulse Diligenciar formulario seleccionado.",
-                    "Abra la carpeta de salida y revise el archivo más reciente.",
+                    "En Formularios use Elegir firma si necesita cambiar la firma activa.",
+                    "Verifique fecha, NIT, razón social, representante legal, bancos y casillas marcadas.",
+                    "No envíe el documento sin revisar el archivo final.",
                 ],
-            ),
-            (
-                "6. Control de calidad",
-                [
-                    "Confirme que la fecha corresponda al día de generación.",
-                    "Revise nombres, identificaciones, teléfonos, bancos y cuentas.",
-                    "Compruebe todas las casillas gráficas y las selecciones marcadas con X.",
-                    "Verifique especialmente miembros de junta y la sección 8.",
-                    "No envíe el documento hasta completar esta revisión.",
-                ],
-            ),
-            (
-                "7. Logo y firma",
-                [
-                    "Coloque el logo en assets/logo, preferiblemente como logo.png.",
-                    "Coloque la firma en assets/firma, preferiblemente como firma.png.",
-                    "Use imágenes PNG con fondo transparente.",
-                    "La firma se insertará únicamente en plantillas que tengan definida una zona de firma.",
-                ],
+                "output",
             ),
         ]
-        for step_number, (title, items) in enumerate(steps, start=1):
+        for title, items, action_key in steps:
             card, card_layout = self._card()
             card_layout.addWidget(self._section_title(title))
             for item in items:
@@ -635,63 +627,47 @@ class MainWindow(QMainWindow):
                 card_layout.addWidget(label)
             actions = QHBoxLayout()
             actions.addStretch()
-            if step_number == 1:
-                button = QPushButton("Abrir carpeta de entrada")
-                button.setProperty("role", "primary")
-                button.clicked.connect(
-                    lambda: self._open_directory(INPUT_DIR)
-                )
-                actions.addWidget(button)
-            elif step_number == 2:
-                button = QPushButton("Ir a Plantillas")
-                button.setProperty("role", "primary")
-                button.clicked.connect(lambda: self.tabs.setCurrentIndex(1))
-                actions.addWidget(button)
-            elif step_number == 3:
-                button = QPushButton("Ir a Datos maestros")
-                button.setProperty("role", "primary")
-                button.clicked.connect(lambda: self.tabs.setCurrentIndex(0))
-                actions.addWidget(button)
-            elif step_number == 4:
-                button = QPushButton("Ir a Mapeo de campos")
-                button.setProperty("role", "primary")
-                button.clicked.connect(lambda: self.tabs.setCurrentIndex(2))
-                actions.addWidget(button)
-            elif step_number == 5:
-                output_button = QPushButton("Abrir carpeta de salida")
+            if action_key == "forms":
+                output_button = QPushButton("Abrir salida")
                 output_button.clicked.connect(
                     lambda: self._open_directory(OUTPUT_DIR)
                 )
-                button = QPushButton("Ir a Diligenciar formulario")
+                button = QPushButton("Ir a Formularios")
                 button.setProperty("role", "primary")
-                button.clicked.connect(lambda: self.tabs.setCurrentIndex(3))
+                button.clicked.connect(lambda: self.tabs.setCurrentWidget(self.templates_tab))
                 actions.addWidget(output_button)
                 actions.addWidget(button)
-            elif step_number == 6:
-                button = QPushButton("Abrir carpeta de salida")
+            elif action_key == "input":
+                input_button = QPushButton("Abrir entrada")
+                input_button.clicked.connect(lambda: self._open_directory(INPUT_DIR))
+                button = QPushButton("Ir a Formularios")
+                button.setProperty("role", "primary")
+                button.clicked.connect(lambda: self.tabs.setCurrentWidget(self.templates_tab))
+                actions.addWidget(input_button)
+                actions.addWidget(button)
+            elif action_key == "mapping":
+                button = QPushButton("Ir a Mapeo")
+                button.setProperty("role", "primary")
+                button.clicked.connect(lambda: self.tabs.setCurrentWidget(self.mapping_tab))
+                actions.addWidget(button)
+            elif action_key == "masters":
+                button = QPushButton("Ir a Datos maestros")
+                button.setProperty("role", "primary")
+                button.clicked.connect(lambda: self.tabs.setCurrentWidget(self.master_tab))
+                actions.addWidget(button)
+            elif action_key == "output":
+                button = QPushButton("Abrir salida")
                 button.setProperty("role", "primary")
                 button.clicked.connect(
                     lambda: self._open_directory(OUTPUT_DIR)
                 )
                 actions.addWidget(button)
-            elif step_number == 7:
-                logo_button = QPushButton("Abrir carpeta del logo")
-                signature_button = QPushButton("Abrir carpeta de la firma")
-                signature_button.setProperty("role", "primary")
-                logo_button.clicked.connect(
-                    lambda: self._open_directory(LOGO_DIR)
-                )
-                signature_button.clicked.connect(
-                    lambda: self._open_directory(SIGNATURE_DIR)
-                )
-                actions.addWidget(logo_button)
-                actions.addWidget(signature_button)
             card_layout.addLayout(actions)
             layout.addWidget(card)
 
         warning = QLabel(
-            "Recomendación: conserve siempre una copia original de cada formulario "
-            "vacío y no edite manualmente los archivos guardados en plantillas."
+            "Importante: conserve siempre los archivos originales. No edite manualmente "
+            "las plantillas guardadas dentro de la carpeta plantillas."
         )
         warning.setObjectName("instructionWarning")
         warning.setWordWrap(True)
@@ -720,17 +696,13 @@ class MainWindow(QMainWindow):
         self.logo_status_label.setText(
             f"Logo: {logo.name}" if logo else "Logo: archivo pendiente"
         )
-        self.logo_status_label.setObjectName(
-            "statusReady" if logo else "statusMissing"
-        )
+        self.logo_status_label.setObjectName("summaryText")
         self.signature_status_label.setText(
             f"Firma: {signature.name}"
             if signature
             else "Firma: archivo pendiente"
         )
-        self.signature_status_label.setObjectName(
-            "statusReady" if signature else "statusMissing"
-        )
+        self.signature_status_label.setObjectName("summaryText")
         self.logo_status_label.style().unpolish(self.logo_status_label)
         self.logo_status_label.style().polish(self.logo_status_label)
         self.signature_status_label.style().unpolish(self.signature_status_label)
@@ -746,12 +718,7 @@ class MainWindow(QMainWindow):
                 self.master_table.setItem(row_index, col, item)
 
     def refresh_template_table(self) -> None:
-        certificate_ids = self._certificate_template_ids()
-        rows = [
-            row
-            for row in self.db.list_templates()
-            if int(row["id"]) not in certificate_ids
-        ]
+        rows = self._registered_template_rows()
         self.template_table.setRowCount(len(rows))
         for row_index, row in enumerate(rows):
             values = [
@@ -767,6 +734,90 @@ class MainWindow(QMainWindow):
                     col,
                     QTableWidgetItem(str(value)),
                 )
+        self.apply_template_search()
+
+    def _registered_template_rows(self) -> list[dict[str, object]]:
+        certificate_ids = self._certificate_template_ids()
+        return [
+            row
+            for row in self.db.list_templates()
+            if int(row["id"]) not in certificate_ids
+        ]
+
+    def apply_template_search(self, _text: str | None = None) -> None:
+        if not hasattr(self, "template_list"):
+            return
+        query = self.template_search_input.text().strip().casefold()
+        rows = self._registered_template_rows()
+        if query:
+            rows = [
+                row
+                for row in rows
+                if self._template_matches_query(row, query)
+            ]
+        self._populate_template_list(rows)
+
+    def clear_template_search(self) -> None:
+        self.template_search_input.clear()
+        self.apply_template_search()
+
+    def focus_template_search(self) -> None:
+        if hasattr(self, "templates_tab"):
+            self.tabs.setCurrentWidget(self.templates_tab)
+        if hasattr(self, "template_search_input"):
+            self.template_search_input.setFocus()
+            self.template_search_input.selectAll()
+
+    def _template_matches_query(
+        self,
+        row: dict[str, object],
+        query: str,
+    ) -> bool:
+        searchable = " ".join(
+            [
+                str(row.get("nombre", "")),
+                str(row.get("formato", "")),
+                Path(str(row.get("ruta_pdf", ""))).name,
+                Path(str(row.get("ruta_referencia", ""))).name,
+            ]
+        ).casefold()
+        return query in searchable
+
+    def _populate_template_list(self, rows: list[dict[str, object]]) -> None:
+        self.template_list.clear()
+        self.template_count_label.setText(
+            f"Plantillas visibles: {len(rows)}"
+        )
+        for row in rows:
+            template_id = int(row["id"])
+            name = str(row["nombre"])
+            fmt = str(row["formato"]).upper()
+            file_name = Path(str(row["ruta_pdf"])).name
+            item = QListWidgetItem(f"{name}   ·   {fmt}   ·   {file_name}")
+            item.setData(Qt.UserRole, template_id)
+            item.setToolTip(str(row["ruta_pdf"]))
+            self.template_list.addItem(item)
+            if self.current_template_id == template_id:
+                item.setSelected(True)
+                self.template_list.scrollToItem(item)
+
+    def _sync_template_selection(self) -> None:
+        if not self.current_template_id:
+            return
+        if hasattr(self, "template_list"):
+            for row in range(self.template_list.count()):
+                item = self.template_list.item(row)
+                selected = int(item.data(Qt.UserRole)) == self.current_template_id
+                item.setSelected(selected)
+                if selected:
+                    self.template_list.scrollToItem(item)
+        if hasattr(self, "template_table"):
+            for row in range(self.template_table.rowCount()):
+                id_item = self.template_table.item(row, 0)
+                if id_item and int(id_item.text()) == self.current_template_id:
+                    self.template_table.selectRow(row)
+                    self.template_table.scrollToItem(id_item)
+                    break
 
     def refresh_selected_template(self) -> None:
         certificate_ids = self._certificate_template_ids()
@@ -852,7 +903,83 @@ class MainWindow(QMainWindow):
             self._show_error("No se pudieron importar los datos", exc)
             return
         self.refresh_all()
-        QMessageBox.information(self, "Importacion completa", f"Datos importados: {count}")
+        QMessageBox.information(
+            self,
+            "Maestros actualizados",
+            f"Datos cargados o actualizados: {count}\n"
+            f"CSV sincronizado: {MASTER_DATA_EXPORT_PATH}",
+        )
+
+    def sync_master_data_file_clicked(self) -> None:
+        try:
+            self._sync_master_data_file()
+        except OSError as exc:
+            self._show_error("No se pudo sincronizar el CSV", exc)
+            return
+        QMessageBox.information(
+            self,
+            "CSV sincronizado",
+            f"datos_maestros.csv fue actualizado desde madecentro.db:\n"
+            f"{MASTER_DATA_EXPORT_PATH}",
+        )
+
+    def export_master_data_xlsx(self) -> None:
+        file_path, _ = QFileDialog.getSaveFileName(
+            self,
+            "Exportar maestros a Excel",
+            str(MASTER_DATA_EXPORT_PATH.with_suffix(".xlsx")),
+            "Excel (*.xlsx)",
+        )
+        if not file_path:
+            return
+        target = Path(file_path)
+        if target.suffix.lower() != ".xlsx":
+            target = target.with_suffix(".xlsx")
+        try:
+            self._export_master_data_xlsx(target)
+        except OSError as exc:
+            self._show_error("No se pudo exportar el Excel", exc)
+            return
+        QMessageBox.information(
+            self,
+            "Excel exportado",
+            f"Datos maestros exportados desde madecentro.db:\n{target}",
+        )
+
+    def choose_signature_file(self) -> None:
+        SIGNATURE_DIR.mkdir(parents=True, exist_ok=True)
+        file_path, _ = QFileDialog.getOpenFileName(
+            self,
+            "Elegir firma",
+            str(SIGNATURE_DIR),
+            "Imagen de firma (*.png *.jpg *.jpeg *.webp)",
+        )
+        if not file_path:
+            return
+        source = Path(file_path)
+        if source.suffix.lower() not in {".png", ".jpg", ".jpeg", ".webp"}:
+            QMessageBox.warning(
+                self,
+                "Formato no soportado",
+                "Seleccione una imagen PNG, JPG, JPEG o WEBP.",
+            )
+            return
+        target = SIGNATURE_DIR / f"00_firma_activa{source.suffix.lower()}"
+        try:
+            for previous in SIGNATURE_DIR.glob("00_firma_activa.*"):
+                if previous.resolve() != target.resolve():
+                    previous.unlink(missing_ok=True)
+            if source.resolve() != target.resolve():
+                shutil.copy2(source, target)
+        except OSError as exc:
+            self._show_error("No se pudo seleccionar la firma", exc)
+            return
+        self._refresh_asset_status()
+        QMessageBox.information(
+            self,
+            "Firma seleccionada",
+            f"Firma activa: {target.name}",
+        )
 
     def import_certificate_customers(self) -> None:
         file_path, _ = QFileDialog.getOpenFileName(
@@ -893,7 +1020,7 @@ class MainWindow(QMainWindow):
     def import_completed_form(self) -> None:
         file_path, _ = QFileDialog.getOpenFileName(
             self,
-            "Importar formulario diligenciado",
+            "Actualizar maestros desde formulario diligenciado",
             "data/entrada",
             "Formularios (*.pdf *.xlsx *.docx)",
         )
@@ -945,8 +1072,10 @@ class MainWindow(QMainWindow):
         self.refresh_all()
         QMessageBox.information(
             self,
-            "Importacion completa",
-            f"Datos maestros actualizados: {count}",
+            "Maestros actualizados",
+            f"Datos aprobados: {count}\n"
+            f"Base actualizada: madecentro.db\n"
+            f"CSV sincronizado: {MASTER_DATA_EXPORT_PATH}",
         )
 
     def show_import_history(self) -> None:
@@ -1367,7 +1496,7 @@ class MainWindow(QMainWindow):
             return
         format_item = self.template_table.item(row, 2)
         reference_item = self.template_table.item(row, 4)
-        self._set_current_template(
+        self._select_template_record(
             {
                 "id": int(id_item.text()),
                 "ruta_pdf": str(path),
@@ -1375,6 +1504,29 @@ class MainWindow(QMainWindow):
                 "ruta_referencia": reference_item.text() if reference_item else "",
             }
         )
+
+    def select_template_from_list(self, item: QListWidgetItem) -> None:
+        template_id = int(item.data(Qt.UserRole))
+        template = next(
+            (
+                row
+                for row in self._registered_template_rows()
+                if int(row["id"]) == template_id
+            ),
+            None,
+        )
+        if template is None:
+            QMessageBox.warning(
+                self,
+                "Plantilla no encontrada",
+                "La plantilla seleccionada ya no está registrada.",
+            )
+            self.refresh_template_table()
+            return
+        self._select_template_record(template)
+
+    def _select_template_record(self, template: dict[str, object]) -> None:
+        self._set_current_template(template)
         try:
             self._show_current_fields()
         except (OSError, ValueError, RuntimeError) as exc:
@@ -1408,19 +1560,52 @@ class MainWindow(QMainWindow):
     def suggest_mapping(self) -> None:
         if not self.current_fields:
             self.list_pdf_fields()
-        if self.current_mapping_payload:
-            self.form_templates.suggest_mapping(
-                self.current_mapping_payload,
-                self.db.get_master_data(),
+        if not self.current_fields:
+            QMessageBox.warning(
+                self,
+                "Sin campos",
+                "Seleccione una plantilla y liste sus campos antes de sugerir el mapeo.",
             )
-            mapping = self.form_templates.mapping(self.current_mapping_payload)
-        else:
+            return
+        existing_mapping = self._mapping_from_table()
+        try:
             master_keys = list(self.db.get_master_data().keys())
-            mapping = self.ai_mapping.suggest_mapping(
+            suggestions = self.ai_mapping.suggest_mapping(
                 self.current_fields,
                 master_keys,
             )
-        self._populate_mapping_table(mapping)
+            mapping = {
+                field: existing_mapping.get(field) or suggestions.get(field, "")
+                for field in self.current_fields
+            }
+            self._populate_mapping_table(mapping)
+            self._save_suggested_mapping(mapping)
+        except Exception as exc:
+            self._show_error("No se pudo sugerir el mapeo con IA", exc)
+
+    def _save_suggested_mapping(self, mapping: dict[str, str]) -> None:
+        name = "mapeo_madecentro"
+        payload = self.current_mapping_payload or {
+            "format": self.current_pdf.suffix.lower().lstrip(".")
+            if self.current_pdf
+            else "pdf",
+            "mapping": mapping,
+        }
+        self.form_templates.apply_field_mapping(payload, mapping)
+        self.current_mapping_path = self.mapping_service.save_payload(
+            payload,
+            name,
+            name,
+        )
+        self.current_mapping_payload = payload
+        self.mapping_name_input.setText(name)
+        if self.current_template_id is not None:
+            self.db.add_mapping_record(
+                name,
+                str(self.current_mapping_path.resolve()),
+                self.current_template_id,
+            )
+        self.selected_mapping_label.setText(f"Mapeo: {self.current_mapping_path}")
 
     def _populate_mapping_table(self, mapping: dict[str, str]) -> None:
         master_keys = sorted(
@@ -1528,7 +1713,6 @@ class MainWindow(QMainWindow):
         if not effective_mapping:
             QMessageBox.warning(self, "Sin mapeo", "Cree o cargue un mapeo primero.")
             return
-        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S_%f")
         if payload is None:
             payload = {
                 "format": self.current_pdf.suffix.lower().lstrip("."),
@@ -1536,9 +1720,9 @@ class MainWindow(QMainWindow):
             }
         mapping = self._complete_dynamic_mapping(mapping)
         self.form_templates.apply_field_mapping(payload, mapping)
-        output_path = OUTPUT_DIR / (
-            f"{self.current_pdf.stem}_diligenciado_{timestamp}"
-            f"{self.current_pdf.suffix.lower()}"
+        output_path = self._next_output_path(
+            self._template_output_name(self.current_pdf),
+            self.current_pdf.suffix.lower(),
         )
         try:
             master_data = self._generation_data(mapping)
@@ -1841,14 +2025,10 @@ class MainWindow(QMainWindow):
         )
         self.form_templates.apply_field_mapping(payload, mapping)
         master_data = self._certificate_generation_data(customer)
-        safe_name = "".join(
-            char if char.isalnum() else "_"
-            for char in str(customer["razon_social"])
-        ).strip("_")
-        timestamp = datetime.now().strftime("%Y%m%d_%H%M%S_%f")
         source = Path(str(template["ruta_pdf"]))
-        output_path = OUTPUT_DIR / (
-            f"Certificado_{safe_name}_{timestamp}{source.suffix.lower()}"
+        output_path = self._next_output_path(
+            f"Certificado_{self._safe_output_name(str(customer['razon_social']))}",
+            source.suffix.lower(),
         )
         try:
             result = self.form_templates.fill(
@@ -1904,6 +2084,30 @@ class MainWindow(QMainWindow):
             "mes_expedicion": months[now.month],
             "ano_expedicion": str(now.year),
         }
+
+    def _template_output_name(self, path: Path) -> str:
+        stem = path.stem
+        for suffix in (" vacio", " vacío", " plantilla", " formato"):
+            if stem.casefold().endswith(suffix):
+                stem = stem[: -len(suffix)]
+                break
+        return self._safe_output_name(stem)
+
+    def _safe_output_name(self, value: str) -> str:
+        cleaned = re.sub(r"[^\w]+", "_", value, flags=re.UNICODE)
+        cleaned = re.sub(r"_+", "_", cleaned).strip("_")
+        return cleaned or "Formulario"
+
+    def _next_output_path(self, base_name: str, suffix: str) -> Path:
+        OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
+        timestamp = datetime.now().strftime("%Y-%m-%d_%H%M")
+        base = f"{base_name}_{timestamp}"
+        candidate = OUTPUT_DIR / f"{base}{suffix}"
+        index = 2
+        while candidate.exists():
+            candidate = OUTPUT_DIR / f"{base}-{index}{suffix}"
+            index += 1
+        return candidate
 
     def _certificate_template_ids(self) -> set[int]:
         ids: set[int] = set()
@@ -1992,6 +2196,7 @@ class MainWindow(QMainWindow):
         if self.current_mapping_payload:
             mapping = self.form_templates.mapping(self.current_mapping_payload)
             self._populate_mapping_table(mapping)
+        self._sync_template_selection()
 
     def _show_current_fields(self) -> None:
         if not self.current_pdf:
@@ -2071,10 +2276,16 @@ class MainWindow(QMainWindow):
             return
         selected = dialog.selected_changes()
         if selected:
-            self.db.apply_form_import(selected, source)
+            count = self.db.apply_form_import(selected, source)
             self._sync_master_data_file()
             self.refresh_master_table()
             self.refresh_mapping_combos()
+            QMessageBox.information(
+                self,
+                "Maestros actualizados",
+                f"Datos aprobados desde la referencia: {count}\n"
+                f"CSV sincronizado: {MASTER_DATA_EXPORT_PATH}",
+            )
 
     def _sync_master_data_file(self) -> None:
         rows = self.db.list_master_data()
@@ -2090,6 +2301,18 @@ class MainWindow(QMainWindow):
                         "categoria": row["categoria"],
                     }
                 )
+
+    def _export_master_data_xlsx(self, path: Path) -> None:
+        rows = self.db.list_master_data()
+        path.parent.mkdir(parents=True, exist_ok=True)
+        workbook = Workbook()
+        sheet = workbook.active
+        sheet.title = "datos_maestros"
+        sheet.append(["clave", "valor", "categoria"])
+        for row in rows:
+            sheet.append([row["clave"], row["valor"], row["categoria"]])
+        workbook.save(path)
+        workbook.close()
 
     def _template_storage_dir(self, base_dir: Path, template_name: str) -> Path:
         folder_name = re.sub(r'[<>:"/\\|?*]+', "-", template_name).strip(" .")

@@ -66,6 +66,12 @@ QLabel#statusMissing {{
     border-radius: 8px;
     padding: 8px 10px;
 }}
+QLabel#summaryText {{
+    color: {MUTED};
+    background: transparent;
+    border: none;
+    padding: 2px 0;
+}}
 QLabel#instructionStep {{
     color: {TEXT};
     padding: 3px 4px;
@@ -176,6 +182,28 @@ QHeaderView::section {{
 QTableCornerButton::section {{
     background: {SECONDARY};
     border: none;
+}}
+QListWidget#templateList {{
+    background: {BACKGROUND};
+    border: 1px solid {BORDER};
+    border-radius: 8px;
+    padding: 4px;
+    outline: none;
+}}
+QListWidget#templateList::item {{
+    border: 1px solid transparent;
+    border-radius: 6px;
+    padding: 7px 10px;
+    margin: 1px;
+}}
+QListWidget#templateList::item:hover {{
+    background: #FFF7EF;
+    border-color: #FFD1A6;
+}}
+QListWidget#templateList::item:selected {{
+    background: #FFF0E0;
+    border-color: {PRIMARY};
+    color: {SECONDARY};
 }}
 QScrollBar:vertical {{
     background: #F3F4F6;

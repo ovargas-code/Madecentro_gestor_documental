@@ -30,7 +30,8 @@ class ImportPreviewDialog(QDialog):
         layout.addWidget(
             QLabel(
                 f"Archivo: {source_name}\n"
-                "Desmarque cualquier dato que no deba actualizarse."
+                "Desmarque cualquier dato que no deba actualizarse.\n"
+                "Al aceptar, se actualiza madecentro.db y se sincroniza datos_maestros.csv."
             )
         )
         self.table = QTableWidget(len(changes), 5)

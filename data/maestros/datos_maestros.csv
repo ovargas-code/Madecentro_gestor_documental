@@ -115,38 +115,74 @@ razon_social,MADECENTRO COLOMBIA SAS,formulario_sarlaft_ucc
 representante_id,98.554.901,formulario_sarlaft_ucc
 representante_legal,ADRIAN QUINTERO A.                   FECHA:           24/3/2026___,formulario_sarlaft_ucc
 activos_r30,501183573000,importado
+ano_e8,2026,importado
 ano_f38,1989,importado
 ano_i37,"Envigado, Antq",importado
 ano_k9,2026,importado
 ano_t38,1971,importado
 ano_v37,"Itagui, Antq",importado
 antiguedad_p70,SUCURSAL:   SAN FERNANDO,importado
+apellidos_y_nombre_d32,CAROLINA  AGUDELO,importado
+apellidos_y_nombres_d19,LINA CASTAÑEDA,importado
 banco_1,ENTIDAD:    BANCOLOMBIA,importado
 banco_2,ENTIDAD   DAVIVIENDA,importado
+cargo_k19,Asesora Externa,importado
+cargo_k29,Director Cartera,importado
+cargo_k32,Especialista en Impuestos,importado
+cargo_k83,Asistente Administrativa,importado
 celular,3009128227,importado
+ciudad_e53,Barranquilla,importado
 correo,notificaciones.judicial@madecentro.co,importado
+correo_electronico_k20,lina.castaneda@madecentro.co,importado
+correo_electronico_k33,impuestos@madecentro.co,importado
+correo_electronico_k84,beatriz.isaza@madecentro.co,importado
 cuenta_1,NÚMERO DE CUENTA:    61008957853,importado
 cuenta_2,NÚMERO DE CUENTA     9030143024,importado
+cuenta_corriente_e66,10401793,importado
+cuenta_corriente_k66,600000,importado
+cuenta_corriente_o66,USD,importado
 departamento,Antioquia,importado
 detalle_el_origen_de_sus_fondos_i83,Comercializacion de productos y servicios para la industria del mueble y la madera,importado
 dia_b38,30,importado
+dia_c8,12,importado
 dia_e9,30,importado
 dia_p38,21,importado
 egresos_mensuales_e31,74688582000,importado
+fecha_k85,2026-03-12 00:00:00,importado
+forma_de_pago_d16,30 días,importado
 goza_usted_de_reconocimiento_politico_s46,NO,importado
 ingresos_mensuales_e30,79011668000,importado
 mes_c38,JUNIO,importado
+mes_d8,3,importado
 mes_g9,ABRIL,importado
 mes_r38,ABRIL,importado
 nit,811.028.650-1,importado
+no_de_cuenta_k52,48641392431,importado
+no_de_cuenta_k56,9030143024,importado
+nombre_d83,BEATRIZ ISAZA M,importado
+nombre_entidad_bancaria_e55,DAVIVIENDA,importado
+numero_de_identificacion_h23,98.554.901,importado
 numero_de_identificacion_m46,69838,importado
 participacion_q46,0.3366,importado
 pasivos_r31,269598705000,importado
 por_su_cargo_o_actividad_ejerce_algun_grado_de_poder_publico_y46,NO,importado
 por_su_cargo_o_actividad_maneja_recursos_publicos_v46,NO,importado
+regimen_g46,Común,importado
 representante_telefono,444 28 93,importado
 telefono,444 28 93,importado
+telefono_d15,444 28 93,importado
+telefono_d30,444 28 93  ext. 04137,importado
+telefono_d33,444 28 93  ext. 03116,importado
+telefono_d84,444 28 93,importado
+telefono_principal_d20,300 743 75 06,importado
+tipo_de_cuenta_e52,CORRIENTE,importado
+tipo_de_cuenta_e56,CORRIENTE,importado
 tipo_de_id_j46,C.E,importado
+tipo_de_identificacion_d11,NIT,importado
+tipo_de_identificacion_d23,C.C,importado
+tipo_de_persona_n11,Juridica,importado
+tipo_de_registro_l6,Actualización,importado
+tipo_n13,Proveedor,importado
 junta_1_id,19.161.351,junta_directiva
 junta_1_nombre,ANTONIO ESTEBAN GOMEZ,junta_directiva
 junta_1_tipo_id,C.C,junta_directiva

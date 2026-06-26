@@ -2,6 +2,7 @@ import json
 import tempfile
 import unittest
 from datetime import datetime
+from types import SimpleNamespace
 from pathlib import Path
 from unittest.mock import patch
 
@@ -24,7 +25,7 @@ class MappingServiceTests(unittest.TestCase):
                 MappingService().load_mapping(path)
 
     def test_ai_mapping_uses_aliases_and_exact_names(self) -> None:
-        mapping = AiMappingService().suggest_mapping(
+        mapping = AiMappingService(api_key="").suggest_mapping(
             ["txt_nit", "txt_email_principal", "chk_iva_si"],
             ["nit", "correo"],
         )
@@ -34,7 +35,7 @@ class MappingServiceTests(unittest.TestCase):
         self.assertEqual(mapping["chk_iva_si"], "")
 
     def test_ai_mapping_understands_human_excel_labels(self) -> None:
-        mapping = AiMappingService().suggest_mapping(
+        mapping = AiMappingService(api_key="").suggest_mapping(
             [
                 "NIT o No. De Identificación:",
                 "Dirección Principal:",
@@ -51,6 +52,38 @@ class MappingServiceTests(unittest.TestCase):
             "ciudad",
         )
         self.assertEqual(mapping["Ventas o ingresos"], "ventas_ingresos")
+
+    def test_ai_mapping_uses_openai_json_response(self) -> None:
+        fake_response = SimpleNamespace(
+            choices=[
+                SimpleNamespace(
+                    message=SimpleNamespace(
+                        content=json.dumps(
+                            {
+                                "txt_nit": "nit",
+                                "txt_nombre": "clave_inexistente",
+                            }
+                        )
+                    )
+                )
+            ]
+        )
+        fake_client = SimpleNamespace(
+            chat=SimpleNamespace(
+                completions=SimpleNamespace(
+                    create=lambda **_: fake_response,
+                )
+            )
+        )
+
+        with patch("openai.OpenAI", return_value=fake_client):
+            mapping = AiMappingService(api_key="test-key", model="test-model").suggest_mapping(
+                ["txt_nit", "txt_nombre"],
+                ["nit", "razon_social"],
+            )
+
+        self.assertEqual(mapping["txt_nit"], "nit")
+        self.assertEqual(mapping["txt_nombre"], "")
 
     def test_saves_and_reloads_pdf_learning_payload(self) -> None:
         payload = {

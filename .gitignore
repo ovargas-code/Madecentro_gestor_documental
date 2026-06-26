@@ -4,6 +4,8 @@ __pycache__/
 .env
 .idea/
 .DS_Store
+build/
+dist/
 
 # Datos locales generados
 *.db

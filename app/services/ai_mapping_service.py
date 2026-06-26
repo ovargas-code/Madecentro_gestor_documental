@@ -1,12 +1,19 @@
 from __future__ import annotations
 
+import json
+import os
 from difflib import SequenceMatcher
 import re
 import unicodedata
+from typing import Any
+
+from dotenv import load_dotenv
+
+from app.core.settings import BASE_DIR
 
 
 class AiMappingService:
-    """Future integration point for GPT/Gemini mapping suggestions."""
+    """Suggest field-to-master-key mappings using OpenAI with local fallback."""
 
     FIELD_ALIASES = {
         "email_principal": "correo",
@@ -55,11 +62,79 @@ class AiMappingService:
         "declaracion_de_origen_de_fondos": "origen_fondos",
     }
 
+    def __init__(self, api_key: str | None = None, model: str | None = None) -> None:
+        load_dotenv(BASE_DIR / ".env")
+        self.api_key = (api_key if api_key is not None else os.getenv("OPENAI_API_KEY", "")).strip()
+        self.model = (model if model is not None else os.getenv("OPENAI_MODEL", "")).strip()
+        if not self.model:
+            self.model = "gpt-4.1-mini"
+
     def suggest_mapping(
+        self,
+        pdf_fields: list[Any],
+        master_keys: list[str],
+        min_score: float = 0.72,
+    ) -> dict[str, str]:
+        field_names = [self._field_name(field) for field in pdf_fields if self._field_name(field)]
+        clean_master_keys = [str(key).strip() for key in master_keys if str(key).strip()]
+        if self.api_key:
+            return self._suggest_with_openai(field_names, clean_master_keys)
+        return self._suggest_with_similarity(field_names, clean_master_keys, min_score)
+
+    def _suggest_with_openai(
         self,
         field_names: list[str],
         master_keys: list[str],
-        min_score: float = 0.72,
+    ) -> dict[str, str]:
+        from openai import OpenAI
+
+        client = OpenAI(api_key=self.api_key, timeout=30)
+        response = client.chat.completions.create(
+            model=self.model,
+            response_format={"type": "json_object"},
+            messages=[
+                {
+                    "role": "system",
+                    "content": (
+                        "Eres un asistente que sugiere mapeos entre campos PDF "
+                        "y claves maestras. Responde únicamente un JSON plano "
+                        "con forma {\"campo_pdf\":\"clave_maestra\"}. Usa solo "
+                        "claves maestras incluidas en la lista. Si no hay una "
+                        "clave confiable, usa una cadena vacía."
+                    ),
+                },
+                {
+                    "role": "user",
+                    "content": json.dumps(
+                        {
+                            "campos_pdf": field_names,
+                            "claves_maestras": master_keys,
+                        },
+                        ensure_ascii=False,
+                    ),
+                },
+            ],
+        )
+        content = response.choices[0].message.content or "{}"
+        raw_mapping = json.loads(content)
+        if not isinstance(raw_mapping, dict):
+            raise ValueError("OpenAI no devolvió un objeto JSON de mapeo.")
+
+        valid_fields = set(field_names)
+        valid_keys = set(master_keys)
+        suggestions: dict[str, str] = {field_name: "" for field_name in field_names}
+        for field_name, master_key in raw_mapping.items():
+            field_text = str(field_name)
+            key_text = str(master_key).strip()
+            if field_text in valid_fields:
+                suggestions[field_text] = key_text if key_text in valid_keys else ""
+        return suggestions
+
+    def _suggest_with_similarity(
+        self,
+        field_names: list[str],
+        master_keys: list[str],
+        min_score: float,
     ) -> dict[str, str]:
         suggestions: dict[str, str] = {}
         master_key_set = set(master_keys)
@@ -87,6 +162,15 @@ class AiMappingService:
                     best_score = score
             suggestions[field_name] = best_key if best_score >= min_score else ""
         return suggestions
+
+    def _field_name(self, field: Any) -> str:
+        if isinstance(field, str):
+            return field.strip()
+        if isinstance(field, dict):
+            value = field.get("field_name") or field.get("field_id") or field.get("name")
+            return str(value or "").strip()
+        value = getattr(field, "field_name", None) or getattr(field, "name", None)
+        return str(value or "").strip()
 
     def _score(self, left: str, right: str) -> float:
         left_norm = self._normalize(left)

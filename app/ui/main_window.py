@@ -723,7 +723,7 @@ class MainWindow(QMainWindow):
         for row_index, row in enumerate(rows):
             values = [
                 row["id"],
-                row["nombre"],
+                self._template_display_name(row),
                 row["formato"].upper(),
                 row["ruta_pdf"],
                 row["ruta_referencia"],
@@ -775,6 +775,7 @@ class MainWindow(QMainWindow):
     ) -> bool:
         searchable = " ".join(
             [
+                self._template_display_name(row),
                 str(row.get("nombre", "")),
                 str(row.get("formato", "")),
                 Path(str(row.get("ruta_pdf", ""))).name,
@@ -783,6 +784,24 @@ class MainWindow(QMainWindow):
         ).casefold()
         return query in searchable
 
+    def _template_display_name(self, row: dict[str, object]) -> str:
+        name = str(row.get("nombre") or "").strip()
+        if not name:
+            name = Path(str(row.get("ruta_pdf") or "")).stem
+        return self._clean_template_display_name(name)
+
+    def _clean_template_display_name(self, value: str) -> str:
+        cleaned = value.strip()
+        path = Path(cleaned)
+        if path.suffix.lower() in {".pdf", ".xlsx", ".docx"}:
+            cleaned = path.stem
+        cleaned = re.sub(
+            r"(?i)(?:[\s_-]+)(vacio|vacío|plantilla|formato)$",
+            "",
+            cleaned,
+        ).strip()
+        return cleaned or value.strip() or "Plantilla"
+
     def _populate_template_list(self, rows: list[dict[str, object]]) -> None:
         self.template_list.clear()
         self.template_count_label.setText(
@@ -790,10 +809,9 @@ class MainWindow(QMainWindow):
         )
         for row in rows:
             template_id = int(row["id"])
-            name = str(row["nombre"])
+            name = self._template_display_name(row)
             fmt = str(row["formato"]).upper()
-            file_name = Path(str(row["ruta_pdf"])).name
-            item = QListWidgetItem(f"{name}   ·   {fmt}   ·   {file_name}")
+            item = QListWidgetItem(f"{name}   ·   {fmt}")
             item.setData(Qt.UserRole, template_id)
             item.setToolTip(str(row["ruta_pdf"]))
             self.template_list.addItem(item)
@@ -2189,8 +2207,9 @@ class MainWindow(QMainWindow):
         self.current_mapping_payload = None
         self.field_table.setRowCount(0)
         self.mapping_table.setRowCount(0)
+        display_name = self._template_display_name(template)
         self.selected_pdf_label.setText(
-            f"Plantilla {path.suffix.upper()}: {path}"
+            f"Plantilla {path.suffix.upper()}: {display_name}"
         )
         self.refresh_selected_mapping()
         if self.current_mapping_payload:

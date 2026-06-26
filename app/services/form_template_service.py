@@ -24,7 +24,7 @@ from app.services.word_signature_service import WordSignatureService
 
 class FormTemplateService:
     def __init__(self) -> None:
-        self.ai_mapping = AiMappingService()
+        self.ai_mapping = AiMappingService(api_key="")
         self.document_identity = DocumentIdentityService()
         self.pdf_fields = PdfFieldService()
         self.pdf_fill = PdfFillService()

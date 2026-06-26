@@ -1,0 +1,2089 @@
+{
+  "name": "mapeo_Sarlaft-Somer-Incare",
+  "template_file": "Sarlaft-Somer-Incare vacio.xlsx",
+  "reference_file": "Sarlaft-Somer-Incare diligenciado.xlsx",
+  "cells": [
+    {
+      "field_id": "FORMULARIO!E9",
+      "sheet": "FORMULARIO",
+      "cell": "E9",
+      "label": "DÍA",
+      "empty_value": null,
+      "sample_value": 30,
+      "value_type": "number",
+      "master_key": "",
+      "value_format": null,
+      "auto_value": "current_day",
+      "preserve_reference": false
+    },
+    {
+      "field_id": "FORMULARIO!G9",
+      "sheet": "FORMULARIO",
+      "cell": "G9",
+      "label": "MES",
+      "empty_value": null,
+      "sample_value": "ABRIL",
+      "value_type": "string",
+      "master_key": "",
+      "value_format": null,
+      "auto_value": "current_month_name",
+      "preserve_reference": false
+    },
+    {
+      "field_id": "FORMULARIO!K9",
+      "sheet": "FORMULARIO",
+      "cell": "K9",
+      "label": "AÑO",
+      "empty_value": null,
+      "sample_value": 2026,
+      "value_type": "number",
+      "master_key": "",
+      "value_format": null,
+      "auto_value": "current_year",
+      "preserve_reference": false
+    },
+    {
+      "field_id": "FORMULARIO!N9",
+      "sheet": "FORMULARIO",
+      "cell": "N9",
+      "label": "CIUDAD",
+      "empty_value": null,
+      "sample_value": "Medellin",
+      "value_type": "string",
+      "master_key": "ciudad",
+      "value_format": null,
+      "auto_value": null,
+      "preserve_reference": false
+    },
+    {
+      "field_id": "FORMULARIO!U9",
+      "sheet": "FORMULARIO",
+      "cell": "U9",
+      "label": "DEPARTAMENTO",
+      "empty_value": null,
+      "sample_value": "Antioquia",
+      "value_type": "string",
+      "master_key": "departamento",
+      "value_format": null,
+      "auto_value": null,
+      "preserve_reference": false
+    },
+    {
+      "field_id": "FORMULARIO!B16",
+      "sheet": "FORMULARIO",
+      "cell": "B16",
+      "label": "RAZÓN O DENOMINACIÓN SOCIAL:",
+      "empty_value": null,
+      "sample_value": "MADECENTRO COLOMBIA SAS ",
+      "value_type": "string",
+      "master_key": "razon_social",
+      "value_format": null,
+      "auto_value": null,
+      "preserve_reference": false
+    },
+    {
+      "field_id": "FORMULARIO!Q16",
+      "sheet": "FORMULARIO",
+      "cell": "Q16",
+      "label": "NIT:",
+      "empty_value": null,
+      "sample_value": "811.028.650-1",
+      "value_type": "string",
+      "master_key": "nit",
+      "value_format": null,
+      "auto_value": null,
+      "preserve_reference": false
+    },
+    {
+      "field_id": "FORMULARIO!C18",
+      "sheet": "FORMULARIO",
+      "cell": "C18",
+      "label": "DIRECCIÓN:",
+      "empty_value": null,
+      "sample_value": "Calle 7 Sur 42-70",
+      "value_type": "string",
+      "master_key": "direccion",
+      "value_format": null,
+      "auto_value": null,
+      "preserve_reference": false
+    },
+    {
+      "field_id": "FORMULARIO!P18",
+      "sheet": "FORMULARIO",
+      "cell": "P18",
+      "label": "CIUDAD:",
+      "empty_value": null,
+      "sample_value": "Medellin",
+      "value_type": "string",
+      "master_key": "ciudad",
+      "value_format": null,
+      "auto_value": null,
+      "preserve_reference": false
+    },
+    {
+      "field_id": "FORMULARIO!S18",
+      "sheet": "FORMULARIO",
+      "cell": "S18",
+      "label": "TELÉFONO:",
+      "empty_value": null,
+      "sample_value": "444 28 93",
+      "value_type": "string",
+      "master_key": "telefono",
+      "value_format": null,
+      "auto_value": null,
+      "preserve_reference": false
+    },
+    {
+      "field_id": "FORMULARIO!W18",
+      "sheet": "FORMULARIO",
+      "cell": "W18",
+      "label": "CELULAR:",
+      "empty_value": null,
+      "sample_value": 3009128227,
+      "value_type": "number",
+      "master_key": "celular",
+      "value_format": null,
+      "auto_value": null,
+      "preserve_reference": false
+    },
+    {
+      "field_id": "FORMULARIO!H21",
+      "sheet": "FORMULARIO",
+      "cell": "H21",
+      "label": "DIRECCIÓN DE CORREO ELECTRÓNICO:",
+      "empty_value": null,
+      "sample_value": "notificaciones.judicial@madecentro.co",
+      "value_type": "string",
+      "master_key": "correo",
+      "value_format": null,
+      "auto_value": null,
+      "preserve_reference": false
+    },
+    {
+      "field_id": "FORMULARIO!C28",
+      "sheet": "FORMULARIO",
+      "cell": "C28",
+      "label": "CÓDIGO CIIU:",
+      "empty_value": null,
+      "sample_value": 4752,
+      "value_type": "number",
+      "master_key": "actividad_principal",
+      "value_format": null,
+      "auto_value": null,
+      "preserve_reference": false
+    },
+    {
+      "field_id": "FORMULARIO!E30",
+      "sheet": "FORMULARIO",
+      "cell": "E30",
+      "label": "INGRESOS MENSUALES $",
+      "empty_value": null,
+      "sample_value": 79011668000,
+      "value_type": "number",
+      "master_key": "",
+      "value_format": null,
+      "auto_value": null,
+      "preserve_reference": false
+    },
+    {
+      "field_id": "FORMULARIO!R30",
+      "sheet": "FORMULARIO",
+      "cell": "R30",
+      "label": "ACTIVOS $",
+      "empty_value": null,
+      "sample_value": 501183573000,
+      "value_type": "number",
+      "master_key": "",
+      "value_format": null,
+      "auto_value": null,
+      "preserve_reference": false
+    },
+    {
+      "field_id": "FORMULARIO!E31",
+      "sheet": "FORMULARIO",
+      "cell": "E31",
+      "label": "EGRESOS MENSUALES $",
+      "empty_value": null,
+      "sample_value": 74688582000,
+      "value_type": "number",
+      "master_key": "",
+      "value_format": null,
+      "auto_value": null,
+      "preserve_reference": false
+    },
+    {
+      "field_id": "FORMULARIO!R31",
+      "sheet": "FORMULARIO",
+      "cell": "R31",
+      "label": "PASIVOS $",
+      "empty_value": null,
+      "sample_value": 269598705000,
+      "value_type": "number",
+      "master_key": "",
+      "value_format": null,
+      "auto_value": null,
+      "preserve_reference": false
+    },
+    {
+      "field_id": "FORMULARIO!E32",
+      "sheet": "FORMULARIO",
+      "cell": "E32",
+      "label": "OTROS INGRESOS $",
+      "empty_value": null,
+      "sample_value": 21422982000,
+      "value_type": "number",
+      "master_key": "",
+      "value_format": null,
+      "auto_value": null,
+      "preserve_reference": false
+    },
+    {
+      "field_id": "FORMULARIO!R32",
+      "sheet": "FORMULARIO",
+      "cell": "R32",
+      "label": "CONCEPTO OTROS INGRESOS",
+      "empty_value": null,
+      "sample_value": "Intereses, diferencia en cambio otras ventas",
+      "value_type": "string",
+      "master_key": "",
+      "value_format": null,
+      "auto_value": null,
+      "preserve_reference": false
+    },
+    {
+      "field_id": "FORMULARIO!B35",
+      "sheet": "FORMULARIO",
+      "cell": "B35",
+      "label": "NOMBRE COMPLETO",
+      "empty_value": null,
+      "sample_value": "ADRIAN QUINTERO A",
+      "value_type": "string",
+      "master_key": "representante_legal",
+      "value_format": null,
+      "auto_value": null,
+      "preserve_reference": false
+    },
+    {
+      "field_id": "FORMULARIO!V35",
+      "sheet": "FORMULARIO",
+      "cell": "V35",
+      "label": "CE",
+      "empty_value": null,
+      "sample_value": "98.554.901",
+      "value_type": "string",
+      "master_key": "representante_id",
+      "value_format": null,
+      "auto_value": null,
+      "preserve_reference": false
+    },
+    {
+      "field_id": "FORMULARIO!I37",
+      "sheet": "FORMULARIO",
+      "cell": "I37",
+      "label": "AÑO",
+      "empty_value": null,
+      "sample_value": "Envigado, Antq",
+      "value_type": "string",
+      "master_key": "",
+      "value_format": null,
+      "auto_value": null,
+      "preserve_reference": false
+    },
+    {
+      "field_id": "FORMULARIO!V37",
+      "sheet": "FORMULARIO",
+      "cell": "V37",
+      "label": "AÑO",
+      "empty_value": null,
+      "sample_value": "Itagui, Antq",
+      "value_type": "string",
+      "master_key": "",
+      "value_format": null,
+      "auto_value": null,
+      "preserve_reference": false
+    },
+    {
+      "field_id": "FORMULARIO!B38",
+      "sheet": "FORMULARIO",
+      "cell": "B38",
+      "label": "DIA",
+      "empty_value": null,
+      "sample_value": 30,
+      "value_type": "number",
+      "master_key": "",
+      "value_format": null,
+      "auto_value": null,
+      "preserve_reference": false
+    },
+    {
+      "field_id": "FORMULARIO!C38",
+      "sheet": "FORMULARIO",
+      "cell": "C38",
+      "label": "MES",
+      "empty_value": null,
+      "sample_value": "JUNIO",
+      "value_type": "string",
+      "master_key": "",
+      "value_format": null,
+      "auto_value": null,
+      "preserve_reference": false
+    },
+    {
+      "field_id": "FORMULARIO!F38",
+      "sheet": "FORMULARIO",
+      "cell": "F38",
+      "label": "AÑO",
+      "empty_value": null,
+      "sample_value": 1989,
+      "value_type": "number",
+      "master_key": "",
+      "value_format": null,
+      "auto_value": null,
+      "preserve_reference": false
+    },
+    {
+      "field_id": "FORMULARIO!P38",
+      "sheet": "FORMULARIO",
+      "cell": "P38",
+      "label": "DIA",
+      "empty_value": null,
+      "sample_value": 21,
+      "value_type": "number",
+      "master_key": "",
+      "value_format": null,
+      "auto_value": null,
+      "preserve_reference": false
+    },
+    {
+      "field_id": "FORMULARIO!R38",
+      "sheet": "FORMULARIO",
+      "cell": "R38",
+      "label": "MES",
+      "empty_value": null,
+      "sample_value": "ABRIL",
+      "value_type": "string",
+      "master_key": "",
+      "value_format": null,
+      "auto_value": null,
+      "preserve_reference": false
+    },
+    {
+      "field_id": "FORMULARIO!T38",
+      "sheet": "FORMULARIO",
+      "cell": "T38",
+      "label": "AÑO",
+      "empty_value": null,
+      "sample_value": 1971,
+      "value_type": "number",
+      "master_key": "",
+      "value_format": null,
+      "auto_value": null,
+      "preserve_reference": false
+    },
+    {
+      "field_id": "FORMULARIO!P40",
+      "sheet": "FORMULARIO",
+      "cell": "P40",
+      "label": "CIUDAD",
+      "empty_value": null,
+      "sample_value": "Medellin",
+      "value_type": "string",
+      "master_key": "",
+      "value_format": null,
+      "auto_value": null,
+      "preserve_reference": false
+    },
+    {
+      "field_id": "FORMULARIO!S40",
+      "sheet": "FORMULARIO",
+      "cell": "S40",
+      "label": "TELÉFONO FIJO O CELULAR",
+      "empty_value": null,
+      "sample_value": "444 28 93",
+      "value_type": "string",
+      "master_key": "representante_telefono",
+      "value_format": null,
+      "auto_value": null,
+      "preserve_reference": false
+    },
+    {
+      "field_id": "FORMULARIO!B46",
+      "sheet": "FORMULARIO",
+      "cell": "B46",
+      "label": "NOMBRE COMPLETO",
+      "empty_value": null,
+      "sample_value": "GEM RETAIL SL",
+      "value_type": "string",
+      "master_key": "",
+      "value_format": null,
+      "auto_value": null,
+      "preserve_reference": false
+    },
+    {
+      "field_id": "FORMULARIO!J46",
+      "sheet": "FORMULARIO",
+      "cell": "J46",
+      "label": "TIPO DE ID",
+      "empty_value": null,
+      "sample_value": "C.E",
+      "value_type": "string",
+      "master_key": "",
+      "value_format": null,
+      "auto_value": null,
+      "preserve_reference": false
+    },
+    {
+      "field_id": "FORMULARIO!M46",
+      "sheet": "FORMULARIO",
+      "cell": "M46",
+      "label": "NÚMERO DE IDENTIFICACIÓN",
+      "empty_value": null,
+      "sample_value": 69838,
+      "value_type": "number",
+      "master_key": "",
+      "value_format": null,
+      "auto_value": null,
+      "preserve_reference": false
+    },
+    {
+      "field_id": "FORMULARIO!Q46",
+      "sheet": "FORMULARIO",
+      "cell": "Q46",
+      "label": "% PARTICIPACIÓN",
+      "empty_value": null,
+      "sample_value": 0.3366,
+      "value_type": "number",
+      "master_key": "",
+      "value_format": null,
+      "auto_value": null,
+      "preserve_reference": false
+    },
+    {
+      "field_id": "FORMULARIO!S46",
+      "sheet": "FORMULARIO",
+      "cell": "S46",
+      "label": "¿Goza usted de reconocimiento polìtico?",
+      "empty_value": null,
+      "sample_value": "NO",
+      "value_type": "string",
+      "master_key": "",
+      "value_format": null,
+      "auto_value": null,
+      "preserve_reference": false
+    },
+    {
+      "field_id": "FORMULARIO!V46",
+      "sheet": "FORMULARIO",
+      "cell": "V46",
+      "label": "¿Por su cargo o actividad, maneja recursos públicos?",
+      "empty_value": null,
+      "sample_value": "NO",
+      "value_type": "string",
+      "master_key": "",
+      "value_format": null,
+      "auto_value": null,
+      "preserve_reference": false
+    },
+    {
+      "field_id": "FORMULARIO!Y46",
+      "sheet": "FORMULARIO",
+      "cell": "Y46",
+      "label": "¿Por su cargo o actividad, ejerce algún grado de poder público?",
+      "empty_value": null,
+      "sample_value": "NO",
+      "value_type": "string",
+      "master_key": "",
+      "value_format": null,
+      "auto_value": null,
+      "preserve_reference": false
+    },
+    {
+      "field_id": "FORMULARIO!B59",
+      "sheet": "FORMULARIO",
+      "cell": "B59",
+      "label": "NUMERO DE ID",
+      "empty_value": null,
+      "sample_value": "19.161.351",
+      "value_type": "string",
+      "master_key": "junta_1_id",
+      "value_format": null,
+      "auto_value": null,
+      "preserve_reference": false
+    },
+    {
+      "field_id": "FORMULARIO!C59",
+      "sheet": "FORMULARIO",
+      "cell": "C59",
+      "label": "TIPO ID",
+      "empty_value": null,
+      "sample_value": "C.C",
+      "value_type": "string",
+      "master_key": "junta_1_tipo_id",
+      "value_format": null,
+      "auto_value": null,
+      "preserve_reference": false
+    },
+    {
+      "field_id": "FORMULARIO!E59",
+      "sheet": "FORMULARIO",
+      "cell": "E59",
+      "label": "NOMBRE COMPLETO",
+      "empty_value": null,
+      "sample_value": "ANTONIO ESTEBAN GOMEZ",
+      "value_type": "string",
+      "master_key": "junta_1_nombre",
+      "value_format": null,
+      "auto_value": null,
+      "preserve_reference": false
+    },
+    {
+      "field_id": "FORMULARIO!N59",
+      "sheet": "FORMULARIO",
+      "cell": "N59",
+      "label": "NO",
+      "empty_value": null,
+      "sample_value": 1706549787,
+      "value_type": "number",
+      "master_key": "junta_6_id",
+      "value_format": null,
+      "auto_value": null,
+      "preserve_reference": false
+    },
+    {
+      "field_id": "FORMULARIO!Q59",
+      "sheet": "FORMULARIO",
+      "cell": "Q59",
+      "label": "NO",
+      "empty_value": null,
+      "sample_value": "C.E",
+      "value_type": "string",
+      "master_key": "junta_6_tipo_id",
+      "value_format": null,
+      "auto_value": null,
+      "preserve_reference": false
+    },
+    {
+      "field_id": "FORMULARIO!S59",
+      "sheet": "FORMULARIO",
+      "cell": "S59",
+      "label": "NO",
+      "empty_value": null,
+      "sample_value": "FEDERICO ARTETA",
+      "value_type": "string",
+      "master_key": "junta_6_nombre",
+      "value_format": null,
+      "auto_value": null,
+      "preserve_reference": false
+    },
+    {
+      "field_id": "FORMULARIO!B60",
+      "sheet": "FORMULARIO",
+      "cell": "B60",
+      "label": "NUMERO DE ID",
+      "empty_value": null,
+      "sample_value": "15.427.816",
+      "value_type": "string",
+      "master_key": "junta_2_id",
+      "value_format": null,
+      "auto_value": null,
+      "preserve_reference": false
+    },
+    {
+      "field_id": "FORMULARIO!C60",
+      "sheet": "FORMULARIO",
+      "cell": "C60",
+      "label": "TIPO ID",
+      "empty_value": null,
+      "sample_value": "C.C",
+      "value_type": "string",
+      "master_key": "junta_2_tipo_id",
+      "value_format": null,
+      "auto_value": null,
+      "preserve_reference": false
+    },
+    {
+      "field_id": "FORMULARIO!E60",
+      "sheet": "FORMULARIO",
+      "cell": "E60",
+      "label": "NOMBRE COMPLETO",
+      "empty_value": null,
+      "sample_value": "DIEGO GOMEZ",
+      "value_type": "string",
+      "master_key": "junta_2_nombre",
+      "value_format": null,
+      "auto_value": null,
+      "preserve_reference": false
+    },
+    {
+      "field_id": "FORMULARIO!N60",
+      "sheet": "FORMULARIO",
+      "cell": "N60",
+      "label": "NO",
+      "empty_value": null,
+      "sample_value": "42.890.446",
+      "value_type": "string",
+      "master_key": "junta_7_id",
+      "value_format": null,
+      "auto_value": null,
+      "preserve_reference": false
+    },
+    {
+      "field_id": "FORMULARIO!Q60",
+      "sheet": "FORMULARIO",
+      "cell": "Q60",
+      "label": "NO",
+      "empty_value": null,
+      "sample_value": "C.C",
+      "value_type": "string",
+      "master_key": "junta_7_tipo_id",
+      "value_format": null,
+      "auto_value": null,
+      "preserve_reference": false
+    },
+    {
+      "field_id": "FORMULARIO!S60",
+      "sheet": "FORMULARIO",
+      "cell": "S60",
+      "label": "NO",
+      "empty_value": null,
+      "sample_value": "ANA LUCIA BARRIENTOS",
+      "value_type": "string",
+      "master_key": "junta_7_nombre",
+      "value_format": null,
+      "auto_value": null,
+      "preserve_reference": false
+    },
+    {
+      "field_id": "FORMULARIO!B61",
+      "sheet": "FORMULARIO",
+      "cell": "B61",
+      "label": "NUMERO DE ID",
+      "empty_value": null,
+      "sample_value": "70.095.765",
+      "value_type": "string",
+      "master_key": "junta_3_id",
+      "value_format": null,
+      "auto_value": null,
+      "preserve_reference": false
+    },
+    {
+      "field_id": "FORMULARIO!C61",
+      "sheet": "FORMULARIO",
+      "cell": "C61",
+      "label": "TIPO ID",
+      "empty_value": null,
+      "sample_value": "C.C",
+      "value_type": "string",
+      "master_key": "junta_3_tipo_id",
+      "value_format": null,
+      "auto_value": null,
+      "preserve_reference": false
+    },
+    {
+      "field_id": "FORMULARIO!E61",
+      "sheet": "FORMULARIO",
+      "cell": "E61",
+      "label": "NOMBRE COMPLETO",
+      "empty_value": null,
+      "sample_value": "CARLOS ALBERTO GOMEZ",
+      "value_type": "string",
+      "master_key": "junta_3_nombre",
+      "value_format": null,
+      "auto_value": null,
+      "preserve_reference": false
+    },
+    {
+      "field_id": "FORMULARIO!N61",
+      "sheet": "FORMULARIO",
+      "cell": "N61",
+      "label": "NO",
+      "empty_value": null,
+      "sample_value": "98.554.901",
+      "value_type": "string",
+      "master_key": "junta_8_id",
+      "value_format": null,
+      "auto_value": null,
+      "preserve_reference": false
+    },
+    {
+      "field_id": "FORMULARIO!Q61",
+      "sheet": "FORMULARIO",
+      "cell": "Q61",
+      "label": "NO",
+      "empty_value": null,
+      "sample_value": "C.C",
+      "value_type": "string",
+      "master_key": "junta_8_tipo_id",
+      "value_format": null,
+      "auto_value": null,
+      "preserve_reference": false
+    },
+    {
+      "field_id": "FORMULARIO!S61",
+      "sheet": "FORMULARIO",
+      "cell": "S61",
+      "label": "NO",
+      "empty_value": null,
+      "sample_value": "ADRIAN QUINTERO A.",
+      "value_type": "string",
+      "master_key": "junta_8_nombre",
+      "value_format": null,
+      "auto_value": null,
+      "preserve_reference": false
+    },
+    {
+      "field_id": "FORMULARIO!B62",
+      "sheet": "FORMULARIO",
+      "cell": "B62",
+      "label": "",
+      "empty_value": null,
+      "sample_value": 1704871936,
+      "value_type": "number",
+      "master_key": "junta_4_id",
+      "value_format": null,
+      "auto_value": null,
+      "preserve_reference": false
+    },
+    {
+      "field_id": "FORMULARIO!C62",
+      "sheet": "FORMULARIO",
+      "cell": "C62",
+      "label": "",
+      "empty_value": null,
+      "sample_value": "C.E",
+      "value_type": "string",
+      "master_key": "junta_4_tipo_id",
+      "value_format": null,
+      "auto_value": null,
+      "preserve_reference": false
+    },
+    {
+      "field_id": "FORMULARIO!E62",
+      "sheet": "FORMULARIO",
+      "cell": "E62",
+      "label": "",
+      "empty_value": null,
+      "sample_value": "BERNARDO PEREZ",
+      "value_type": "string",
+      "master_key": "junta_4_nombre",
+      "value_format": null,
+      "auto_value": null,
+      "preserve_reference": false
+    },
+    {
+      "field_id": "FORMULARIO!N62",
+      "sheet": "FORMULARIO",
+      "cell": "N62",
+      "label": "NO",
+      "empty_value": null,
+      "sample_value": "1.072.651.309",
+      "value_type": "string",
+      "master_key": "junta_9_id",
+      "value_format": null,
+      "auto_value": null,
+      "preserve_reference": false
+    },
+    {
+      "field_id": "FORMULARIO!Q62",
+      "sheet": "FORMULARIO",
+      "cell": "Q62",
+      "label": "NO",
+      "empty_value": null,
+      "sample_value": "C.C",
+      "value_type": "string",
+      "master_key": "junta_9_tipo_id",
+      "value_format": null,
+      "auto_value": null,
+      "preserve_reference": false
+    },
+    {
+      "field_id": "FORMULARIO!S62",
+      "sheet": "FORMULARIO",
+      "cell": "S62",
+      "label": "NO",
+      "empty_value": null,
+      "sample_value": "JORGE ESTEBAN URREA",
+      "value_type": "string",
+      "master_key": "junta_9_nombre",
+      "value_format": null,
+      "auto_value": null,
+      "preserve_reference": false
+    },
+    {
+      "field_id": "FORMULARIO!B63",
+      "sheet": "FORMULARIO",
+      "cell": "B63",
+      "label": "",
+      "empty_value": null,
+      "sample_value": 1706549787,
+      "value_type": "number",
+      "master_key": "junta_5_id",
+      "value_format": null,
+      "auto_value": null,
+      "preserve_reference": false
+    },
+    {
+      "field_id": "FORMULARIO!B70",
+      "sheet": "FORMULARIO",
+      "cell": "B70",
+      "label": "5. REFERENCIAS FINANCIERAS",
+      "empty_value": "ENTIDAD:",
+      "sample_value": "ENTIDAD:    BANCOLOMBIA",
+      "value_type": "string",
+      "master_key": "banco_1",
+      "value_format": "ENTIDAD:    {value}",
+      "auto_value": null,
+      "preserve_reference": false
+    },
+    {
+      "field_id": "FORMULARIO!P70",
+      "sheet": "FORMULARIO",
+      "cell": "P70",
+      "label": "ANTIGUEDAD:",
+      "empty_value": "SUCURSAL: ",
+      "sample_value": "SUCURSAL:   SAN FERNANDO",
+      "value_type": "string",
+      "master_key": "",
+      "value_format": null,
+      "auto_value": null,
+      "preserve_reference": false
+    },
+    {
+      "field_id": "FORMULARIO!V70",
+      "sheet": "FORMULARIO",
+      "cell": "V70",
+      "label": "SUCURSAL:",
+      "empty_value": "CIUDAD: ",
+      "sample_value": "CIUDAD:    Medellin",
+      "value_type": "string",
+      "master_key": "ciudad",
+      "value_format": "CIUDAD:    {value}",
+      "auto_value": null,
+      "preserve_reference": false
+    },
+    {
+      "field_id": "FORMULARIO!K71",
+      "sheet": "FORMULARIO",
+      "cell": "K71",
+      "label": "TIPO DE PRODUCTO:\n           \nAHORROS                 CORRIENTE                   FONDO",
+      "empty_value": "NÚMERO DE CUENTA:",
+      "sample_value": "NÚMERO DE CUENTA:    61008957853",
+      "value_type": "string",
+      "master_key": "cuenta_1",
+      "value_format": "NÚMERO DE CUENTA:    {value}",
+      "auto_value": null,
+      "preserve_reference": false
+    },
+    {
+      "field_id": "FORMULARIO!B72",
+      "sheet": "FORMULARIO",
+      "cell": "B72",
+      "label": "TIPO DE PRODUCTO:\n           \nAHORROS                 CORRIENTE                   FONDO",
+      "empty_value": "ENTIDAD ",
+      "sample_value": "ENTIDAD   DAVIVIENDA",
+      "value_type": "string",
+      "master_key": "banco_2",
+      "value_format": "ENTIDAD   {value}",
+      "auto_value": null,
+      "preserve_reference": false
+    },
+    {
+      "field_id": "FORMULARIO!K73",
+      "sheet": "FORMULARIO",
+      "cell": "K73",
+      "label": "TIPO DE PRODUCTO:\n           \nAHORROS                   CORRIENTE                   FONDO",
+      "empty_value": "NÚMERO DE CUENTA:",
+      "sample_value": "NÚMERO DE CUENTA     9030143024",
+      "value_type": "string",
+      "master_key": "cuenta_2",
+      "value_format": "NÚMERO DE CUENTA     {value}",
+      "auto_value": null,
+      "preserve_reference": false
+    },
+    {
+      "field_id": "FORMULARIO!I83",
+      "sheet": "FORMULARIO",
+      "cell": "I83",
+      "label": "Detalle el origen de sus fondos:",
+      "empty_value": "____________________________________________________________________________________",
+      "sample_value": "Comercializacion de productos y servicios para la industria del mueble y la madera ",
+      "value_type": "string",
+      "master_key": "",
+      "value_format": null,
+      "auto_value": null,
+      "preserve_reference": false
+    },
+    {
+      "field_id": "FORMULARIO!P87",
+      "sheet": "FORMULARIO",
+      "cell": "P87",
+      "label": "1. ¿Cuenta con políticas para prevenir y controlar el lavado activos, financiación al terrorismo a la proliferación de armas de destrucción masiva asociado a su actividad empresarial?",
+      "empty_value": null,
+      "sample_value": "X",
+      "value_type": "string",
+      "master_key": "",
+      "value_format": null,
+      "auto_value": null,
+      "preserve_reference": true
+    },
+    {
+      "field_id": "FORMULARIO!P88",
+      "sheet": "FORMULARIO",
+      "cell": "P88",
+      "label": "2. ¿Cuenta la empresa con instrumentos que oriente a la prevención de corrupción, fraude y soborno?",
+      "empty_value": null,
+      "sample_value": "X",
+      "value_type": "string",
+      "master_key": "",
+      "value_format": null,
+      "auto_value": null,
+      "preserve_reference": true
+    },
+    {
+      "field_id": "FORMULARIO!P89",
+      "sheet": "FORMULARIO",
+      "cell": "P89",
+      "label": "3. ¿Cuenta con políticas de protección de datos y seguridad de la información?",
+      "empty_value": null,
+      "sample_value": "X",
+      "value_type": "string",
+      "master_key": "",
+      "value_format": null,
+      "auto_value": null,
+      "preserve_reference": true
+    },
+    {
+      "field_id": "FORMULARIO!P90",
+      "sheet": "FORMULARIO",
+      "cell": "P90",
+      "label": "4. ¿Cuenta con procesos que garantice la declaración de conflictos de interés?",
+      "empty_value": null,
+      "sample_value": "X",
+      "value_type": "string",
+      "master_key": "",
+      "value_format": null,
+      "auto_value": null,
+      "preserve_reference": true
+    },
+    {
+      "field_id": "FORMULARIO!P91",
+      "sheet": "FORMULARIO",
+      "cell": "P91",
+      "label": "5. ¿Cuenta la empresa con un canal para que sus grupos de interés denuncien asuntos éticos de manera confidencial? (ej. Línea ética)",
+      "empty_value": null,
+      "sample_value": "X",
+      "value_type": "string",
+      "master_key": "",
+      "value_format": null,
+      "auto_value": null,
+      "preserve_reference": true
+    },
+    {
+      "field_id": "FORMULARIO!P92",
+      "sheet": "FORMULARIO",
+      "cell": "P92",
+      "label": "6. ¿Cuenta con un programa de transparencia y ètica empresarial?",
+      "empty_value": null,
+      "sample_value": "X",
+      "value_type": "string",
+      "master_key": "",
+      "value_format": null,
+      "auto_value": null,
+      "preserve_reference": true
+    },
+    {
+      "field_id": "FORMULARIO!Q93",
+      "sheet": "FORMULARIO",
+      "cell": "Q93",
+      "label": "7. ¿Usted como representante legal de la sociedad que representa, sus directivos, o sus socios/accionistas, han sido sancionados o estan siendo investigados por actos delictivos que tengan relación a lavado de activos, financiación del terrorismo y financiación de la proliferación de armas de destrucción masiva. (LA/FT/FPADM), corrupción, soborno o fraude?",
+      "empty_value": null,
+      "sample_value": "X",
+      "value_type": "string",
+      "master_key": "",
+      "value_format": null,
+      "auto_value": null,
+      "preserve_reference": true
+    },
+    {
+      "field_id": "FORMULARIO!Q94",
+      "sheet": "FORMULARIO",
+      "cell": "Q94",
+      "label": "8. ¿Ha ofrecido directa o indirectamente, incentivos económicos y/o no económicos a proveedores, contratistas, clientes, directivos y empleados u otros terceros del CENTRO CARDIOVASCULAR SOMER INCARE S.A. con el fin de influenciar sus decisiones en el ejercicio de los servicios que prestó?",
+      "empty_value": null,
+      "sample_value": "X",
+      "value_type": "string",
+      "master_key": "",
+      "value_format": null,
+      "auto_value": null,
+      "preserve_reference": true
+    },
+    {
+      "field_id": "FORMULARIO!P95",
+      "sheet": "FORMULARIO",
+      "cell": "P95",
+      "label": "9.  ¿Usted, la persona natural o jurídica que representa cumple con las normas sobre prevención y control al LA/FT/FPADM, corrupción, fraude y sobrono que le resulten aplicables (de ser el caso), teniendo implementados las políticas, procedimientos y mecanismos de prevención y control que se derivan de dichas disposiciones legales?",
+      "empty_value": null,
+      "sample_value": "X",
+      "value_type": "string",
+      "master_key": "",
+      "value_format": null,
+      "auto_value": null,
+      "preserve_reference": true
+    },
+    {
+      "field_id": "FORMULARIO!Z97",
+      "sheet": "FORMULARIO",
+      "cell": "Z97",
+      "label": "1. Me comprometo a no aceptar ni entregar, regalos, o cualquier dádiva a un empleado, directivo o administrador de CENTRO CARDIOVASCULAR SOMER INCARE S.A. para que realicen acciones, omisiones o un uso indebido de su posición de poder con el fin de la obtención de un beneficio propio.",
+      "empty_value": null,
+      "sample_value": "X",
+      "value_type": "string",
+      "master_key": "",
+      "value_format": null,
+      "auto_value": null,
+      "preserve_reference": true
+    },
+    {
+      "field_id": "FORMULARIO!Z98",
+      "sheet": "FORMULARIO",
+      "cell": "Z98",
+      "label": "2. En el evento en que tenga conocimiento de la materialización de algun acto ilícito que guarde relacion con corrupción, fraude, soborno, lavado de activos, financiación al terrorismo y financiación a la proliferación de armas de destrucción masiva, me comprometo a comunicarlo de inmediato a CENTRO CARDIOVASCULAR SOMER INCARE S.A, poniendo en conocimiento del Oficial de Cumplimiento, remitiendo copia de este documento a través de la línea ética dispuesta para el efecto.",
+      "empty_value": null,
+      "sample_value": "X",
+      "value_type": "string",
+      "master_key": "",
+      "value_format": null,
+      "auto_value": null,
+      "preserve_reference": true
+    }
+  ],
+  "controls": [
+    {
+      "control_id": "ctrlProp1.xml",
+      "sheet": "FORMULARIO",
+      "shape_id": 1025,
+      "anchor": "4, 24, 10, 1, 6, 11, 11, 13",
+      "checked": false,
+      "sample_checked": true,
+      "master_key": "",
+      "anchor_cell": "E11",
+      "nearby_text": [
+        "Proveedor",
+        "TIPO DE VINCULACIÓN",
+        "Cliente",
+        "Miembro de junta directiva",
+        "Tercero"
+      ]
+    },
+    {
+      "control_id": "ctrlProp2.xml",
+      "sheet": "FORMULARIO",
+      "shape_id": 1026,
+      "anchor": "9, 1, 10, 3, 10, 6, 12, 1",
+      "checked": false,
+      "sample_checked": false,
+      "master_key": "",
+      "anchor_cell": "J11",
+      "nearby_text": [
+        "Tercero",
+        "Cliente",
+        "Socio/Accionista",
+        "Proveedor",
+        "Miembro de junta directiva"
+      ]
+    },
+    {
+      "control_id": "ctrlProp3.xml",
+      "sheet": "FORMULARIO",
+      "shape_id": 1027,
+      "anchor": "7, 7, 11, 9, 8, 19, 12, 18",
+      "checked": false,
+      "sample_checked": false,
+      "master_key": "",
+      "anchor_cell": "H12",
+      "nearby_text": [
+        "Cliente",
+        "Tercero",
+        "Proveedor",
+        "Miembro de junta directiva",
+        "Socio/Accionista"
+      ]
+    },
+    {
+      "control_id": "ctrlProp4.xml",
+      "sheet": "FORMULARIO",
+      "shape_id": 1028,
+      "anchor": "11, 27, 9, 9, 12, 14, 11, 12",
+      "checked": false,
+      "sample_checked": false,
+      "master_key": "",
+      "anchor_cell": "L10",
+      "nearby_text": [
+        "Tercero",
+        "Socio/Accionista",
+        "AÑO",
+        "CIUDAD",
+        "Cliente"
+      ]
+    },
+    {
+      "control_id": "ctrlProp5.xml",
+      "sheet": "FORMULARIO",
+      "shape_id": 1029,
+      "anchor": "14, 15, 9, 9, 15, 22, 11, 12",
+      "checked": false,
+      "sample_checked": false,
+      "master_key": "",
+      "anchor_cell": "O10",
+      "nearby_text": [
+        "CIUDAD",
+        "Socio/Accionista",
+        "TIPO DE SOLICITUD",
+        "Tercero",
+        "AÑO"
+      ]
+    },
+    {
+      "control_id": "ctrlProp6.xml",
+      "sheet": "FORMULARIO",
+      "shape_id": 1030,
+      "anchor": "19, 4, 11, 11, 20, 10, 12, 20",
+      "checked": false,
+      "sample_checked": false,
+      "master_key": "",
+      "anchor_cell": "T12",
+      "nearby_text": [
+        "TIPO DE SOLICITUD",
+        "Vinculación",
+        "Actualización"
+      ]
+    },
+    {
+      "control_id": "ctrlProp7.xml",
+      "sheet": "FORMULARIO",
+      "shape_id": 1031,
+      "anchor": "25, 11, 11, 11, 26, 26, 12, 20",
+      "checked": false,
+      "sample_checked": true,
+      "master_key": "",
+      "anchor_cell": "Z12",
+      "nearby_text": [
+        "Actualización"
+      ]
+    },
+    {
+      "control_id": "ctrlProp8.xml",
+      "sheet": "FORMULARIO",
+      "shape_id": 1032,
+      "anchor": "4, 12, 21, 5, 5, 19, 23, 2",
+      "checked": false,
+      "sample_checked": false,
+      "master_key": "",
+      "anchor_cell": "E22",
+      "nearby_text": [
+        "TIPO DE EMPRESA:",
+        "PÚBLICA",
+        "DIRECCIÓN DE CORREO ELECTRÓNICO:",
+        "PRIVADA",
+        "ACTIVIDAD ECONÓMICA:"
+      ]
+    },
+    {
+      "control_id": "ctrlProp9.xml",
+      "sheet": "FORMULARIO",
+      "shape_id": 1033,
+      "anchor": "11, 5, 21, 4, 11, 37, 23, 1",
+      "checked": false,
+      "sample_checked": true,
+      "master_key": "",
+      "anchor_cell": "L22",
+      "nearby_text": [
+        "MIXTA",
+        "PRIVADA",
+        "SIN ÁNIMO DE LUCRO"
+      ]
+    },
+    {
+      "control_id": "ctrlProp10.xml",
+      "sheet": "FORMULARIO",
+      "shape_id": 1034,
+      "anchor": "15, 13, 21, 5, 16, 10, 23, 3",
+      "checked": false,
+      "sample_checked": false,
+      "master_key": "",
+      "anchor_cell": "P22",
+      "nearby_text": [
+        "MIXTA",
+        "SIN ÁNIMO DE LUCRO"
+      ]
+    },
+    {
+      "control_id": "ctrlProp11.xml",
+      "sheet": "FORMULARIO",
+      "shape_id": 1035,
+      "anchor": "19, 18, 21, 6, 20, 24, 23, 3",
+      "checked": false,
+      "sample_checked": false,
+      "master_key": "",
+      "anchor_cell": "T22",
+      "nearby_text": [
+        "SIN ÁNIMO DE LUCRO",
+        "MIXTA"
+      ]
+    },
+    {
+      "control_id": "ctrlProp12.xml",
+      "sheet": "FORMULARIO",
+      "shape_id": 1036,
+      "anchor": "1, 70, 23, 6, 3, 10, 26, 1",
+      "checked": false,
+      "sample_checked": false,
+      "master_key": "",
+      "anchor_cell": "B24",
+      "nearby_text": [
+        "ACTIVIDAD ECONÓMICA:",
+        "INDUSTRIAL",
+        "TIPO DE EMPRESA:",
+        "PÚBLICA",
+        "COMERCIAL"
+      ]
+    },
+    {
+      "control_id": "ctrlProp13.xml",
+      "sheet": "FORMULARIO",
+      "shape_id": 1037,
+      "anchor": "7, 15, 23, 5, 9, 5, 26, 0",
+      "checked": false,
+      "sample_checked": true,
+      "master_key": "",
+      "anchor_cell": "H24",
+      "nearby_text": [
+        "PRIVADA",
+        "COMERCIAL",
+        "TRANSPORTE",
+        "PÚBLICA",
+        "ACTIVIDAD ECONÓMICA:"
+      ]
+    },
+    {
+      "control_id": "ctrlProp14.xml",
+      "sheet": "FORMULARIO",
+      "shape_id": 1038,
+      "anchor": "1, 58, 25, 1, 2, 20, 27, 0",
+      "checked": false,
+      "sample_checked": false,
+      "master_key": "",
+      "anchor_cell": "B26",
+      "nearby_text": [
+        "INDUSTRIAL",
+        "SALUD",
+        "ACTIVIDAD ECONÓMICA:",
+        "CÓDIGO CIIU:",
+        "SERVICIOS FINANCIEROS"
+      ]
+    },
+    {
+      "control_id": "ctrlProp15.xml",
+      "sheet": "FORMULARIO",
+      "shape_id": 1039,
+      "anchor": "8, 3, 25, 3, 9, 16, 26, 17",
+      "checked": false,
+      "sample_checked": false,
+      "master_key": "",
+      "anchor_cell": "I26",
+      "nearby_text": [
+        "TRANSPORTE",
+        "=VLOOKUP(C28,Hoja2!A:B,2,0)",
+        "COMERCIAL",
+        "OTRA",
+        "SERVICIOS FINANCIEROS"
+      ]
+    },
+    {
+      "control_id": "ctrlProp16.xml",
+      "sheet": "FORMULARIO",
+      "shape_id": 1040,
+      "anchor": "12, 29, 23, 4, 13, 15, 25, 5",
+      "checked": false,
+      "sample_checked": false,
+      "master_key": "",
+      "anchor_cell": "M24",
+      "nearby_text": [
+        "MIXTA",
+        "TRANSPORTE",
+        "PRIVADA",
+        "SIN ÁNIMO DE LUCRO",
+        "CONSTRUCCIÓN"
+      ]
+    },
+    {
+      "control_id": "ctrlProp17.xml",
+      "sheet": "FORMULARIO",
+      "shape_id": 1041,
+      "anchor": "12, 37, 25, 1, 13, 23, 27, 0",
+      "checked": false,
+      "sample_checked": false,
+      "master_key": "",
+      "anchor_cell": "M26",
+      "nearby_text": [
+        "OTRA",
+        "TRANSPORTE",
+        "CUAL?",
+        "CONSTRUCCIÓN",
+        "_______________________________"
+      ]
+    },
+    {
+      "control_id": "ctrlProp18.xml",
+      "sheet": "FORMULARIO",
+      "shape_id": 1042,
+      "anchor": "18, 13, 23, 4, 19, 19, 25, 5",
+      "checked": false,
+      "sample_checked": false,
+      "master_key": "",
+      "anchor_cell": "S24",
+      "nearby_text": [
+        "SIN ÁNIMO DE LUCRO",
+        "CONSTRUCCIÓN",
+        "AGRICOLA",
+        "MIXTA"
+      ]
+    },
+    {
+      "control_id": "ctrlProp19.xml",
+      "sheet": "FORMULARIO",
+      "shape_id": 1044,
+      "anchor": "14, 25, 34, 1, 15, 32, 35, 0",
+      "checked": false,
+      "sample_checked": true,
+      "master_key": "",
+      "anchor_cell": "O35",
+      "nearby_text": [
+        "CC",
+        "TIPO DE IDENTIFICACIÓN",
+        "PA",
+        "FECHA DE NACIMIENTO",
+        "DIA"
+      ]
+    },
+    {
+      "control_id": "ctrlProp20.xml",
+      "sheet": "FORMULARIO",
+      "shape_id": 1045,
+      "anchor": "17, 22, 34, 2, 18, 5, 35, 1",
+      "checked": false,
+      "sample_checked": false,
+      "master_key": "",
+      "anchor_cell": "R35",
+      "nearby_text": [
+        "PA",
+        "CE",
+        "MES",
+        "CC",
+        "FECHA DE NACIMIENTO"
+      ]
+    },
+    {
+      "control_id": "ctrlProp21.xml",
+      "sheet": "FORMULARIO",
+      "shape_id": 1047,
+      "anchor": "11, 12, 40, 4, 11, 43, 41, 2",
+      "checked": false,
+      "sample_checked": false,
+      "master_key": "",
+      "anchor_cell": "L41",
+      "nearby_text": [
+        "SI",
+        "NO",
+        "¿POR SU CARGO O ACTIVIDAD EJERCE ALGÚN GRADO DE PODER POLÍTICO?",
+        "SI",
+        "CIUDAD"
+      ]
+    },
+    {
+      "control_id": "ctrlProp22.xml",
+      "sheet": "FORMULARIO",
+      "shape_id": 1048,
+      "anchor": "12, 15, 40, 4, 13, 1, 41, 2",
+      "checked": false,
+      "sample_checked": true,
+      "master_key": "",
+      "anchor_cell": "M41",
+      "nearby_text": [
+        "NO",
+        "SI",
+        "¿POR SU CARGO O ACTIVIDAD EJERCE ALGÚN GRADO DE PODER POLÍTICO?",
+        "SI",
+        "CIUDAD"
+      ]
+    },
+    {
+      "control_id": "ctrlProp23.xml",
+      "sheet": "FORMULARIO",
+      "shape_id": 1049,
+      "anchor": "25, 14, 40, 4, 27, 3, 41, 2",
+      "checked": false,
+      "sample_checked": false,
+      "master_key": "",
+      "anchor_cell": "Z41",
+      "nearby_text": [
+        "SI",
+        "NO"
+      ]
+    },
+    {
+      "control_id": "ctrlProp24.xml",
+      "sheet": "FORMULARIO",
+      "shape_id": 1050,
+      "anchor": "27, 16, 40, 3, 28, 25, 41, 1",
+      "checked": false,
+      "sample_checked": true,
+      "master_key": "",
+      "anchor_cell": "AB41",
+      "nearby_text": [
+        "NO",
+        "SI"
+      ]
+    },
+    {
+      "control_id": "ctrlProp25.xml",
+      "sheet": "FORMULARIO",
+      "shape_id": 1051,
+      "anchor": "15, 15, 41, 2, 16, 12, 42, 2",
+      "checked": false,
+      "sample_checked": false,
+      "master_key": "",
+      "anchor_cell": "P42",
+      "nearby_text": [
+        "SI",
+        "NO",
+        "¿POR SU CARGO O ACTIVIDAD EJERCE ALGÚN GRADO DE PODER POLÍTICO?",
+        "Indique:",
+        "NO"
+      ]
+    },
+    {
+      "control_id": "ctrlProp26.xml",
+      "sheet": "FORMULARIO",
+      "shape_id": 1052,
+      "anchor": "16, 25, 41, 3, 17, 24, 42, 3",
+      "checked": false,
+      "sample_checked": true,
+      "master_key": "",
+      "anchor_cell": "Q42",
+      "nearby_text": [
+        "NO",
+        "SI",
+        "Indique:",
+        "¿POR SU CARGO O ACTIVIDAD EJERCE ALGÚN GRADO DE PODER POLÍTICO?",
+        "NO"
+      ]
+    },
+    {
+      "control_id": "ctrlProp27.xml",
+      "sheet": "FORMULARIO",
+      "shape_id": 1053,
+      "anchor": "19, 3, 34, 1, 20, 9, 35, 0",
+      "checked": false,
+      "sample_checked": false,
+      "master_key": "",
+      "anchor_cell": "T35",
+      "nearby_text": [
+        "CE",
+        "AÑO",
+        "NÚMERO DE IDENTIFICACIÓN",
+        "PA",
+        "LUGAR"
+      ]
+    },
+    {
+      "control_id": "ctrlProp28.xml",
+      "sheet": "FORMULARIO",
+      "shape_id": 1054,
+      "anchor": "11, 16, 57, 27, 11, 42, 59, 2",
+      "checked": false,
+      "sample_checked": false,
+      "master_key": "",
+      "anchor_cell": "L58",
+      "nearby_text": [
+        "¿ES O ESTA VINCULADO CON UN PEP?",
+        "SI",
+        "NUMERO DE ID",
+        "NO",
+        "SI"
+      ]
+    },
+    {
+      "control_id": "ctrlProp29.xml",
+      "sheet": "FORMULARIO",
+      "shape_id": 1055,
+      "anchor": "11, 17, 58, 13, 12, 3, 60, 4",
+      "checked": false,
+      "sample_checked": false,
+      "master_key": "",
+      "anchor_cell": "L59",
+      "nearby_text": [
+        "SI",
+        "¿ES O ESTA VINCULADO CON UN PEP?",
+        "NO",
+        "SI",
+        "NO"
+      ]
+    },
+    {
+      "control_id": "ctrlProp30.xml",
+      "sheet": "FORMULARIO",
+      "shape_id": 1056,
+      "anchor": "11, 16, 59, 12, 12, 2, 61, 3",
+      "checked": false,
+      "sample_checked": false,
+      "master_key": "",
+      "anchor_cell": "L60",
+      "nearby_text": [
+        "SI",
+        "SI",
+        "NO",
+        "SI",
+        "¿ES O ESTA VINCULADO CON UN PEP?"
+      ]
+    },
+    {
+      "control_id": "ctrlProp31.xml",
+      "sheet": "FORMULARIO",
+      "shape_id": 1057,
+      "anchor": "11, 16, 60, 13, 12, 2, 62, 4",
+      "checked": false,
+      "sample_checked": false,
+      "master_key": "",
+      "anchor_cell": "L61",
+      "nearby_text": [
+        "SI",
+        "SI",
+        "NO",
+        "SI",
+        "SI"
+      ]
+    },
+    {
+      "control_id": "ctrlProp32.xml",
+      "sheet": "FORMULARIO",
+      "shape_id": 1058,
+      "anchor": "11, 16, 61, 12, 12, 2, 63, 3",
+      "checked": false,
+      "sample_checked": false,
+      "master_key": "",
+      "anchor_cell": "L62",
+      "nearby_text": [
+        "SI",
+        "SI",
+        "NO",
+        "SI",
+        "SI"
+      ]
+    },
+    {
+      "control_id": "ctrlProp33.xml",
+      "sheet": "FORMULARIO",
+      "shape_id": 1059,
+      "anchor": "12, 17, 57, 27, 13, 3, 59, 3",
+      "checked": false,
+      "sample_checked": true,
+      "master_key": "",
+      "anchor_cell": "M58",
+      "nearby_text": [
+        "¿ES O ESTA VINCULADO CON UN PEP?",
+        "NUMERO DE ID",
+        "NO",
+        "SI",
+        "NO"
+      ]
+    },
+    {
+      "control_id": "ctrlProp34.xml",
+      "sheet": "FORMULARIO",
+      "shape_id": 1060,
+      "anchor": "12, 17, 58, 12, 13, 3, 60, 3",
+      "checked": false,
+      "sample_checked": true,
+      "master_key": "",
+      "anchor_cell": "M59",
+      "nearby_text": [
+        "NO",
+        "SI",
+        "NO",
+        "¿ES O ESTA VINCULADO CON UN PEP?",
+        "NUMERO DE ID"
+      ]
+    },
+    {
+      "control_id": "ctrlProp35.xml",
+      "sheet": "FORMULARIO",
+      "shape_id": 1061,
+      "anchor": "12, 18, 59, 12, 13, 4, 61, 3",
+      "checked": false,
+      "sample_checked": true,
+      "master_key": "",
+      "anchor_cell": "M60",
+      "nearby_text": [
+        "NO",
+        "NO",
+        "SI",
+        "NO",
+        "SI"
+      ]
+    },
+    {
+      "control_id": "ctrlProp36.xml",
+      "sheet": "FORMULARIO",
+      "shape_id": 1062,
+      "anchor": "12, 17, 60, 12, 13, 3, 62, 3",
+      "checked": false,
+      "sample_checked": true,
+      "master_key": "",
+      "anchor_cell": "M61",
+      "nearby_text": [
+        "NO",
+        "NO",
+        "SI",
+        "NO",
+        "NO"
+      ]
+    },
+    {
+      "control_id": "ctrlProp37.xml",
+      "sheet": "FORMULARIO",
+      "shape_id": 1063,
+      "anchor": "12, 18, 61, 11, 13, 4, 63, 2",
+      "checked": false,
+      "sample_checked": true,
+      "master_key": "",
+      "anchor_cell": "M62",
+      "nearby_text": [
+        "NO",
+        "NO",
+        "SI",
+        "NO",
+        "NO"
+      ]
+    },
+    {
+      "control_id": "ctrlProp38.xml",
+      "sheet": "FORMULARIO",
+      "shape_id": 1064,
+      "anchor": "26, 1, 57, 26, 27, 6, 59, 2",
+      "checked": false,
+      "sample_checked": false,
+      "master_key": "",
+      "anchor_cell": "AA58",
+      "nearby_text": [
+        "¿ES O ESTA VINCULADO CON UN PEP?",
+        "SI",
+        "NO",
+        "SI",
+        "NO"
+      ]
+    },
+    {
+      "control_id": "ctrlProp39.xml",
+      "sheet": "FORMULARIO",
+      "shape_id": 1065,
+      "anchor": "26, 1, 58, 13, 27, 6, 60, 4",
+      "checked": false,
+      "sample_checked": false,
+      "master_key": "",
+      "anchor_cell": "AA59",
+      "nearby_text": [
+        "SI",
+        "NO",
+        "¿ES O ESTA VINCULADO CON UN PEP?",
+        "SI",
+        "NO"
+      ]
+    },
+    {
+      "control_id": "ctrlProp40.xml",
+      "sheet": "FORMULARIO",
+      "shape_id": 1066,
+      "anchor": "26, 2, 59, 12, 27, 7, 61, 3",
+      "checked": false,
+      "sample_checked": false,
+      "master_key": "",
+      "anchor_cell": "AA60",
+      "nearby_text": [
+        "SI",
+        "NO",
+        "SI",
+        "NO",
+        "SI"
+      ]
+    },
+    {
+      "control_id": "ctrlProp41.xml",
+      "sheet": "FORMULARIO",
+      "shape_id": 1067,
+      "anchor": "26, 3, 60, 12, 27, 8, 62, 3",
+      "checked": false,
+      "sample_checked": false,
+      "master_key": "",
+      "anchor_cell": "AA61",
+      "nearby_text": [
+        "SI",
+        "NO",
+        "SI",
+        "NO",
+        "SI"
+      ]
+    },
+    {
+      "control_id": "ctrlProp42.xml",
+      "sheet": "FORMULARIO",
+      "shape_id": 1068,
+      "anchor": "26, 3, 61, 12, 27, 8, 63, 3",
+      "checked": false,
+      "sample_checked": false,
+      "master_key": "",
+      "anchor_cell": "AA62",
+      "nearby_text": [
+        "SI",
+        "NO",
+        "SI",
+        "NO",
+        "SI"
+      ]
+    },
+    {
+      "control_id": "ctrlProp43.xml",
+      "sheet": "FORMULARIO",
+      "shape_id": 1069,
+      "anchor": "27, 22, 57, 27, 29, 1, 59, 3",
+      "checked": false,
+      "sample_checked": true,
+      "master_key": "",
+      "anchor_cell": "AB58",
+      "nearby_text": [
+        "NO",
+        "¿ES O ESTA VINCULADO CON UN PEP?",
+        "NO",
+        "SI",
+        "SI"
+      ]
+    },
+    {
+      "control_id": "ctrlProp44.xml",
+      "sheet": "FORMULARIO",
+      "shape_id": 1070,
+      "anchor": "27, 23, 58, 13, 29, 1, 60, 4",
+      "checked": false,
+      "sample_checked": true,
+      "master_key": "",
+      "anchor_cell": "AB59",
+      "nearby_text": [
+        "NO",
+        "NO",
+        "SI",
+        "NO",
+        "¿ES O ESTA VINCULADO CON UN PEP?"
+      ]
+    },
+    {
+      "control_id": "ctrlProp45.xml",
+      "sheet": "FORMULARIO",
+      "shape_id": 1071,
+      "anchor": "27, 22, 59, 12, 29, 0, 61, 3",
+      "checked": false,
+      "sample_checked": true,
+      "master_key": "",
+      "anchor_cell": "AB60",
+      "nearby_text": [
+        "NO",
+        "NO",
+        "NO",
+        "SI",
+        "NO"
+      ]
+    },
+    {
+      "control_id": "ctrlProp46.xml",
+      "sheet": "FORMULARIO",
+      "shape_id": 1072,
+      "anchor": "27, 23, 60, 12, 29, 1, 62, 3",
+      "checked": false,
+      "sample_checked": true,
+      "master_key": "",
+      "anchor_cell": "AB61",
+      "nearby_text": [
+        "NO",
+        "NO",
+        "NO",
+        "NO",
+        "SI"
+      ]
+    },
+    {
+      "control_id": "ctrlProp47.xml",
+      "sheet": "FORMULARIO",
+      "shape_id": 1074,
+      "anchor": "20, 3, 64, 1, 21, 9, 65, 2",
+      "checked": false,
+      "sample_checked": true,
+      "master_key": "",
+      "anchor_cell": "U65",
+      "nearby_text": [
+        "Si",
+        "Inversiones",
+        "Transferencias",
+        "No",
+        "SI"
+      ]
+    },
+    {
+      "control_id": "ctrlProp48.xml",
+      "sheet": "FORMULARIO",
+      "shape_id": 1075,
+      "anchor": "23, 29, 64, 1, 24, 22, 65, 2",
+      "checked": false,
+      "sample_checked": false,
+      "master_key": "",
+      "anchor_cell": "X65",
+      "nearby_text": [
+        "No",
+        "SI",
+        "Si",
+        "Inversiones",
+        "Transferencias"
+      ]
+    },
+    {
+      "control_id": "ctrlProp49.xml",
+      "sheet": "FORMULARIO",
+      "shape_id": 1076,
+      "anchor": "22, 9, 64, 19, 23, 15, 66, 5",
+      "checked": false,
+      "sample_checked": false,
+      "master_key": "",
+      "anchor_cell": "W65",
+      "nearby_text": [
+        "No",
+        "Si",
+        "Inversiones",
+        "Transferencias",
+        "SI"
+      ]
+    },
+    {
+      "control_id": "ctrlProp50.xml",
+      "sheet": "FORMULARIO",
+      "shape_id": 1077,
+      "anchor": "22, 26, 66, 1, 23, 32, 67, 5",
+      "checked": false,
+      "sample_checked": false,
+      "master_key": "",
+      "anchor_cell": "W67",
+      "nearby_text": [
+        "Transferencias",
+        "No",
+        "Inversiones",
+        "Si"
+      ]
+    },
+    {
+      "control_id": "ctrlProp51.xml",
+      "sheet": "FORMULARIO",
+      "shape_id": 1078,
+      "anchor": "16, 12, 66, 0, 17, 11, 67, 4",
+      "checked": false,
+      "sample_checked": false,
+      "master_key": "",
+      "anchor_cell": "Q67",
+      "nearby_text": [
+        "Pagos de servicios",
+        "Exportaciones",
+        "Transferencias",
+        "Si",
+        "Inversiones"
+      ]
+    },
+    {
+      "control_id": "ctrlProp52.xml",
+      "sheet": "FORMULARIO",
+      "shape_id": 1079,
+      "anchor": "15, 24, 64, 18, 16, 21, 66, 3",
+      "checked": false,
+      "sample_checked": true,
+      "master_key": "",
+      "anchor_cell": "P65",
+      "nearby_text": [
+        "Exportaciones",
+        "Si",
+        "Pagos de servicios",
+        "NO",
+        "SI"
+      ]
+    },
+    {
+      "control_id": "ctrlProp53.xml",
+      "sheet": "FORMULARIO",
+      "shape_id": 1080,
+      "anchor": "10, 1, 64, 18, 11, 9, 66, 3",
+      "checked": false,
+      "sample_checked": true,
+      "master_key": "",
+      "anchor_cell": "K65",
+      "nearby_text": [
+        "SI",
+        "NO",
+        "Importaciones",
+        "Exportaciones",
+        "Envío y recepción de giros"
+      ]
+    },
+    {
+      "control_id": "ctrlProp54.xml",
+      "sheet": "FORMULARIO",
+      "shape_id": 1081,
+      "anchor": "11, 34, 65, 14, 12, 20, 67, 2",
+      "checked": false,
+      "sample_checked": false,
+      "master_key": "",
+      "anchor_cell": "L66",
+      "nearby_text": [
+        "Exportaciones",
+        "Pagos de servicios",
+        "Importaciones",
+        "Envío y recepción de giros"
+      ]
+    },
+    {
+      "control_id": "ctrlProp55.xml",
+      "sheet": "FORMULARIO",
+      "shape_id": 1082,
+      "anchor": "4, 1, 66, 1, 5, 8, 67, 5",
+      "checked": false,
+      "sample_checked": false,
+      "master_key": "",
+      "anchor_cell": "E67",
+      "nearby_text": [
+        "Préstamos",
+        "¿Cuáles?",
+        "Envío y recepción de giros",
+        "Otras:",
+        "Importaciones"
+      ]
+    },
+    {
+      "control_id": "ctrlProp56.xml",
+      "sheet": "FORMULARIO",
+      "shape_id": 1083,
+      "anchor": "1, 48, 70, 17, 2, 10, 71, 1",
+      "checked": false,
+      "sample_checked": false,
+      "master_key": "",
+      "anchor_cell": "B71",
+      "nearby_text": [
+        "TIPO DE PRODUCTO:\n           \nAHORROS                 CORRIENTE                   FONDO",
+        "ENTIDAD:",
+        "ENTIDAD",
+        "5. REFERENCIAS FINANCIERAS",
+        "TIPO DE PRODUCTO:\n           \nAHORROS                   CORRIENTE                   FONDO"
+      ]
+    },
+    {
+      "control_id": "ctrlProp57.xml",
+      "sheet": "FORMULARIO",
+      "shape_id": 1084,
+      "anchor": "5, 1, 70, 17, 6, 13, 71, 1",
+      "checked": false,
+      "sample_checked": true,
+      "master_key": "",
+      "anchor_cell": "F71",
+      "nearby_text": [
+        "TIPO DE PRODUCTO:\n           \nAHORROS                 CORRIENTE                   FONDO",
+        "ENTIDAD:",
+        "NÚMERO DE CUENTA:",
+        "ENTIDAD",
+        "5. REFERENCIAS FINANCIERAS"
+      ]
+    },
+    {
+      "control_id": "ctrlProp58.xml",
+      "sheet": "FORMULARIO",
+      "shape_id": 1085,
+      "anchor": "8, 7, 70, 14, 9, 18, 70, 37",
+      "checked": false,
+      "sample_checked": false,
+      "master_key": "",
+      "anchor_cell": "I71",
+      "nearby_text": [
+        "NÚMERO DE CUENTA:",
+        "ANTIGUEDAD:",
+        "PRODUCTO:",
+        "NÚMERO DE CUENTA:"
+      ]
+    },
+    {
+      "control_id": "ctrlProp59.xml",
+      "sheet": "FORMULARIO",
+      "shape_id": 1086,
+      "anchor": "1, 48, 72, 16, 2, 10, 72, 39",
+      "checked": false,
+      "sample_checked": false,
+      "master_key": "",
+      "anchor_cell": "B73",
+      "nearby_text": [
+        "TIPO DE PRODUCTO:\n           \nAHORROS                   CORRIENTE                   FONDO",
+        "ENTIDAD",
+        "6. DECLARACIÓN DE ORIGEN DE FONDOS",
+        "TIPO DE PRODUCTO:\n           \nAHORROS                 CORRIENTE                   FONDO",
+        "Autorizo a CENTRO CARDIOVASCULAR SOMER INCARE S.A  o a quien represente sus intereses a reportar a las autoridades la información anteriormente diligenciada, eximiendo a la entidad de toda responsabilidad que se derive por información errónea, falsa o inexacta que yo hubiere proporcionado en este documento, o por violación del mismo.\nDeclaro expresamente que:"
+      ]
+    },
+    {
+      "control_id": "ctrlProp60.xml",
+      "sheet": "FORMULARIO",
+      "shape_id": 1090,
+      "anchor": "5, 1, 72, 17, 6, 13, 72, 40",
+      "checked": false,
+      "sample_checked": true,
+      "master_key": "",
+      "anchor_cell": "F73",
+      "nearby_text": [
+        "TIPO DE PRODUCTO:\n           \nAHORROS                   CORRIENTE                   FONDO",
+        "ENTIDAD",
+        "NÚMERO DE CUENTA:",
+        "6. DECLARACIÓN DE ORIGEN DE FONDOS",
+        "TIPO DE PRODUCTO:\n           \nAHORROS                 CORRIENTE                   FONDO"
+      ]
+    },
+    {
+      "control_id": "ctrlProp61.xml",
+      "sheet": "FORMULARIO",
+      "shape_id": 1091,
+      "anchor": "8, 12, 72, 17, 9, 22, 72, 40",
+      "checked": false,
+      "sample_checked": false,
+      "master_key": "",
+      "anchor_cell": "I73",
+      "nearby_text": [
+        "NÚMERO DE CUENTA:",
+        "PRODUCTO:",
+        "NÚMERO DE CUENTA:"
+      ]
+    },
+    {
+      "control_id": "ctrlProp62.xml",
+      "sheet": "FORMULARIO",
+      "shape_id": 1092,
+      "anchor": "23, 26, 23, 3, 24, 20, 25, 5",
+      "checked": false,
+      "sample_checked": false,
+      "master_key": "",
+      "anchor_cell": "X24",
+      "nearby_text": [
+        "AGRICOLA",
+        "SIN ÁNIMO DE LUCRO",
+        "CONSTRUCCIÓN"
+      ]
+    }
+  ],
+  "format": "xlsx"
+}

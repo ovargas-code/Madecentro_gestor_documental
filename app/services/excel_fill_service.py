@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import re
+import unicodedata
 from datetime import datetime
 from posixpath import normpath
 from pathlib import Path
@@ -83,7 +84,11 @@ class ExcelFillService:
                 )
 
             replacements: dict[str, bytes] = {}
-            for sheet_name, fields in fields_by_sheet.items():
+            shared_strings = self._shared_strings(archive)
+            sheet_names = set(sheet_paths)
+            sheet_names.update(fields_by_sheet)
+            for sheet_name in sheet_names:
+                fields = fields_by_sheet.get(sheet_name, [])
                 sheet_path = sheet_paths.get(sheet_name)
                 if not sheet_path:
                     raise ValueError(
@@ -104,12 +109,22 @@ class ExcelFillService:
                         value,
                         str(field.get("value_type", "string")),
                     )
-                replacements[sheet_path] = ET.tostring(
-                    sheet_xml,
-                    encoding="utf-8",
-                    xml_declaration=True,
-                    standalone=True,
-                )
+                changed = bool(fields)
+                if not use_sample_values:
+                    changed = (
+                        self._apply_inferred_current_dates(
+                            sheet_xml,
+                            shared_strings,
+                        )
+                        or changed
+                    )
+                if changed:
+                    replacements[sheet_path] = ET.tostring(
+                        sheet_xml,
+                        encoding="utf-8",
+                        xml_declaration=True,
+                        standalone=True,
+                    )
 
             controls_by_shape = {
                 int(control["shape_id"]): control
@@ -329,11 +344,200 @@ class ExcelFillService:
             return now.day
         if automatic == "current_month_name":
             return SPANISH_MONTHS[now.month]
+        if automatic == "current_month_number":
+            return now.month
         if automatic == "current_year":
             return now.year
         if automatic == "current_date":
             return now.strftime("%d/%m/%Y")
         return None
+
+    def _apply_inferred_current_dates(
+        self,
+        sheet_xml: ET.Element,
+        shared_strings: list[str],
+    ) -> bool:
+        cell_texts = self._cell_texts(sheet_xml, shared_strings)
+        changed = False
+        for coordinate, text in cell_texts.items():
+            column_letters, row_number = self._split_coordinate(coordinate)
+            column_number = self._column_number(column_letters)
+            if self._is_header_current_date_label(text, row_number):
+                self._set_cell_value(
+                    sheet_xml,
+                    f"{self._column_letters(column_number + 1)}{row_number}",
+                    datetime.now().strftime("%d/%m/%Y"),
+                    "string",
+                )
+                changed = True
+                continue
+            if not self._is_current_date_label(text):
+                continue
+            changed = (
+                self._apply_date_parts(
+                    sheet_xml,
+                    cell_texts,
+                    row_number,
+                    column_number,
+                )
+                or self._apply_single_date(
+                    sheet_xml,
+                    cell_texts,
+                    row_number,
+                    column_number,
+                )
+                or changed
+            )
+        return changed
+
+    def _apply_date_parts(
+        self,
+        sheet_xml: ET.Element,
+        cell_texts: dict[str, str],
+        label_row: int,
+        label_column: int,
+    ) -> bool:
+        now = datetime.now()
+        values = {
+            "dia": now.day,
+            "mes": now.month,
+            "ano": now.year,
+        }
+        changed = False
+        for column in range(label_column + 1, label_column + 8):
+            header = self._normalized_text(
+                cell_texts.get(f"{self._column_letters(column)}{label_row}", "")
+            )
+            key = None
+            if header == "dia":
+                key = "dia"
+            elif header == "mes":
+                key = "mes"
+            elif header in {"ano", "año"}:
+                key = "ano"
+            if key is None:
+                continue
+            self._set_cell_value(
+                sheet_xml,
+                f"{self._column_letters(column)}{label_row + 1}",
+                values[key],
+                "number",
+            )
+            changed = True
+        return changed
+
+    def _apply_single_date(
+        self,
+        sheet_xml: ET.Element,
+        cell_texts: dict[str, str],
+        label_row: int,
+        label_column: int,
+    ) -> bool:
+        for row in (label_row, label_row + 1):
+            for column in range(label_column + 1, label_column + 5):
+                coordinate = f"{self._column_letters(column)}{row}"
+                existing = str(cell_texts.get(coordinate) or "").strip()
+                if existing and not self._looks_like_date(existing):
+                    continue
+                self._set_cell_value(
+                    sheet_xml,
+                    coordinate,
+                    datetime.now().strftime("%d/%m/%Y"),
+                    "string",
+                )
+                return True
+        return False
+
+    def _is_current_date_label(self, text: str) -> bool:
+        normalized = self._normalized_text(text)
+        if "fecha" not in normalized:
+            return False
+        return any(
+            token in normalized
+            for token in (
+                "solicitud",
+                "solicitur",
+                "creacion",
+                "diligenciamiento",
+            )
+        )
+
+    def _is_header_current_date_label(self, text: str, row_number: int) -> bool:
+        return row_number <= 10 and self._normalized_text(text) == "fecha"
+
+    def _looks_like_date(self, text: str) -> bool:
+        return bool(
+            re.fullmatch(r"[0-9]{1,2}[/\\-][0-9]{1,2}[/\\-][0-9]{2,4}", text)
+            or re.fullmatch(r"[0-9]{1,2}", text)
+            or re.fullmatch(r"[0-9]{4}", text)
+        )
+
+    def _cell_texts(
+        self,
+        sheet_xml: ET.Element,
+        shared_strings: list[str],
+    ) -> dict[str, str]:
+        texts: dict[str, str] = {}
+        for cell in sheet_xml.findall(f".//{{{SHEET_NS}}}c"):
+            coordinate = str(cell.attrib.get("r") or "")
+            if not coordinate:
+                continue
+            text = self._cell_text(cell, shared_strings)
+            if text:
+                texts[coordinate] = text
+        return texts
+
+    def _cell_text(self, cell: ET.Element, shared_strings: list[str]) -> str:
+        cell_type = cell.attrib.get("t")
+        if cell_type == "inlineStr":
+            return "".join(
+                text_element.text or ""
+                for text_element in cell.findall(f".//{{{SHEET_NS}}}t")
+            )
+        value = cell.find(f"{{{SHEET_NS}}}v")
+        if value is None or value.text is None:
+            return ""
+        if cell_type == "s":
+            try:
+                return shared_strings[int(value.text)]
+            except (IndexError, ValueError):
+                return ""
+        return value.text
+
+    def _shared_strings(self, archive: ZipFile) -> list[str]:
+        if "xl/sharedStrings.xml" not in archive.namelist():
+            return []
+        root = ET.fromstring(archive.read("xl/sharedStrings.xml"))
+        strings: list[str] = []
+        for item in root.findall(f"{{{SHEET_NS}}}si"):
+            strings.append(
+                "".join(
+                    text_element.text or ""
+                    for text_element in item.findall(f".//{{{SHEET_NS}}}t")
+                )
+            )
+        return strings
+
+    def _normalized_text(self, text: str) -> str:
+        normalized = unicodedata.normalize("NFKD", text.casefold())
+        normalized = "".join(
+            char for char in normalized if not unicodedata.combining(char)
+        )
+        return " ".join(re.sub(r"[^a-z0-9]+", " ", normalized).split())
+
+    def _split_coordinate(self, coordinate: str) -> tuple[str, int]:
+        match = re.fullmatch(r"([A-Z]+)([1-9][0-9]*)", coordinate)
+        if not match:
+            raise ValueError(f"Coordenada Excel invalida: {coordinate}")
+        letters, row = match.groups()
+        return letters, int(row)
+
+    def _column_letters(self, number: int) -> str:
+        letters = ""
+        while number:
+            number, remainder = divmod(number - 1, 26)
+            letters = chr(65 + remainder) + letters
+        return letters
 
     def _set_cell_value(
         self,

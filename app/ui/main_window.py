@@ -528,7 +528,7 @@ class MainWindow(QMainWindow):
         )
 
         config_card, config_layout = self._card()
-        self.generator_input_input = QLineEdit(str(BASE_DIR / "entrada_documentos"))
+        self.generator_input_input = QLineEdit(str(INPUT_DIR))
         self.generator_dictionary_input = QLineEdit(
             str(self._default_template_generator_dictionary())
         )
@@ -2500,7 +2500,8 @@ class MainWindow(QMainWindow):
         return True
 
     def _save_suggested_mapping(self, mapping: dict[str, str]) -> None:
-        name = "mapeo_madecentro"
+        name = self._default_mapping_name()
+        file_name = self._default_mapping_file_name(name)
         payload = self.current_mapping_payload or {
             "format": self.current_pdf.suffix.lower().lstrip(".")
             if self.current_pdf
@@ -2511,7 +2512,7 @@ class MainWindow(QMainWindow):
         self.current_mapping_path = self.mapping_service.save_payload(
             payload,
             name,
-            name,
+            file_name,
         )
         self.current_mapping_payload = payload
         self.mapping_name_input.setText(name)
@@ -2522,6 +2523,28 @@ class MainWindow(QMainWindow):
                 self.current_template_id,
             )
         self.selected_mapping_label.setText(f"Mapeo: {self.current_mapping_path}")
+
+    def _default_mapping_name(self) -> str:
+        template_name = ""
+        if self.current_template_id is not None:
+            template = next(
+                (
+                    row
+                    for row in self.db.list_templates()
+                    if int(row["id"]) == self.current_template_id
+                ),
+                None,
+            )
+            if template is not None:
+                template_name = self._template_display_name(template)
+        if not template_name and self.current_pdf is not None:
+            template_name = self._clean_template_display_name(self.current_pdf.stem)
+        return f"mapeo_{template_name}" if template_name else "mapeo_madecentro"
+
+    def _default_mapping_file_name(self, mapping_name: str) -> str:
+        if self.current_template_id is None:
+            return mapping_name
+        return f"plantilla_{self.current_template_id}_{mapping_name}"
 
     def _populate_mapping_table(self, mapping: dict[str, str]) -> None:
         master_keys = sorted(
@@ -2597,8 +2620,10 @@ class MainWindow(QMainWindow):
         if not self._effective_mapping(mapping):
             QMessageBox.warning(self, "Mapeo sin campos", "Seleccione al menos un campo maestro antes de guardar.")
             return
-        name = self.mapping_name_input.text().strip() or "mapeo_madecentro"
-        file_name = f"plantilla_{self.current_template_id}_{name}" if self.current_template_id else name
+        name = self.mapping_name_input.text().strip()
+        if not name or name == "mapeo_madecentro":
+            name = self._default_mapping_name()
+        file_name = self._default_mapping_file_name(name)
         try:
             payload = self.current_mapping_payload or {
                 "format": self.current_pdf.suffix.lower().lstrip(".")

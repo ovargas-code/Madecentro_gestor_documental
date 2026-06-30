@@ -190,6 +190,16 @@ class ExcelTemplateService:
             if not unicodedata.combining(char)
         )
         normalized = " ".join(normalized.split())
+        if "fecha" in normalized and any(
+            token in normalized
+            for token in (
+                "solicitud",
+                "solicitur",
+                "creacion",
+                "diligenciamiento",
+            )
+        ):
+            return "current_date"
         return {
             "dia": "current_day",
             "mes": "current_month_name",

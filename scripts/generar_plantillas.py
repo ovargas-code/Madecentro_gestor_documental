@@ -15,7 +15,7 @@ def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
         description="Genera plantillas limpias desde documentos diligenciados.",
     )
-    parser.add_argument("--input", default="entrada_documentos")
+    parser.add_argument("--input", default="data/entrada")
     parser.add_argument("--dictionary", default="diccionario_madecentro.xlsx")
     parser.add_argument("--output", default="plantillas_generadas")
     parser.add_argument(

@@ -15,7 +15,7 @@ python -m pip install -r requirements.txt
 ## Estructura
 
 ```text
-entrada_documentos/       Documentos diligenciados originales
+data/entrada/             Documentos diligenciados originales
 plantillas_generadas/     Copias limpias generadas y reporte
 diccionario_madecentro.xlsx
 ```
@@ -34,13 +34,13 @@ Tambien se acepta JSON con una lista de registros equivalentes.
 Reemplazar datos por marcadores:
 
 ```powershell
-python scripts\generar_plantillas.py --input entrada_documentos --dictionary diccionario_madecentro.xlsx --output plantillas_generadas --mode markers
+python scripts\generar_plantillas.py --input data/entrada --dictionary diccionario_madecentro.xlsx --output plantillas_generadas --mode markers
 ```
 
 Borrar datos y dejar el espacio vacio:
 
 ```powershell
-python scripts\generar_plantillas.py --input entrada_documentos --dictionary diccionario_madecentro.xlsx --output plantillas_generadas --mode blank
+python scripts\generar_plantillas.py --input data/entrada --dictionary diccionario_madecentro.xlsx --output plantillas_generadas --mode blank
 ```
 
 Si `reemplazo` tiene valor y el modo es `markers`, se usa ese valor. Si esta

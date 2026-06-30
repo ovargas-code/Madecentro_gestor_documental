@@ -303,6 +303,89 @@ class ExcelServiceTests(unittest.TestCase):
         finally:
             workbook.close()
 
+    def test_updates_inferred_fecha_solicitud_parts(self) -> None:
+        workbook = Workbook()
+        sheet = workbook.active
+        sheet.title = "UNIALQUILERES"
+        sheet["H4"] = "FECHA DE SOLICITUD"
+        sheet["I4"] = "DÍA"
+        sheet["J4"] = "MES"
+        sheet["K4"] = "AÑO"
+        sheet["I5"] = 1
+        sheet["J5"] = 1
+        sheet["K5"] = 2020
+        workbook.save(self.empty_path)
+        workbook.close()
+
+        ExcelFillService().fill_workbook(
+            self.empty_path,
+            self.output_path,
+            {"cells": [], "controls": []},
+            {},
+        )
+
+        now = datetime.now()
+        workbook = load_workbook(self.output_path, data_only=False)
+        try:
+            sheet = workbook["UNIALQUILERES"]
+            self.assertEqual(sheet["I5"].value, now.day)
+            self.assertEqual(sheet["J5"].value, now.month)
+            self.assertEqual(sheet["K5"].value, now.year)
+        finally:
+            workbook.close()
+
+    def test_updates_inferred_fecha_creacion_single_cell(self) -> None:
+        workbook = Workbook()
+        sheet = workbook.active
+        sheet.title = "FORMULARIO"
+        sheet["A1"] = "Fecha de creación"
+        sheet["B1"] = "01/01/2020"
+        workbook.save(self.empty_path)
+        workbook.close()
+
+        ExcelFillService().fill_workbook(
+            self.empty_path,
+            self.output_path,
+            {"cells": [], "controls": []},
+            {},
+        )
+
+        now = datetime.now()
+        workbook = load_workbook(self.output_path, data_only=False)
+        try:
+            self.assertEqual(
+                workbook["FORMULARIO"]["B1"].value,
+                now.strftime("%d/%m/%Y"),
+            )
+        finally:
+            workbook.close()
+
+    def test_updates_header_fecha_label(self) -> None:
+        workbook = Workbook()
+        sheet = workbook.active
+        sheet.title = "Conocimiento contraparte "
+        sheet["C6"] = "FECHA:"
+        sheet["D6"] = "18/06/2026"
+        workbook.save(self.empty_path)
+        workbook.close()
+
+        ExcelFillService().fill_workbook(
+            self.empty_path,
+            self.output_path,
+            {"cells": [], "controls": []},
+            {},
+        )
+
+        now = datetime.now()
+        workbook = load_workbook(self.output_path, data_only=False)
+        try:
+            self.assertEqual(
+                workbook["Conocimiento contraparte "]["D6"].value,
+                now.strftime("%d/%m/%Y"),
+            )
+        finally:
+            workbook.close()
+
     def test_value_format_can_include_current_date(self) -> None:
         mapping = {
             "cells": [

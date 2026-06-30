@@ -135,6 +135,20 @@ El archivo debe tener estas columnas:
 buscador de clientes para certificados y no reemplaza los datos maestros
 generales.
 
+`data/maestros/diccionario_madecentro.json` y
+`data/maestros/diccionario_madecentro.csv` son otra capa: ayudan a reconocer
+etiquetas, aliases y nombres de campos cuando se aprende un formulario vacio.
+No reemplazan ni se mezclan con `datos_maestros.csv`; el JSON es la fuente
+principal y el CSV queda como respaldo editable o revisable.
+
+Para actualizar el diccionario, agregue nuevas relaciones entre etiquetas de
+formulario y claves maestras usando columnas como `clave`, `master_key`,
+`campo_maestro`, `alias`, `etiqueta`, `label` o `texto`. Si ambos archivos
+existen, las coincidencias del JSON tienen prioridad y el CSV solo complementa
+aliases faltantes. El diccionario mejora la sugerencia automatica de mapeos,
+pero los valores oficiales reutilizables siguen viviendo solo en
+`datos_maestros.csv` y en la base operativa.
+
 ## Certificados de clientes
 
 Desde `Datos maestros`, use `Importar clientes certificados` para cargar un

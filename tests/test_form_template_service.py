@@ -2,6 +2,7 @@ import tempfile
 import unittest
 from datetime import date
 from pathlib import Path
+from unittest.mock import patch
 from zipfile import ZIP_DEFLATED, ZipFile
 
 import fitz
@@ -61,6 +62,22 @@ class FormTemplateServiceTests(unittest.TestCase):
 
     def tearDown(self) -> None:
         self.temp_dir.cleanup()
+
+    def test_uses_local_mapping_by_default_even_with_openai_key(self) -> None:
+        with patch.dict("os.environ", {"OPENAI_API_KEY": "test-key"}):
+            service = FormTemplateService()
+
+        self.assertEqual(service.ai_mapping.api_key, "")
+
+    def test_can_use_openai_mapping_when_requested(self) -> None:
+        with patch.dict(
+            "os.environ",
+            {"OPENAI_API_KEY": "test-key", "OPENAI_MODEL": "test-model"},
+        ):
+            service = FormTemplateService(use_openai_mapping=True)
+
+        self.assertEqual(service.ai_mapping.api_key, "test-key")
+        self.assertEqual(service.ai_mapping.model, "test-model")
 
     def test_learns_and_fills_excel_pair(self) -> None:
         empty = self.root / "empty.xlsx"
@@ -321,6 +338,22 @@ class FormTemplateServiceTests(unittest.TestCase):
         self.assertEqual(config["sheet"], "FORMULARIO")
         self.assertEqual(config["cell"], "H14")
         self.assertEqual(config["end_cell"], "N17")
+
+    def test_detects_signature_area_near_firma_label_without_line(self) -> None:
+        workbook_path = self.root / "signature_label_area.xlsx"
+        workbook = Workbook()
+        sheet = workbook.active
+        sheet.title = "FORMULARIO"
+        sheet.merge_cells("D20:H20")
+        sheet["D20"] = "Firma representante legal"
+        workbook.save(workbook_path)
+        workbook.close()
+
+        config = self.service._excel_signature_cell(workbook_path)
+
+        self.assertEqual(config["sheet"], "FORMULARIO")
+        self.assertEqual(config["cell"], "D17")
+        self.assertEqual(config["end_cell"], "H19")
 
     def _create_excel(self, path: Path, value: object) -> None:
         workbook = Workbook()

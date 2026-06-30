@@ -2,6 +2,7 @@ from __future__ import annotations
 
 from collections import Counter
 from pathlib import Path
+import re
 from typing import Any
 
 import fitz
@@ -23,8 +24,12 @@ from app.services.word_signature_service import WordSignatureService
 
 
 class FormTemplateService:
-    def __init__(self) -> None:
-        self.ai_mapping = AiMappingService(api_key="")
+    def __init__(self, use_openai_mapping: bool = False) -> None:
+        self.ai_mapping = (
+            AiMappingService()
+            if use_openai_mapping
+            else AiMappingService(api_key="")
+        )
         self.document_identity = DocumentIdentityService()
         self.pdf_fields = PdfFieldService()
         self.pdf_fill = PdfFillService()
@@ -428,14 +433,21 @@ class FormTemplateService:
                                     target,
                                 )
                             )
-                        elif "firma del representante legal" in normalized:
-                            target = self._signature_target_below(sheet, cell.row)
+                        elif self._has_signature_word(normalized):
+                            target = self._signature_target_near_label(
+                                sheet,
+                                cell,
+                                normalized,
+                            )
                             if target:
-                                candidates.append((80, target))
-                        elif normalized == "firma":
-                            target = self._signature_target_above(sheet, cell.row)
-                            if target:
-                                candidates.append((70, target))
+                                score = (
+                                    205
+                                    if normalized == "firma"
+                                    else 210
+                                    if "representante legal" in normalized
+                                    else 170
+                                )
+                                candidates.append((score, target))
                 if candidates:
                     return max(candidates, key=lambda item: item[0])[1]
         finally:
@@ -511,6 +523,195 @@ class FormTemplateService:
             "padding_pixels": 3,
         }
 
+    def _signature_target_near_label(
+        self,
+        sheet: Any,
+        cell: Any,
+        normalized_label: str,
+    ) -> dict[str, Any] | None:
+        merged = self._merged_range_for_cell(sheet, cell.coordinate)
+        min_row = merged.min_row if merged else cell.row
+        max_row = merged.max_row if merged else cell.row
+        min_col = merged.min_col if merged else max(1, cell.column - 2)
+        max_col = merged.max_col if merged else min(sheet.max_column, cell.column + 4)
+        raw_text = str(cell.value or "")
+        if merged and (
+            merged.max_row - merged.min_row >= 3
+            or raw_text.count("\n") >= 2
+        ):
+            signature_max_col = (
+                min_col + max(2, (max_col - min_col) // 2)
+                if "huella" in self._normalize_value(raw_text)
+                else max_col
+            )
+            start_row = min(max_row, min_row + max(1, (max_row - min_row) // 4))
+            end_row = min(max_row, start_row + max(2, (max_row - min_row) // 3))
+            return self._signature_target_config(
+                sheet,
+                start_row,
+                end_row,
+                min_col,
+                signature_max_col,
+                {
+                    "horizontal_align": "left",
+                    "horizontal_offset_pixels": 16,
+                },
+            )
+        if "huella" in normalized_label and self._has_signature_word(normalized_label):
+            signature_min_col = min(sheet.max_column, min_col + 1)
+            signature_max_col = max(
+                signature_min_col,
+                max_col - max(2, (max_col - min_col + 1) // 4),
+            )
+            below = self._blank_signature_block(
+                sheet,
+                start=min(sheet.max_row, max_row + 1),
+                stop=min(sheet.max_row, max_row + 6),
+                step=1,
+                min_col=signature_min_col,
+                max_col=signature_max_col,
+            )
+            if below:
+                return self._signature_target_config(
+                    sheet,
+                    min(below),
+                    max(below),
+                    signature_min_col,
+                    signature_max_col,
+                )
+        above_merged = self._merged_signature_area_above_label(
+            sheet,
+            min_row,
+            min_col,
+            max_col,
+        )
+        if above_merged:
+            return self._signature_target_config(
+                sheet,
+                above_merged.min_row,
+                above_merged.max_row,
+                above_merged.min_col,
+                above_merged.max_col,
+            )
+        if max_col - min_col < 2:
+            max_col = min(sheet.max_column, min_col + 3)
+
+        above = self._blank_signature_block(
+            sheet,
+            start=max(1, min_row - 1),
+            stop=max(1, min_row - 5),
+            step=-1,
+            min_col=min_col,
+            max_col=max_col,
+        )
+        if above:
+            start_row, end_row = min(above), max(above)
+            return self._signature_target_config(
+                sheet,
+                start_row,
+                end_row,
+                min_col,
+                max_col,
+            )
+
+        below = self._blank_signature_block(
+            sheet,
+            start=min(sheet.max_row, max_row + 1),
+            stop=min(sheet.max_row, max_row + 5),
+            step=1,
+            min_col=min_col,
+            max_col=max_col,
+        )
+        if below:
+            start_row, end_row = min(below), max(below)
+            return self._signature_target_config(
+                sheet,
+                start_row,
+                end_row,
+                min_col,
+                max_col,
+            )
+
+        if "representante legal" in normalized_label:
+            target = self._signature_target_above(sheet, min_row)
+            if target:
+                return target
+        return self._signature_target_config(
+            sheet,
+            max(1, min_row - 1),
+            max(1, min_row - 1),
+            min_col,
+            max_col,
+        )
+
+    def _merged_signature_area_above_label(
+        self,
+        sheet: Any,
+        label_row: int,
+        min_col: int,
+        max_col: int,
+    ) -> Any | None:
+        best: Any | None = None
+        best_score = -1
+        for merged in sheet.merged_cells.ranges:
+            if merged.max_row >= label_row or label_row - merged.max_row > 5:
+                continue
+            overlap = min(max_col, merged.max_col) - max(min_col, merged.min_col) + 1
+            if overlap <= 0:
+                continue
+            row_span = merged.max_row - merged.min_row + 1
+            col_span = merged.max_col - merged.min_col + 1
+            if row_span < 2 or col_span < 3:
+                continue
+            score = overlap * 10 + row_span * 3 - (label_row - merged.max_row)
+            if score > best_score:
+                best = merged
+                best_score = score
+        return best
+
+    def _blank_signature_block(
+        self,
+        sheet: Any,
+        start: int,
+        stop: int,
+        step: int,
+        min_col: int,
+        max_col: int,
+    ) -> list[int]:
+        rows: list[int] = []
+        end = stop + step
+        for row in range(start, end, step):
+            if row < 1 or row > sheet.max_row:
+                continue
+            if not self._excel_range_is_blank(sheet, row, min_col, max_col):
+                if rows:
+                    break
+                continue
+            rows.append(row)
+            if len(rows) >= 3:
+                break
+        return rows
+
+    def _signature_target_config(
+        self,
+        sheet: Any,
+        start_row: int,
+        end_row: int,
+        min_col: int,
+        max_col: int,
+        extra: dict[str, Any] | None = None,
+    ) -> dict[str, Any]:
+        config: dict[str, Any] = {
+            "sheet": sheet.title,
+            "cell": sheet.cell(start_row, min_col).coordinate,
+            "end_cell": sheet.cell(end_row, max_col).coordinate,
+            "fit": "contain",
+            "padding_pixels": 3,
+        }
+        if extra:
+            config.update(extra)
+        return config
+
     def _excel_range_is_blank(
         self,
         sheet: Any,
@@ -535,6 +736,9 @@ class FormTemplateService:
     def _is_signature_line(self, value: str) -> bool:
         compact = value.replace(" ", "")
         return len(compact) >= 8 and set(compact) <= {"_"}
+
+    def _has_signature_word(self, normalized: str) -> bool:
+        return re.search(r"\bfirma\b", normalized) is not None
 
     def _merged_range_for_cell(self, sheet: Any, coordinate: str) -> Any | None:
         for merged in sheet.merged_cells.ranges:

@@ -415,6 +415,87 @@ class ExcelServiceTests(unittest.TestCase):
         self.assertEqual(layout["cell"], "A2")
         self.assertEqual(layout["col_offset_emu"], 13 * 9525)
 
+    def test_signature_service_detects_firma_label_without_config(self) -> None:
+        signature_path = Path(self.temp_dir.name) / "signature.png"
+        Image.new("RGB", (120, 40), "black").save(signature_path)
+        workbook_path = Path(self.temp_dir.name) / "firma_label.xlsx"
+        workbook = Workbook()
+        sheet = workbook.active
+        sheet.title = "FORMULARIO"
+        sheet.merge_cells("D20:H20")
+        sheet["D20"] = "Firma representante legal"
+        workbook.save(workbook_path)
+        workbook.close()
+
+        ExcelSignatureService().apply_signature(workbook_path, signature_path)
+
+        with ZipFile(workbook_path) as archive:
+            names = archive.namelist()
+            self.assertTrue(any(name.startswith("xl/media/") for name in names))
+            drawing_names = [
+                name
+                for name in names
+                if name.startswith("xl/drawings/drawing")
+                and name.endswith(".xml")
+            ]
+            drawing = b"".join(archive.read(name) for name in drawing_names)
+        self.assertIn(b"<col>4</col>", drawing)
+        self.assertIn(b"<row>16</row>", drawing)
+
+    def test_signature_service_uses_large_merged_firma_block(self) -> None:
+        signature_path = Path(self.temp_dir.name) / "signature.png"
+        Image.new("RGB", (120, 40), "black").save(signature_path)
+        workbook_path = Path(self.temp_dir.name) / "firma_merged.xlsx"
+        workbook = Workbook()
+        sheet = workbook.active
+        sheet.title = "UNILAQUILERES"
+        sheet.merge_cells("A103:K117")
+        sheet["A103"] = (
+            "Espacio para diligenciar el cliente\n\n\n\n\n\n\n\n"
+            "Firma                                      Huella Digital\n"
+            "Nombre:\nCedula:\nFecha:"
+        )
+        workbook.save(workbook_path)
+        workbook.close()
+
+        ExcelSignatureService().apply_signature(workbook_path, signature_path)
+
+        with ZipFile(workbook_path) as archive:
+            drawing = archive.read("xl/drawings/drawing1.xml")
+        self.assertIn(b"<col>0</col>", drawing)
+        self.assertIn(b"<row>105</row>", drawing)
+
+    def test_signature_service_uses_merged_area_above_firma_label(self) -> None:
+        signature_path = Path(self.temp_dir.name) / "signature.png"
+        Image.new("RGB", (120, 40), "black").save(signature_path)
+        workbook_path = Path(self.temp_dir.name) / "firma_above_label.xlsx"
+        workbook = Workbook()
+        sheet = workbook.active
+        sheet.title = "Conocimiento contraparte "
+        sheet.merge_cells("C84:M84")
+        sheet["C84"] = "IX. FIRMA Y HUELLA"
+        sheet.merge_cells("D85:J89")
+        sheet["D85"] = "DECLARO QUE LA INFORMACION ES EXACTA Y FIRMO"
+        sheet.merge_cells("L85:M90")
+        sheet["L85"] = "Huella Indice Derecho"
+        sheet.merge_cells("D90:J90")
+        sheet["D90"] = "Firma Cliente / Representante Legal"
+        workbook.save(workbook_path)
+        workbook.close()
+
+        service = ExcelSignatureService()
+        detected = service._detect_signature_area(workbook_path)
+
+        self.assertEqual(detected["cell"], "D85")
+        self.assertEqual(detected["end_cell"], "J89")
+
+        ExcelSignatureService().apply_signature(workbook_path, signature_path)
+
+        with ZipFile(workbook_path) as archive:
+            drawing = archive.read("xl/drawings/drawing1.xml")
+        self.assertIn(b"<col>5</col>", drawing)
+        self.assertIn(b"<row>84</row>", drawing)
+
     def test_injects_drawing_text_marks(self) -> None:
         workbook_path = Path(self.temp_dir.name) / "drawing.xlsx"
         drawing_path = "xl/drawings/drawing1.xml"

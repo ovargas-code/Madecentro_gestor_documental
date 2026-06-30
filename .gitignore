@@ -15,10 +15,14 @@ dist/
 *.sqlite3
 data/salidas/*
 salidas/*
+entrada_documentos/*
+plantillas_generadas/*
 plantillas/pdf/*
 *.fields.csv
 
 # Mantener carpetas vacias versionables si se agregan .gitkeep
 !data/salidas/.gitkeep
 !salidas/.gitkeep
+!entrada_documentos/.gitkeep
+!plantillas_generadas/.gitkeep
 !plantillas/pdf/.gitkeep

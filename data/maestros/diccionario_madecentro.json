@@ -1,0 +1,1402 @@
+[
+  {
+    "categoria": "Razón social",
+    "valor": "MADECENTRO COLOMBIA SAS",
+    "confianza": "alto",
+    "ocurrencias": 211,
+    "archivos": 141,
+    "ejemplos": "+Logistica.xlsx; 01. Formulario vinculaci#U00f3n SARLAFT 1  U. Coop Col (1).pdf; 01. Formulario vinculaci#U00f3n SARLAFT 1 U. Coop Col(1).docx",
+    "accion_sugerida": "borrar",
+    "nota": "Dato central; borrar siempre"
+  },
+  {
+    "categoria": "Representante legal",
+    "valor": "ADRIAN QUINTERO A",
+    "confianza": "alto",
+    "ocurrencias": 218,
+    "archivos": 133,
+    "ejemplos": "+Logistica.xlsx; 01. Formulario vinculaci#U00f3n SARLAFT 1  U. Coop Col (1).pdf; 01. Formulario vinculaci#U00f3n SARLAFT 1 U. Coop Col(1).docx",
+    "accion_sugerida": "borrar",
+    "nota": "Representante legal encontrado con frecuencia"
+  },
+  {
+    "categoria": "Identificación representante",
+    "valor": "98.554.901",
+    "confianza": "alto",
+    "ocurrencias": 212,
+    "archivos": 129,
+    "ejemplos": "+Logistica.xlsx; 01. Formulario vinculaci#U00f3n SARLAFT 1  U. Coop Col (1).pdf; 01. Formulario vinculaci#U00f3n SARLAFT 1 U. Coop Col(1).docx",
+    "accion_sugerida": "borrar",
+    "nota": "Cédula representante"
+  },
+  {
+    "categoria": "NIT",
+    "valor": "811.028.650",
+    "confianza": "alto",
+    "ocurrencias": 155,
+    "archivos": 126,
+    "ejemplos": "+Logistica.xlsx; Abba Plax.pdf; ACF.pdf",
+    "accion_sugerida": "borrar",
+    "nota": "NIT sin dígito"
+  },
+  {
+    "categoria": "Dirección",
+    "valor": "Calle 7 Sur 42-70",
+    "confianza": "alto",
+    "ocurrencias": 138,
+    "archivos": 117,
+    "ejemplos": "+Logistica.xlsx; 01. Formulario vinculaci#U00f3n SARLAFT 1  U. Coop Col (1).pdf; 01. Formulario vinculaci#U00f3n SARLAFT 1 U. Coop Col(1).docx",
+    "accion_sugerida": "borrar",
+    "nota": "Dirección abreviada"
+  },
+  {
+    "categoria": "NIT",
+    "valor": "811.028.650-1",
+    "confianza": "alto",
+    "ocurrencias": 134,
+    "archivos": 109,
+    "ejemplos": "+Logistica.xlsx; Abba Plax.pdf; ACF.pdf",
+    "accion_sugerida": "borrar",
+    "nota": "NIT con dígito de verificación"
+  },
+  {
+    "categoria": "Teléfono",
+    "valor": "444 28 93",
+    "confianza": "alto",
+    "ocurrencias": 179,
+    "archivos": 92,
+    "ejemplos": "+Logistica.xlsx; Abba Plax.pdf; ACF.pdf",
+    "accion_sugerida": "borrar",
+    "nota": "Teléfono principal"
+  },
+  {
+    "categoria": "Correo electrónico",
+    "valor": "notificaciones.judicial@madecentro.co",
+    "confianza": "alto",
+    "ocurrencias": 83,
+    "archivos": 73,
+    "ejemplos": "+Logistica.xlsx; Abba Plax.pdf; ACF.pdf",
+    "accion_sugerida": "borrar",
+    "nota": "Correo del dominio Madecentro detectado"
+  },
+  {
+    "categoria": "Dirección",
+    "valor": "Calle 7 Sur 42-70 Ofc. 505 Ed. Forum",
+    "confianza": "alto",
+    "ocurrencias": 83,
+    "archivos": 73,
+    "ejemplos": "+Logistica.xlsx; 01. Formulario vinculaci#U00f3n SARLAFT 1  U. Coop Col (1).pdf; 01. Formulario vinculaci#U00f3n SARLAFT 1 U. Coop Col(1).docx",
+    "accion_sugerida": "borrar",
+    "nota": "Dirección principal"
+  },
+  {
+    "categoria": "Representante legal",
+    "valor": "ADRIAN QUINTERO A.",
+    "confianza": "alto",
+    "ocurrencias": 64,
+    "archivos": 52,
+    "ejemplos": "+Logistica.xlsx; 01. Formulario vinculaci#U00f3n SARLAFT 1  U. Coop Col (1).pdf; 01. Formulario vinculaci#U00f3n SARLAFT 1 U. Coop Col(1).docx",
+    "accion_sugerida": "borrar",
+    "nota": "Variante con punto"
+  },
+  {
+    "categoria": "Teléfono",
+    "valor": "4442893",
+    "confianza": "alto",
+    "ocurrencias": 85,
+    "archivos": 48,
+    "ejemplos": "+Logistica.xlsx; Algreco.xlsx; Apiros.xlsx",
+    "accion_sugerida": "borrar",
+    "nota": "Teléfono sin espacios"
+  },
+  {
+    "categoria": "Socio / accionista",
+    "valor": "GEM RETAIL SL",
+    "confianza": "alto",
+    "ocurrencias": 47,
+    "archivos": 47,
+    "ejemplos": "+Logistica.xlsx; 01. Formulario vinculaci#U00f3n SARLAFT 1  U. Coop Col (1).pdf; 01. Formulario vinculaci#U00f3n SARLAFT 1 U. Coop Col(1).docx",
+    "accion_sugerida": "borrar",
+    "nota": "Accionista beneficiario encontrado"
+  },
+  {
+    "categoria": "Socio / accionista",
+    "valor": "BLACKEYE FINANCE LLC",
+    "confianza": "alto",
+    "ocurrencias": 42,
+    "archivos": 42,
+    "ejemplos": "+Logistica.xlsx; 01. Formulario vinculaci#U00f3n SARLAFT 1  U. Coop Col (1).pdf; 01. Formulario vinculaci#U00f3n SARLAFT 1 U. Coop Col(1).docx",
+    "accion_sugerida": "borrar",
+    "nota": "Accionista beneficiario encontrado"
+  },
+  {
+    "categoria": "Banco / cuenta",
+    "valor": "61008957853",
+    "confianza": "alto",
+    "ocurrencias": 39,
+    "archivos": 37,
+    "ejemplos": "Adquirir.pdf; AIGNEP (4) (2).pdf; Bioger.xlsx",
+    "accion_sugerida": "borrar",
+    "nota": "Cuenta Bancolombia detectada"
+  },
+  {
+    "categoria": "Sitio web",
+    "valor": "www.madecentro.co",
+    "confianza": "alto",
+    "ocurrencias": 34,
+    "archivos": 30,
+    "ejemplos": "+Logistica.xlsx; Acierto Inmobiliario.xlsx; Algreco.xlsx",
+    "accion_sugerida": "borrar",
+    "nota": "Variante web corporativa"
+  },
+  {
+    "categoria": "Teléfono móvil",
+    "valor": "300 912 82 27",
+    "confianza": "alto",
+    "ocurrencias": 30,
+    "archivos": 30,
+    "ejemplos": "Abba Plax.pdf; Acierto Inmobiliario.xlsx; Apiros.xlsx",
+    "accion_sugerida": "borrar",
+    "nota": "Celular detectado cerca de razón social"
+  },
+  {
+    "categoria": "Correo electrónico",
+    "valor": "luz.zuluaga@madecentro.co",
+    "confianza": "alto",
+    "ocurrencias": 30,
+    "archivos": 29,
+    "ejemplos": "+Logistica.xlsx; Algreco.xlsx; AMM.xlsx",
+    "accion_sugerida": "borrar",
+    "nota": "Correo del dominio Madecentro detectado"
+  },
+  {
+    "categoria": "Sitio web",
+    "valor": "www.madecentro.com",
+    "confianza": "alto",
+    "ocurrencias": 28,
+    "archivos": 24,
+    "ejemplos": "+Logistica.xlsx; Acierto Inmobiliario.xlsx; Algreco.xlsx",
+    "accion_sugerida": "borrar",
+    "nota": "Web corporativa"
+  },
+  {
+    "categoria": "Banco / cuenta",
+    "valor": "9030143024",
+    "confianza": "alto",
+    "ocurrencias": 23,
+    "archivos": 23,
+    "ejemplos": "Abba Plax.pdf; ACF.pdf; ACF.xlsx",
+    "accion_sugerida": "borrar",
+    "nota": "Cuenta Davivienda detectada"
+  },
+  {
+    "categoria": "Teléfono móvil",
+    "valor": "3009128227",
+    "confianza": "alto",
+    "ocurrencias": 18,
+    "archivos": 18,
+    "ejemplos": "Adquirir.pdf; Algreco.xlsx; CI MIPYME GRUPO E & D S.A.xlsx",
+    "accion_sugerida": "borrar",
+    "nota": "Celular sin espacios"
+  },
+  {
+    "categoria": "Correo electrónico",
+    "valor": "pablo.rodriguez@madecentro.co",
+    "confianza": "alto",
+    "ocurrencias": 11,
+    "archivos": 11,
+    "ejemplos": "ACF.pdf; ACF.xlsx; CCL.xlsx",
+    "accion_sugerida": "borrar",
+    "nota": "Correo del dominio Madecentro detectado"
+  },
+  {
+    "categoria": "Correo electrónico",
+    "valor": "rea.juridica@madecentro.co",
+    "confianza": "alto",
+    "ocurrencias": 10,
+    "archivos": 10,
+    "ejemplos": "Adquirir.pdf; Avicola San Martin.xlsx; CCL.xlsx",
+    "accion_sugerida": "borrar",
+    "nota": "Correo del dominio Madecentro detectado"
+  },
+  {
+    "categoria": "Correo electrónico",
+    "valor": "yarisa.mena@madecentro.co",
+    "confianza": "alto",
+    "ocurrencias": 10,
+    "archivos": 10,
+    "ejemplos": "Abba Plax.pdf; Acierto Inmobiliario.xlsx; AMM.xlsx",
+    "accion_sugerida": "borrar",
+    "nota": "Correo del dominio Madecentro detectado"
+  },
+  {
+    "categoria": "Correo electrónico",
+    "valor": "area.juridica@madecentro.co",
+    "confianza": "alto",
+    "ocurrencias": 8,
+    "archivos": 8,
+    "ejemplos": "Adquirir.pdf; Avicola San Martin.xlsx; CCL.xlsx",
+    "accion_sugerida": "borrar",
+    "nota": "Correo del dominio Madecentro detectado"
+  },
+  {
+    "categoria": "Correo electrónico",
+    "valor": "impuestos@madecentro.co",
+    "confianza": "alto",
+    "ocurrencias": 9,
+    "archivos": 8,
+    "ejemplos": "ACF.pdf; ACF.xlsx; Apiros.xlsx",
+    "accion_sugerida": "borrar",
+    "nota": "Correo del dominio Madecentro detectado"
+  },
+  {
+    "categoria": "Correo electrónico",
+    "valor": "adrian.quintero@madecentro.co",
+    "confianza": "alto",
+    "ocurrencias": 9,
+    "archivos": 7,
+    "ejemplos": "Conconcreto.pdf; Formulario de conocimiento de contrapartes (C.A.S.A.) de MADECENTRO COLOMBIA SAS  (2026-06-04).pdf; GHT.docx",
+    "accion_sugerida": "borrar",
+    "nota": "Correo del dominio Madecentro detectado"
+  },
+  {
+    "categoria": "Correo electrónico",
+    "valor": "factura.comercial@madecentro.co",
+    "confianza": "alto",
+    "ocurrencias": 7,
+    "archivos": 7,
+    "ejemplos": "Adquirir.pdf; Avicola San Martin.xlsx; Carguesa.xlsx",
+    "accion_sugerida": "borrar",
+    "nota": "Correo del dominio Madecentro detectado"
+  },
+  {
+    "categoria": "Correo electrónico",
+    "valor": "mariam.cepeda@madecentro.co",
+    "confianza": "alto",
+    "ocurrencias": 7,
+    "archivos": 7,
+    "ejemplos": "Abba Plax.pdf; Colombina.xlsx; Dinamica Tecnologica.pdf",
+    "accion_sugerida": "borrar",
+    "nota": "Correo del dominio Madecentro detectado"
+  },
+  {
+    "categoria": "Representante legal",
+    "valor": "ADRIAN QUINTERO ACEVEDO",
+    "confianza": "alto",
+    "ocurrencias": 12,
+    "archivos": 7,
+    "ejemplos": "Bioger.xlsx; Chilco.pdf; CrediFamilia 1.docx",
+    "accion_sugerida": "borrar",
+    "nota": "Nombre completo por apellidos"
+  },
+  {
+    "categoria": "Correo electrónico",
+    "valor": "beatriz.isaza@madecentro.co",
+    "confianza": "alto",
+    "ocurrencias": 6,
+    "archivos": 6,
+    "ejemplos": "+Logistica.xlsx; ACF.pdf; ACF.xlsx",
+    "accion_sugerida": "borrar",
+    "nota": "Correo del dominio Madecentro detectado"
+  },
+  {
+    "categoria": "Identificación representante",
+    "valor": "98554901",
+    "confianza": "alto",
+    "ocurrencias": 9,
+    "archivos": 6,
+    "ejemplos": "Clinica Somer.xlsx; Fedejohnson.pdf; Formulario de conocimiento de contrapartes (C.A.S.A.) de MADECENTRO COLOMBIA SAS  (2026-06-04).pdf",
+    "accion_sugerida": "borrar",
+    "nota": "Cédula sin puntos"
+  },
+  {
+    "categoria": "NIT",
+    "valor": "811028650",
+    "confianza": "alto",
+    "ocurrencias": 8,
+    "archivos": 6,
+    "ejemplos": "Davivienda FORMATO PERSONA JURIDICA (2).pdf; Fedejohnson.pdf; Formulario de conocimiento de contrapartes (C.A.S.A.) de MADECENTRO COLOMBIA SAS  (2026-06-04).pdf",
+    "accion_sugerida": "borrar",
+    "nota": "NIT sin puntos"
+  },
+  {
+    "categoria": "Correo electrónico",
+    "valor": "claudia.geovo@madecentro.co",
+    "confianza": "alto",
+    "ocurrencias": 5,
+    "archivos": 5,
+    "ejemplos": "Centro Aceros del Caribe.xlsx; Ilux.xlsx; Servintegral.xlsx",
+    "accion_sugerida": "borrar",
+    "nota": "Correo del dominio Madecentro detectado"
+  },
+  {
+    "categoria": "Correo electrónico",
+    "valor": "eugenia.mosquera@madecentro.co",
+    "confianza": "alto",
+    "ocurrencias": 5,
+    "archivos": 5,
+    "ejemplos": "CCL.xlsx; Empaquetadura y Empaques.xlsx; Obycon.pdf",
+    "accion_sugerida": "borrar",
+    "nota": "Correo del dominio Madecentro detectado"
+  },
+  {
+    "categoria": "Correo electrónico",
+    "valor": "factura.mercadeo@madecentro.co",
+    "confianza": "alto",
+    "ocurrencias": 5,
+    "archivos": 5,
+    "ejemplos": "Algreco.xlsx; FDK.xlsx; Karcher.xlsx",
+    "accion_sugerida": "borrar",
+    "nota": "Correo del dominio Madecentro detectado"
+  },
+  {
+    "categoria": "Correo electrónico",
+    "valor": "leidy.carrasquilla@madecentro.co",
+    "confianza": "alto",
+    "ocurrencias": 4,
+    "archivos": 4,
+    "ejemplos": "Cristales Fayenza.pdf; Gricol.pdf; MABE (1).pdf",
+    "accion_sugerida": "borrar",
+    "nota": "Correo del dominio Madecentro detectado"
+  },
+  {
+    "categoria": "Correo electrónico",
+    "valor": "alejandro.zapata@madecentro.co",
+    "confianza": "alto",
+    "ocurrencias": 3,
+    "archivos": 3,
+    "ejemplos": "Empaquetadura y Empaques.xlsx; Jacobs.xlsx; Unialquileres.xlsx",
+    "accion_sugerida": "borrar",
+    "nota": "Correo del dominio Madecentro detectado"
+  },
+  {
+    "categoria": "Correo electrónico",
+    "valor": "arrendamientos@madecentro.co",
+    "confianza": "alto",
+    "ocurrencias": 3,
+    "archivos": 3,
+    "ejemplos": "Jacobs.xlsx; TENCO.xlsx; Unicentro Pereira acuerdo fact..pdf",
+    "accion_sugerida": "borrar",
+    "nota": "Correo del dominio Madecentro detectado"
+  },
+  {
+    "categoria": "Correo electrónico",
+    "valor": "factura.administrativos@madecentro.co",
+    "confianza": "alto",
+    "ocurrencias": 3,
+    "archivos": 3,
+    "ejemplos": "Chilco.pdf; Formato 1 U. Javeriana.xlsx; Sodimac.do 1.pdf",
+    "accion_sugerida": "borrar",
+    "nota": "Correo del dominio Madecentro detectado"
+  },
+  {
+    "categoria": "Correo electrónico",
+    "valor": "factura.mercado@madecentro.co",
+    "confianza": "alto",
+    "ocurrencias": 3,
+    "archivos": 3,
+    "ejemplos": "Cristales Fayenza.pdf; Gricol.pdf; Medios Alternativas y Digitales.pdf",
+    "accion_sugerida": "borrar",
+    "nota": "Correo del dominio Madecentro detectado"
+  },
+  {
+    "categoria": "Correo electrónico",
+    "valor": "juan.quintero@madecentro.co",
+    "confianza": "alto",
+    "ocurrencias": 3,
+    "archivos": 3,
+    "ejemplos": "+Logistica.xlsx; On Site Logistcs.xlsx; Si Logistica.xlsm",
+    "accion_sugerida": "borrar",
+    "nota": "Correo del dominio Madecentro detectado"
+  },
+  {
+    "categoria": "Correo electrónico",
+    "valor": "lorena.cano@madecentro.co",
+    "confianza": "alto",
+    "ocurrencias": 3,
+    "archivos": 3,
+    "ejemplos": "Abba Plax.pdf; CCL.xlsx; Empaquetadura y Empaques.xlsx",
+    "accion_sugerida": "borrar",
+    "nota": "Correo del dominio Madecentro detectado"
+  },
+  {
+    "categoria": "Correo electrónico",
+    "valor": "marcela.guzman@madecentro.co",
+    "confianza": "alto",
+    "ocurrencias": 4,
+    "archivos": 3,
+    "ejemplos": "Ediva.pdf; Si Logistica 1.pdf; Si Logistica.xlsm",
+    "accion_sugerida": "borrar",
+    "nota": "Correo del dominio Madecentro detectado"
+  },
+  {
+    "categoria": "Correo electrónico",
+    "valor": "martha.montanez@madecentro.co",
+    "confianza": "alto",
+    "ocurrencias": 5,
+    "archivos": 3,
+    "ejemplos": "Colpatria.docx; Colpatria.pdf; TENCO.xlsx",
+    "accion_sugerida": "borrar",
+    "nota": "Correo del dominio Madecentro detectado"
+  },
+  {
+    "categoria": "Correo electrónico",
+    "valor": "mateo.vargas@madecentro.co",
+    "confianza": "alto",
+    "ocurrencias": 4,
+    "archivos": 3,
+    "ejemplos": "G4S Tech.docx; Prosegur.docx; Sodimac.do 1.pdf",
+    "accion_sugerida": "borrar",
+    "nota": "Correo del dominio Madecentro detectado"
+  },
+  {
+    "categoria": "Correo electrónico",
+    "valor": "seller@madecentro.co",
+    "confianza": "alto",
+    "ocurrencias": 3,
+    "archivos": 3,
+    "ejemplos": "Comaderas.pdf; Durespo.xlsx; Sylvania.docx",
+    "accion_sugerida": "borrar",
+    "nota": "Correo del dominio Madecentro detectado"
+  },
+  {
+    "categoria": "Correo electrónico",
+    "valor": "angie.martinez@madecentro.co",
+    "confianza": "alto",
+    "ocurrencias": 2,
+    "archivos": 2,
+    "ejemplos": "MABE (1).pdf; Makita.pdf",
+    "accion_sugerida": "borrar",
+    "nota": "Correo del dominio Madecentro detectado"
+  },
+  {
+    "categoria": "Correo electrónico",
+    "valor": "carlos.pulgarin@madecentro.co",
+    "confianza": "alto",
+    "ocurrencias": 2,
+    "archivos": 2,
+    "ejemplos": "Tercol.pdf; Tercol.xlsx",
+    "accion_sugerida": "borrar",
+    "nota": "Correo del dominio Madecentro detectado"
+  },
+  {
+    "categoria": "Correo electrónico",
+    "valor": "carolina.barrios@madecentro.co",
+    "confianza": "alto",
+    "ocurrencias": 2,
+    "archivos": 2,
+    "ejemplos": "FDK 1.xlsx; FDK.xlsx",
+    "accion_sugerida": "borrar",
+    "nota": "Correo del dominio Madecentro detectado"
+  },
+  {
+    "categoria": "Correo electrónico",
+    "valor": "dairo.salas@madecentro.co",
+    "confianza": "alto",
+    "ocurrencias": 2,
+    "archivos": 2,
+    "ejemplos": "GHT.docx; GHT.pdf",
+    "accion_sugerida": "borrar",
+    "nota": "Correo del dominio Madecentro detectado"
+  },
+  {
+    "categoria": "Correo electrónico",
+    "valor": "diana.rincon@madecentro.co",
+    "confianza": "alto",
+    "ocurrencias": 2,
+    "archivos": 2,
+    "ejemplos": "Bioquimicos.xlsx; Solinoff.xlsx",
+    "accion_sugerida": "borrar",
+    "nota": "Correo del dominio Madecentro detectado"
+  },
+  {
+    "categoria": "Correo electrónico",
+    "valor": "factura.tecnologia@madecentro.co",
+    "confianza": "alto",
+    "ocurrencias": 2,
+    "archivos": 2,
+    "ejemplos": "Dinamica Tecnologica.pdf; MicroHome.xlsx",
+    "accion_sugerida": "borrar",
+    "nota": "Correo del dominio Madecentro detectado"
+  },
+  {
+    "categoria": "Correo electrónico",
+    "valor": "factura.transporte@madecentro.co",
+    "confianza": "alto",
+    "ocurrencias": 2,
+    "archivos": 2,
+    "ejemplos": "+Logistica.xlsx; On Site Logistcs.xlsx",
+    "accion_sugerida": "borrar",
+    "nota": "Correo del dominio Madecentro detectado"
+  },
+  {
+    "categoria": "Correo electrónico",
+    "valor": "jessica.correa@madecentro.co",
+    "confianza": "alto",
+    "ocurrencias": 2,
+    "archivos": 2,
+    "ejemplos": "Karcher.xlsx; Stanley BlackDecker.xlsx",
+    "accion_sugerida": "borrar",
+    "nota": "Correo del dominio Madecentro detectado"
+  },
+  {
+    "categoria": "Correo electrónico",
+    "valor": "juan.alvarez@madecentro.co",
+    "confianza": "alto",
+    "ocurrencias": 6,
+    "archivos": 2,
+    "ejemplos": "Apiros.xlsx; TENCO.xlsx",
+    "accion_sugerida": "borrar",
+    "nota": "Correo del dominio Madecentro detectado"
+  },
+  {
+    "categoria": "Correo electrónico",
+    "valor": "julian.ruiz@madecentro.co",
+    "confianza": "alto",
+    "ocurrencias": 2,
+    "archivos": 2,
+    "ejemplos": "Dinamica Tecnologica.pdf; Unialquileres.xlsx",
+    "accion_sugerida": "borrar",
+    "nota": "Correo del dominio Madecentro detectado"
+  },
+  {
+    "categoria": "Correo electrónico",
+    "valor": "lina.castaneda@madecentro.co",
+    "confianza": "alto",
+    "ocurrencias": 2,
+    "archivos": 2,
+    "ejemplos": "ACF.pdf; ACF.xlsx",
+    "accion_sugerida": "borrar",
+    "nota": "Correo del dominio Madecentro detectado"
+  },
+  {
+    "categoria": "Correo electrónico",
+    "valor": "madecentro614@madecentro.co",
+    "confianza": "alto",
+    "ocurrencias": 2,
+    "archivos": 2,
+    "ejemplos": "GHT.docx; GHT.pdf",
+    "accion_sugerida": "borrar",
+    "nota": "Correo del dominio Madecentro detectado"
+  },
+  {
+    "categoria": "Correo electrónico",
+    "valor": "miguel.sierra@madecentro.co",
+    "confianza": "alto",
+    "ocurrencias": 2,
+    "archivos": 2,
+    "ejemplos": "Corferias LMR1280 (3) (1).xlsx; Corferias LMR1649 (4).docx",
+    "accion_sugerida": "borrar",
+    "nota": "Correo del dominio Madecentro detectado"
+  },
+  {
+    "categoria": "Correo electrónico",
+    "valor": "notoficaciones.judicial@madecentro.co",
+    "confianza": "alto",
+    "ocurrencias": 2,
+    "archivos": 2,
+    "ejemplos": "Tercol.pdf; Tercol.xlsx",
+    "accion_sugerida": "borrar",
+    "nota": "Correo del dominio Madecentro detectado"
+  },
+  {
+    "categoria": "Correo electrónico",
+    "valor": "practicante.crm@madecentro.co",
+    "confianza": "alto",
+    "ocurrencias": 2,
+    "archivos": 2,
+    "ejemplos": "Medios Alternativas y Digitales 1pdf.pdf; Medios Alternativas y Digitales.pdf",
+    "accion_sugerida": "borrar",
+    "nota": "Correo del dominio Madecentro detectado"
+  },
+  {
+    "categoria": "Correo electrónico",
+    "valor": "sandra.gomez@madecentro.co",
+    "confianza": "alto",
+    "ocurrencias": 2,
+    "archivos": 2,
+    "ejemplos": "Corferias LMR1280.xlsx; Corferias LMR1649.docx",
+    "accion_sugerida": "borrar",
+    "nota": "Correo del dominio Madecentro detectado"
+  },
+  {
+    "categoria": "Correo electrónico",
+    "valor": "shirley.gonzalez@madecentro.co",
+    "confianza": "alto",
+    "ocurrencias": 2,
+    "archivos": 2,
+    "ejemplos": "GreenLand.pdf; GreenLand.xlsx",
+    "accion_sugerida": "borrar",
+    "nota": "Correo del dominio Madecentro detectado"
+  },
+  {
+    "categoria": "Correo electrónico",
+    "valor": "veronica.ruiz@madecentro.co",
+    "confianza": "alto",
+    "ocurrencias": 2,
+    "archivos": 2,
+    "ejemplos": "Tercol.pdf; Tercol.xlsx",
+    "accion_sugerida": "borrar",
+    "nota": "Correo del dominio Madecentro detectado"
+  },
+  {
+    "categoria": "Correo electrónico",
+    "valor": "yefersson.mosquera@madecentro.co",
+    "confianza": "alto",
+    "ocurrencias": 3,
+    "archivos": 2,
+    "ejemplos": "Icesi 1.xlsx; U. Icesi.xlsx",
+    "accion_sugerida": "borrar",
+    "nota": "Correo del dominio Madecentro detectado"
+  },
+  {
+    "categoria": "Correo electrónico",
+    "valor": "zandra.erazo@madecentro.co",
+    "confianza": "alto",
+    "ocurrencias": 2,
+    "archivos": 2,
+    "ejemplos": "Gricol 1.pdf; Karcher.xlsx",
+    "accion_sugerida": "borrar",
+    "nota": "Correo del dominio Madecentro detectado"
+  },
+  {
+    "categoria": "NIT",
+    "valor": "811028650-1",
+    "confianza": "alto",
+    "ocurrencias": 2,
+    "archivos": 2,
+    "ejemplos": "Formulario de conocimiento de contrapartes (C.A.S.A.) de MADECENTRO COLOMBIA SAS  (2026-06-04).pdf; Pronto hair Club.pdf",
+    "accion_sugerida": "borrar",
+    "nota": "Variante sin puntos"
+  },
+  {
+    "categoria": "Razón social",
+    "valor": "MADECENTRO COLOMBIA S.A.S.",
+    "confianza": "alto",
+    "ocurrencias": 9,
+    "archivos": 2,
+    "ejemplos": "Formulario de conocimiento de contrapartes (C.A.S.A.) de MADECENTRO COLOMBIA SAS  (2026-06-04).pdf; PAGARE (1) Poliza .pdf",
+    "accion_sugerida": "borrar",
+    "nota": "Variante con puntos"
+  },
+  {
+    "categoria": "Correo electrónico",
+    "valor": "eidys.castro@madecentro.co",
+    "confianza": "alto",
+    "ocurrencias": 2,
+    "archivos": 1,
+    "ejemplos": "Espumados del Litoral.xlsx",
+    "accion_sugerida": "borrar",
+    "nota": "Correo del dominio Madecentro detectado"
+  },
+  {
+    "categoria": "Correo electrónico",
+    "valor": "erika.castano@madecentro.co",
+    "confianza": "alto",
+    "ocurrencias": 2,
+    "archivos": 1,
+    "ejemplos": "Pisende.xlsx",
+    "accion_sugerida": "borrar",
+    "nota": "Correo del dominio Madecentro detectado"
+  },
+  {
+    "categoria": "Correo electrónico",
+    "valor": "erika.restrepo@madecentro.co",
+    "confianza": "alto",
+    "ocurrencias": 2,
+    "archivos": 1,
+    "ejemplos": "Sip Connector.xlsx",
+    "accion_sugerida": "borrar",
+    "nota": "Correo del dominio Madecentro detectado"
+  },
+  {
+    "categoria": "Correo electrónico",
+    "valor": "jennifer.osorio@madecentro.co",
+    "confianza": "alto",
+    "ocurrencias": 2,
+    "archivos": 1,
+    "ejemplos": "CCL.xlsx",
+    "accion_sugerida": "borrar",
+    "nota": "Correo del dominio Madecentro detectado"
+  },
+  {
+    "categoria": "Correo electrónico",
+    "valor": "luisa.cano@madecentro.co",
+    "confianza": "alto",
+    "ocurrencias": 2,
+    "archivos": 1,
+    "ejemplos": "Fabri.xlsx",
+    "accion_sugerida": "borrar",
+    "nota": "Correo del dominio Madecentro detectado"
+  },
+  {
+    "categoria": "Correo electrónico",
+    "valor": "madecentro805@madecentro.co",
+    "confianza": "alto",
+    "ocurrencias": 2,
+    "archivos": 1,
+    "ejemplos": "Vital proyectos.xlsx",
+    "accion_sugerida": "borrar",
+    "nota": "Correo del dominio Madecentro detectado"
+  },
+  {
+    "categoria": "Correo electrónico",
+    "valor": "nicolas.buyuelo@madecentro.co",
+    "confianza": "alto",
+    "ocurrencias": 2,
+    "archivos": 1,
+    "ejemplos": "Casa Dann Carlton.xlsx",
+    "accion_sugerida": "borrar",
+    "nota": "Correo del dominio Madecentro detectado"
+  },
+  {
+    "categoria": "Correo electrónico",
+    "valor": "sirley.palacio@madecentro.co",
+    "confianza": "alto",
+    "ocurrencias": 2,
+    "archivos": 1,
+    "ejemplos": "Empaquetadura y Empaques.xlsx",
+    "accion_sugerida": "borrar",
+    "nota": "Correo del dominio Madecentro detectado"
+  },
+  {
+    "categoria": "Teléfono",
+    "valor": "604 444 28 93",
+    "confianza": "alto",
+    "ocurrencias": 2,
+    "archivos": 1,
+    "ejemplos": "AMM.xlsx",
+    "accion_sugerida": "borrar",
+    "nota": "Variante con indicativo"
+  },
+  {
+    "categoria": "País",
+    "valor": "COLOMBIA",
+    "confianza": "medio",
+    "ocurrencias": 2194,
+    "archivos": 154,
+    "ejemplos": "+Logistica.xlsx; 01. Formulario vinculaci#U00f3n SARLAFT 1  U. Coop Col (1).pdf; 01. Formulario vinculaci#U00f3n SARLAFT 1 U. Coop Col(1).docx",
+    "accion_sugerida": "borrar",
+    "nota": "Valor país; revisar porque puede ser etiqueta/opción común"
+  },
+  {
+    "categoria": "Razón social",
+    "valor": "MADECENTRO",
+    "confianza": "medio",
+    "ocurrencias": 633,
+    "archivos": 151,
+    "ejemplos": "+Logistica.xlsx; 01. Formulario vinculaci#U00f3n SARLAFT 1  U. Coop Col (1).pdf; 01. Formulario vinculaci#U00f3n SARLAFT 1 U. Coop Col(1).docx",
+    "accion_sugerida": "borrar",
+    "nota": "Solo borrar cuando aparezca como dato diligenciado; puede aparecer en correos o texto"
+  },
+  {
+    "categoria": "Ciudad",
+    "valor": "Medellin",
+    "confianza": "medio",
+    "ocurrencias": 247,
+    "archivos": 132,
+    "ejemplos": "+Logistica.xlsx; 01. Formulario vinculaci#U00f3n SARLAFT 1  U. Coop Col (1).pdf; 01. Formulario vinculaci#U00f3n SARLAFT 1 U. Coop Col(1).docx",
+    "accion_sugerida": "borrar",
+    "nota": "Valor de ciudad; puede aparecer como texto propio del formulario"
+  },
+  {
+    "categoria": "Dirección",
+    "valor": "Ed. Forum",
+    "confianza": "medio",
+    "ocurrencias": 109,
+    "archivos": 95,
+    "ejemplos": "+Logistica.xlsx; 01. Formulario vinculaci#U00f3n SARLAFT 1  U. Coop Col (1).pdf; 01. Formulario vinculaci#U00f3n SARLAFT 1 U. Coop Col(1).docx",
+    "accion_sugerida": "borrar",
+    "nota": "Complemento de dirección"
+  },
+  {
+    "categoria": "Actividad económica",
+    "valor": "4752",
+    "confianza": "medio",
+    "ocurrencias": 104,
+    "archivos": 86,
+    "ejemplos": "+Logistica.xlsx; 01. Formulario vinculaci#U00f3n SARLAFT 1  U. Coop Col (1).pdf; 01. Formulario vinculaci#U00f3n SARLAFT 1 U. Coop Col(1).docx",
+    "accion_sugerida": "borrar",
+    "nota": "CIIU; alto riesgo de borrar números genéricos si se usa sin contexto"
+  },
+  {
+    "categoria": "Departamento",
+    "valor": "Antioquia",
+    "confianza": "medio",
+    "ocurrencias": 246,
+    "archivos": 62,
+    "ejemplos": "+Logistica.xlsx; Abba Plax.pdf; Acierto Inmobiliario.xlsx",
+    "accion_sugerida": "borrar",
+    "nota": "Valor de departamento; revisar"
+  },
+  {
+    "categoria": "Lugar expedición",
+    "valor": "Envigado",
+    "confianza": "medio",
+    "ocurrencias": 58,
+    "archivos": 53,
+    "ejemplos": "ACF.pdf; ACF.xlsx; Acierto Inmobiliario.xlsx",
+    "accion_sugerida": "borrar",
+    "nota": "Puede borrar ciudad diligenciada del representante; revisar contexto"
+  },
+  {
+    "categoria": "Socio / accionista",
+    "valor": "69838",
+    "confianza": "medio",
+    "ocurrencias": 47,
+    "archivos": 46,
+    "ejemplos": "+Logistica.xlsx; 01. Formulario vinculaci#U00f3n SARLAFT 1  U. Coop Col (1).pdf; 01. Formulario vinculaci#U00f3n SARLAFT 1 U. Coop Col(1).docx",
+    "accion_sugerida": "borrar",
+    "nota": "Identificación accionista; revisar por riesgo de coincidencias"
+  },
+  {
+    "categoria": "Socio / accionista",
+    "valor": "4176468",
+    "confianza": "medio",
+    "ocurrencias": 45,
+    "archivos": 44,
+    "ejemplos": "+Logistica.xlsx; 01. Formulario vinculaci#U00f3n SARLAFT 1  U. Coop Col (1).pdf; 01. Formulario vinculaci#U00f3n SARLAFT 1 U. Coop Col(1).docx",
+    "accion_sugerida": "borrar",
+    "nota": "Identificación accionista; revisar por riesgo de coincidencias"
+  },
+  {
+    "categoria": "Operación exterior",
+    "valor": "Exportaciones",
+    "confianza": "medio",
+    "ocurrencias": 48,
+    "archivos": 41,
+    "ejemplos": "+Logistica.xlsx; 01. Formulario vinculaci#U00f3n SARLAFT 1  U. Coop Col (1).pdf; ACF.pdf",
+    "accion_sugerida": "borrar",
+    "nota": "Dato de operaciones internacionales; revisar"
+  },
+  {
+    "categoria": "Operación exterior",
+    "valor": "Importaciones",
+    "confianza": "medio",
+    "ocurrencias": 49,
+    "archivos": 41,
+    "ejemplos": "+Logistica.xlsx; 01. Formulario vinculaci#U00f3n SARLAFT 1  U. Coop Col (1).pdf; 01. Formulario vinculaci#U00f3n SARLAFT 1 U. Coop Col(1).docx",
+    "accion_sugerida": "borrar",
+    "nota": "Dato de operaciones internacionales; revisar"
+  },
+  {
+    "categoria": "Operación exterior",
+    "valor": "PANAMA",
+    "confianza": "medio",
+    "ocurrencias": 52,
+    "archivos": 32,
+    "ejemplos": "+Logistica.xlsx; 01. Formulario vinculaci#U00f3n SARLAFT 1  U. Coop Col (1).pdf; 01. Formulario vinculaci#U00f3n SARLAFT 1 U. Coop Col(1).docx",
+    "accion_sugerida": "borrar",
+    "nota": "País financiero/exterior; revisar"
+  },
+  {
+    "categoria": "Lugar expedición",
+    "valor": "Envigado, Antq",
+    "confianza": "medio",
+    "ocurrencias": 24,
+    "archivos": 23,
+    "ejemplos": "ACF.pdf; ACF.xlsx; Acierto Inmobiliario.xlsx",
+    "accion_sugerida": "borrar",
+    "nota": "Asociado a cédula del representante"
+  },
+  {
+    "categoria": "Banco / cuenta",
+    "valor": "19850521319",
+    "confianza": "medio",
+    "ocurrencias": 22,
+    "archivos": 22,
+    "ejemplos": "Abba Plax.pdf; Acierto Inmobiliario.xlsx; Apiros.xlsx",
+    "accion_sugerida": "borrar",
+    "nota": "Cuenta Bancolombia detectada en varios formularios"
+  },
+  {
+    "categoria": "Porcentaje participación",
+    "valor": "33.66%",
+    "confianza": "medio",
+    "ocurrencias": 21,
+    "archivos": 21,
+    "ejemplos": "01. Formulario vinculaci#U00f3n SARLAFT 1  U. Coop Col (1).pdf; 01. Formulario vinculaci#U00f3n SARLAFT 1 U. Coop Col(1).docx; Adquirir.pdf",
+    "accion_sugerida": "borrar",
+    "nota": "Participación accionaria"
+  },
+  {
+    "categoria": "Porcentaje participación",
+    "valor": "16.36%",
+    "confianza": "medio",
+    "ocurrencias": 20,
+    "archivos": 20,
+    "ejemplos": "01. Formulario vinculaci#U00f3n SARLAFT 1  U. Coop Col (1).pdf; 01. Formulario vinculaci#U00f3n SARLAFT 1 U. Coop Col(1).docx; Adquirir.pdf",
+    "accion_sugerida": "borrar",
+    "nota": "Participación accionaria"
+  },
+  {
+    "categoria": "Ciudad",
+    "valor": "Medellín",
+    "confianza": "medio",
+    "ocurrencias": 51,
+    "archivos": 19,
+    "ejemplos": "Acierto Inmobiliario.xlsx; Aviso de manejo de informaci#U00f3n de datos personales CASA(1) (1).pdf; CrediFamilia 1.docx",
+    "accion_sugerida": "borrar",
+    "nota": "Variante con tilde"
+  },
+  {
+    "categoria": "Actividad económica",
+    "valor": "Comercio al x menor de articulos de ferreteria, pintura etc.",
+    "confianza": "medio",
+    "ocurrencias": 17,
+    "archivos": 17,
+    "ejemplos": "Abba Plax.pdf; Adquirir.pdf; Apiros.xlsx",
+    "accion_sugerida": "borrar",
+    "nota": "Descripción actividad económica con errores de OCR"
+  },
+  {
+    "categoria": "Banco / cuenta",
+    "valor": "48641392431",
+    "confianza": "medio",
+    "ocurrencias": 5,
+    "archivos": 5,
+    "ejemplos": "ACF.pdf; ACF.xlsx; Corferias LMR1280 (3) (1).xlsx",
+    "accion_sugerida": "borrar",
+    "nota": "Cuenta Bancolombia/Barranquilla en algunos formularios"
+  },
+  {
+    "categoria": "Correo electrónico",
+    "valor": "alejandra.sarmiento@madecentro.co",
+    "confianza": "medio",
+    "ocurrencias": 1,
+    "archivos": 1,
+    "ejemplos": "Planeta.xlsx",
+    "accion_sugerida": "borrar",
+    "nota": "Correo del dominio Madecentro detectado"
+  },
+  {
+    "categoria": "Correo electrónico",
+    "valor": "alejandro.cano@madecentro.co",
+    "confianza": "medio",
+    "ocurrencias": 1,
+    "archivos": 1,
+    "ejemplos": "Bioger.xlsx",
+    "accion_sugerida": "borrar",
+    "nota": "Correo del dominio Madecentro detectado"
+  },
+  {
+    "categoria": "Correo electrónico",
+    "valor": "ana.marin@madecentro.co",
+    "confianza": "medio",
+    "ocurrencias": 1,
+    "archivos": 1,
+    "ejemplos": "Dinamica Tecnologica.pdf",
+    "accion_sugerida": "borrar",
+    "nota": "Correo del dominio Madecentro detectado"
+  },
+  {
+    "categoria": "Correo electrónico",
+    "valor": "analsita.juridico@madecentro.co",
+    "confianza": "medio",
+    "ocurrencias": 1,
+    "archivos": 1,
+    "ejemplos": "TENCO.xlsx",
+    "accion_sugerida": "borrar",
+    "nota": "Correo del dominio Madecentro detectado"
+  },
+  {
+    "categoria": "Correo electrónico",
+    "valor": "area.judicial@madecentro.co",
+    "confianza": "medio",
+    "ocurrencias": 1,
+    "archivos": 1,
+    "ejemplos": "CSB Bolivar.xlsx",
+    "accion_sugerida": "borrar",
+    "nota": "Correo del dominio Madecentro detectado"
+  },
+  {
+    "categoria": "Correo electrónico",
+    "valor": "camilo.rivera@madecentro.co",
+    "confianza": "medio",
+    "ocurrencias": 1,
+    "archivos": 1,
+    "ejemplos": "Norlab.xlsx",
+    "accion_sugerida": "borrar",
+    "nota": "Correo del dominio Madecentro detectado"
+  },
+  {
+    "categoria": "Correo electrónico",
+    "valor": "daniel.ospina@madecentro.co",
+    "confianza": "medio",
+    "ocurrencias": 1,
+    "archivos": 1,
+    "ejemplos": "Fedejohnson.pdf",
+    "accion_sugerida": "borrar",
+    "nota": "Correo del dominio Madecentro detectado"
+  },
+  {
+    "categoria": "Correo electrónico",
+    "valor": "daniel.saldarriaga@madecentro.co",
+    "confianza": "medio",
+    "ocurrencias": 1,
+    "archivos": 1,
+    "ejemplos": "MFL.pdf",
+    "accion_sugerida": "borrar",
+    "nota": "Correo del dominio Madecentro detectado"
+  },
+  {
+    "categoria": "Correo electrónico",
+    "valor": "diana.vanegas@madecentro.co",
+    "confianza": "medio",
+    "ocurrencias": 1,
+    "archivos": 1,
+    "ejemplos": "CCL.xlsx",
+    "accion_sugerida": "borrar",
+    "nota": "Correo del dominio Madecentro detectado"
+  },
+  {
+    "categoria": "Correo electrónico",
+    "valor": "duvan.castellanos@madecentro.co",
+    "confianza": "medio",
+    "ocurrencias": 1,
+    "archivos": 1,
+    "ejemplos": "Torre la Vega.pdf",
+    "accion_sugerida": "borrar",
+    "nota": "Correo del dominio Madecentro detectado"
+  },
+  {
+    "categoria": "Correo electrónico",
+    "valor": "eduard.gomez@madecentro.co",
+    "confianza": "medio",
+    "ocurrencias": 1,
+    "archivos": 1,
+    "ejemplos": "Planeta.xlsx",
+    "accion_sugerida": "borrar",
+    "nota": "Correo del dominio Madecentro detectado"
+  },
+  {
+    "categoria": "Correo electrónico",
+    "valor": "emilce.mesa@madecentro.co",
+    "confianza": "medio",
+    "ocurrencias": 1,
+    "archivos": 1,
+    "ejemplos": "Acierto Inmobiliario.xlsx",
+    "accion_sugerida": "borrar",
+    "nota": "Correo del dominio Madecentro detectado"
+  },
+  {
+    "categoria": "Correo electrónico",
+    "valor": "factura.administativos@madecentro.co",
+    "confianza": "medio",
+    "ocurrencias": 1,
+    "archivos": 1,
+    "ejemplos": "Brinks.xlsx",
+    "accion_sugerida": "borrar",
+    "nota": "Correo del dominio Madecentro detectado"
+  },
+  {
+    "categoria": "Correo electrónico",
+    "valor": "factura.adminsitrativos@madecentro.co",
+    "confianza": "medio",
+    "ocurrencias": 1,
+    "archivos": 1,
+    "ejemplos": "Servintegral.xlsx",
+    "accion_sugerida": "borrar",
+    "nota": "Correo del dominio Madecentro detectado"
+  },
+  {
+    "categoria": "Correo electrónico",
+    "valor": "factura.logistica@madecentro.co",
+    "confianza": "medio",
+    "ocurrencias": 1,
+    "archivos": 1,
+    "ejemplos": "Gonvarri.xlsx",
+    "accion_sugerida": "borrar",
+    "nota": "Correo del dominio Madecentro detectado"
+  },
+  {
+    "categoria": "Correo electrónico",
+    "valor": "factura.mantenimiento@madecentro.co",
+    "confianza": "medio",
+    "ocurrencias": 1,
+    "archivos": 1,
+    "ejemplos": "Empaquetadura y Empaques.xlsx",
+    "accion_sugerida": "borrar",
+    "nota": "Correo del dominio Madecentro detectado"
+  },
+  {
+    "categoria": "Correo electrónico",
+    "valor": "fanny.granados@madecentro.co",
+    "confianza": "medio",
+    "ocurrencias": 1,
+    "archivos": 1,
+    "ejemplos": "DKO.pdf",
+    "accion_sugerida": "borrar",
+    "nota": "Correo del dominio Madecentro detectado"
+  },
+  {
+    "categoria": "Correo electrónico",
+    "valor": "gilma.torres@madecentro.co",
+    "confianza": "medio",
+    "ocurrencias": 1,
+    "archivos": 1,
+    "ejemplos": "Obycon.pdf",
+    "accion_sugerida": "borrar",
+    "nota": "Correo del dominio Madecentro detectado"
+  },
+  {
+    "categoria": "Correo electrónico",
+    "valor": "jorge.valencia@madecentro.co",
+    "confianza": "medio",
+    "ocurrencias": 1,
+    "archivos": 1,
+    "ejemplos": "Asul.xlsx",
+    "accion_sugerida": "borrar",
+    "nota": "Correo del dominio Madecentro detectado"
+  },
+  {
+    "categoria": "Correo electrónico",
+    "valor": "juan.quntero@madecentro.co",
+    "confianza": "medio",
+    "ocurrencias": 1,
+    "archivos": 1,
+    "ejemplos": "+Logistica.xlsx",
+    "accion_sugerida": "borrar",
+    "nota": "Correo del dominio Madecentro detectado"
+  },
+  {
+    "categoria": "Correo electrónico",
+    "valor": "juandavid.zuluaga@madecentro.co",
+    "confianza": "medio",
+    "ocurrencias": 1,
+    "archivos": 1,
+    "ejemplos": "Gonvarri.xlsx",
+    "accion_sugerida": "borrar",
+    "nota": "Correo del dominio Madecentro detectado"
+  },
+  {
+    "categoria": "Correo electrónico",
+    "valor": "judy.toro@madecentro.co",
+    "confianza": "medio",
+    "ocurrencias": 1,
+    "archivos": 1,
+    "ejemplos": "TENCO.xlsx",
+    "accion_sugerida": "borrar",
+    "nota": "Correo del dominio Madecentro detectado"
+  },
+  {
+    "categoria": "Correo electrónico",
+    "valor": "luz.zuluga@madecentro.co",
+    "confianza": "medio",
+    "ocurrencias": 1,
+    "archivos": 1,
+    "ejemplos": "Gonvarri.xlsx",
+    "accion_sugerida": "borrar",
+    "nota": "Correo del dominio Madecentro detectado"
+  },
+  {
+    "categoria": "Correo electrónico",
+    "valor": "madecentro113@madecentro.co",
+    "confianza": "medio",
+    "ocurrencias": 1,
+    "archivos": 1,
+    "ejemplos": "Abba Plax.pdf",
+    "accion_sugerida": "borrar",
+    "nota": "Correo del dominio Madecentro detectado"
+  },
+  {
+    "categoria": "Correo electrónico",
+    "valor": "madecentro123@madecentro.co",
+    "confianza": "medio",
+    "ocurrencias": 1,
+    "archivos": 1,
+    "ejemplos": "Bomberos Funza.xlsx",
+    "accion_sugerida": "borrar",
+    "nota": "Correo del dominio Madecentro detectado"
+  },
+  {
+    "categoria": "Correo electrónico",
+    "valor": "madecentro130@madecenro.co",
+    "confianza": "medio",
+    "ocurrencias": 1,
+    "archivos": 1,
+    "ejemplos": "Yamaki.pdf",
+    "accion_sugerida": "borrar",
+    "nota": "Correo del dominio Madecentro detectado"
+  },
+  {
+    "categoria": "Correo electrónico",
+    "valor": "madecentro725@madecentro.co",
+    "confianza": "medio",
+    "ocurrencias": 1,
+    "archivos": 1,
+    "ejemplos": "Avicola San Martin.xlsx",
+    "accion_sugerida": "borrar",
+    "nota": "Correo del dominio Madecentro detectado"
+  },
+  {
+    "categoria": "Correo electrónico",
+    "valor": "madrcentro425@madecentro.co",
+    "confianza": "medio",
+    "ocurrencias": 1,
+    "archivos": 1,
+    "ejemplos": "Colombina.xlsx",
+    "accion_sugerida": "borrar",
+    "nota": "Correo del dominio Madecentro detectado"
+  },
+  {
+    "categoria": "Correo electrónico",
+    "valor": "marcela.guzman@madecentro.com",
+    "confianza": "medio",
+    "ocurrencias": 1,
+    "archivos": 1,
+    "ejemplos": "Ediva.pdf",
+    "accion_sugerida": "borrar",
+    "nota": "Correo del dominio Madecentro detectado"
+  },
+  {
+    "categoria": "Correo electrónico",
+    "valor": "nidia.mesa@madecentro.co",
+    "confianza": "medio",
+    "ocurrencias": 1,
+    "archivos": 1,
+    "ejemplos": "Empaquetadura y Empaques.xlsx",
+    "accion_sugerida": "borrar",
+    "nota": "Correo del dominio Madecentro detectado"
+  },
+  {
+    "categoria": "Correo electrónico",
+    "valor": "notrificaciones.judicial@madecentro.co",
+    "confianza": "medio",
+    "ocurrencias": 1,
+    "archivos": 1,
+    "ejemplos": "Sodimac.do 1.pdf",
+    "accion_sugerida": "borrar",
+    "nota": "Correo del dominio Madecentro detectado"
+  },
+  {
+    "categoria": "Correo electrónico",
+    "valor": "pablo.rodiguez@madecentro.co",
+    "confianza": "medio",
+    "ocurrencias": 1,
+    "archivos": 1,
+    "ejemplos": "Corferias LMR1649 (4).docx",
+    "accion_sugerida": "borrar",
+    "nota": "Correo del dominio Madecentro detectado"
+  },
+  {
+    "categoria": "Correo electrónico",
+    "valor": "pablo.rodrigez@madecentro.co",
+    "confianza": "medio",
+    "ocurrencias": 1,
+    "archivos": 1,
+    "ejemplos": "Corferias LMR1649.docx",
+    "accion_sugerida": "borrar",
+    "nota": "Correo del dominio Madecentro detectado"
+  },
+  {
+    "categoria": "Correo electrónico",
+    "valor": "paula.avendano@madecentro.co",
+    "confianza": "medio",
+    "ocurrencias": 1,
+    "archivos": 1,
+    "ejemplos": "FDK.xlsx",
+    "accion_sugerida": "borrar",
+    "nota": "Correo del dominio Madecentro detectado"
+  },
+  {
+    "categoria": "Correo electrónico",
+    "valor": "rafael.lopez@madecentro.co",
+    "confianza": "medio",
+    "ocurrencias": 1,
+    "archivos": 1,
+    "ejemplos": "Formato 1 U. Javeriana.xlsx",
+    "accion_sugerida": "borrar",
+    "nota": "Correo del dominio Madecentro detectado"
+  },
+  {
+    "categoria": "Correo electrónico",
+    "valor": "raul.arias@madecentro.co",
+    "confianza": "medio",
+    "ocurrencias": 1,
+    "archivos": 1,
+    "ejemplos": "+Logistica.xlsx",
+    "accion_sugerida": "borrar",
+    "nota": "Correo del dominio Madecentro detectado"
+  },
+  {
+    "categoria": "Correo electrónico",
+    "valor": "raul.cardona@madecentro.co",
+    "confianza": "medio",
+    "ocurrencias": 1,
+    "archivos": 1,
+    "ejemplos": "Pisende.xlsx",
+    "accion_sugerida": "borrar",
+    "nota": "Correo del dominio Madecentro detectado"
+  },
+  {
+    "categoria": "Correo electrónico",
+    "valor": "ricardo.higuita@madecentro.co",
+    "confianza": "medio",
+    "ocurrencias": 1,
+    "archivos": 1,
+    "ejemplos": "Socoda.xlsx",
+    "accion_sugerida": "borrar",
+    "nota": "Correo del dominio Madecentro detectado"
+  },
+  {
+    "categoria": "Correo electrónico",
+    "valor": "santiago.arboleda@madecentro.co",
+    "confianza": "medio",
+    "ocurrencias": 1,
+    "archivos": 1,
+    "ejemplos": "Formulario de conocimiento de contrapartes (C.A.S.A.) de MADECENTRO COLOMBIA SAS  (2026-06-04).pdf",
+    "accion_sugerida": "borrar",
+    "nota": "Correo del dominio Madecentro detectado"
+  },
+  {
+    "categoria": "Correo electrónico",
+    "valor": "victor.mery@madecentro.co",
+    "confianza": "medio",
+    "ocurrencias": 1,
+    "archivos": 1,
+    "ejemplos": "Iblu.pdf",
+    "accion_sugerida": "borrar",
+    "nota": "Correo del dominio Madecentro detectado"
+  },
+  {
+    "categoria": "Correo electrónico",
+    "valor": "yuliana.bedoya@madecentro.co",
+    "confianza": "medio",
+    "ocurrencias": 1,
+    "archivos": 1,
+    "ejemplos": "Avicola San Martin.xlsx",
+    "accion_sugerida": "borrar",
+    "nota": "Correo del dominio Madecentro detectado"
+  },
+  {
+    "categoria": "Representante legal",
+    "valor": "QUINTERO ACEVEDO ADRIAN",
+    "confianza": "medio",
+    "ocurrencias": 1,
+    "archivos": 1,
+    "ejemplos": "Bomberos Funza.xlsx",
+    "accion_sugerida": "borrar",
+    "nota": "Variante en formularios por campos separados"
+  },
+  {
+    "categoria": "Banco / entidad",
+    "valor": "BANCOLOMBIA",
+    "confianza": "revisar",
+    "ocurrencias": 108,
+    "archivos": 88,
+    "ejemplos": "01. Formulario vinculaci#U00f3n SARLAFT 1  U. Coop Col (1).pdf; 01. Formulario vinculaci#U00f3n SARLAFT 1 U. Coop Col(1).docx; Abba Plax.pdf",
+    "accion_sugerida": "revisar",
+    "nota": "No borrar globalmente sin contexto; puede ser opción/etiqueta del formulario"
+  },
+  {
+    "categoria": "Banco / entidad",
+    "valor": "DAVIVIENDA",
+    "confianza": "revisar",
+    "ocurrencias": 174,
+    "archivos": 29,
+    "ejemplos": "Abba Plax.pdf; ACF.pdf; ACF.xlsx",
+    "accion_sugerida": "revisar",
+    "nota": "No borrar globalmente sin contexto; puede ser opción/etiqueta del formulario"
+  }
+]

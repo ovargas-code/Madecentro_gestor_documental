@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 import json
 import tempfile
 import unittest
@@ -7,10 +9,29 @@ from pathlib import Path
 from unittest.mock import patch
 
 from app.services.ai_mapping_service import AiMappingService
+from app.services.field_dictionary_service import FieldDictionaryService
 from app.services.mapping_service import MappingService
 
 
 class MappingServiceTests(unittest.TestCase):
+    def _dictionary(
+        self,
+        temp_dir: str,
+        json_content: object | None = None,
+        csv_content: str | None = None,
+    ) -> FieldDictionaryService:
+        root = Path(temp_dir)
+        json_path = root / "diccionario_madecentro.json"
+        csv_path = root / "diccionario_madecentro.csv"
+        if json_content is not None:
+            json_path.write_text(
+                json.dumps(json_content, ensure_ascii=False),
+                encoding="utf-8",
+            )
+        if csv_content is not None:
+            csv_path.write_text(csv_content, encoding="utf-8")
+        return FieldDictionaryService(json_path=json_path, csv_path=csv_path)
+
     def test_load_mapping_validates_shape_and_types(self) -> None:
         with tempfile.TemporaryDirectory() as temp_dir:
             path = Path(temp_dir) / "mapping.json"
@@ -23,6 +44,113 @@ class MappingServiceTests(unittest.TestCase):
             path.write_text(json.dumps({"mapping": []}), encoding="utf-8")
             with self.assertRaises(ValueError):
                 MappingService().load_mapping(path)
+
+    def test_field_dictionary_matches_exact_alias(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            dictionary = self._dictionary(
+                temp_dir,
+                [{"clave": "nit", "alias": "NIT proveedor"}],
+            )
+
+            self.assertEqual(
+                dictionary.suggest_key("NIT proveedor", ["nit"]),
+                "nit",
+            )
+
+    def test_field_dictionary_matches_normalized_alias_without_accents(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            dictionary = self._dictionary(
+                temp_dir,
+                [{"clave": "direccion", "etiqueta": "Dirección principal:"}],
+            )
+
+            self.assertEqual(
+                dictionary.suggest_key("direccion principal", ["direccion"]),
+                "direccion",
+            )
+
+    def test_field_dictionary_reads_json(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            dictionary = self._dictionary(
+                temp_dir,
+                {"campos": [{"master_key": "correo", "label": "Email principal"}]},
+            )
+
+            self.assertEqual(
+                dictionary.suggest_key("email principal", ["correo"]),
+                "correo",
+            )
+
+    def test_field_dictionary_reads_csv(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            dictionary = self._dictionary(
+                temp_dir,
+                csv_content="clave,alias\ntelefono,Teléfono empresa\n",
+            )
+
+            self.assertEqual(
+                dictionary.suggest_key("telefono empresa", ["telefono"]),
+                "telefono",
+            )
+
+    def test_field_dictionary_uses_json_as_primary_and_csv_as_complement(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            dictionary = self._dictionary(
+                temp_dir,
+                [{"clave": "nit", "alias": "Alias compartido"}],
+                (
+                    "clave,alias\n"
+                    "correo,Alias compartido\n"
+                    "correo,Correo adicional\n"
+                ),
+            )
+
+            self.assertEqual(
+                dictionary.suggest_key("alias compartido", ["nit", "correo"]),
+                "nit",
+            )
+            self.assertEqual(
+                dictionary.suggest_key("correo adicional", ["nit", "correo"]),
+                "correo",
+            )
+
+    def test_field_dictionary_does_not_suggest_unknown_master_key(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            dictionary = self._dictionary(
+                temp_dir,
+                [{"clave": "clave_inexistente", "alias": "Campo conocido"}],
+            )
+
+            self.assertEqual(
+                dictionary.suggest_key("Campo conocido", ["nit"]),
+                "",
+            )
+
+    def test_ai_mapping_falls_back_when_dictionary_is_missing(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            dictionary = FieldDictionaryService(
+                json_path=Path(temp_dir) / "no_existe.json",
+                csv_path=Path(temp_dir) / "no_existe.csv",
+            )
+            mapping = AiMappingService(
+                api_key="",
+                field_dictionary=dictionary,
+            ).suggest_mapping(["txt_email_principal"], ["correo"])
+
+        self.assertEqual(mapping["txt_email_principal"], "correo")
+
+    def test_ai_mapping_uses_field_dictionary_before_other_strategies(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            dictionary = self._dictionary(
+                temp_dir,
+                [{"clave": "nit", "alias": "Número tributario especial"}],
+            )
+            mapping = AiMappingService(
+                api_key="",
+                field_dictionary=dictionary,
+            ).suggest_mapping(["Numero tributario especial"], ["nit"])
+
+        self.assertEqual(mapping["Numero tributario especial"], "nit")
 
     def test_ai_mapping_uses_aliases_and_exact_names(self) -> None:
         mapping = AiMappingService(api_key="").suggest_mapping(
@@ -84,6 +212,20 @@ class MappingServiceTests(unittest.TestCase):
 
         self.assertEqual(mapping["txt_nit"], "nit")
         self.assertEqual(mapping["txt_nombre"], "")
+
+    def test_ai_mapping_can_skip_openai_even_with_api_key(self) -> None:
+        with patch("openai.OpenAI") as openai_client:
+            mapping = AiMappingService(
+                api_key="test-key",
+                model="test-model",
+            ).suggest_mapping(
+                ["txt_email_principal"],
+                ["correo"],
+                use_openai=False,
+            )
+
+        openai_client.assert_not_called()
+        self.assertEqual(mapping["txt_email_principal"], "correo")
 
     def test_saves_and_reloads_pdf_learning_payload(self) -> None:
         payload = {

@@ -10,6 +10,7 @@ from typing import Any
 from dotenv import load_dotenv
 
 from app.core.settings import BASE_DIR
+from app.services.field_dictionary_service import FieldDictionaryService
 
 
 class AiMappingService:
@@ -62,24 +63,53 @@ class AiMappingService:
         "declaracion_de_origen_de_fondos": "origen_fondos",
     }
 
-    def __init__(self, api_key: str | None = None, model: str | None = None) -> None:
+    def __init__(
+        self,
+        api_key: str | None = None,
+        model: str | None = None,
+        field_dictionary: FieldDictionaryService | None = None,
+    ) -> None:
         load_dotenv(BASE_DIR / ".env")
         self.api_key = (api_key if api_key is not None else os.getenv("OPENAI_API_KEY", "")).strip()
         self.model = (model if model is not None else os.getenv("OPENAI_MODEL", "")).strip()
         if not self.model:
             self.model = "gpt-4.1-mini"
+        self.field_dictionary = field_dictionary or FieldDictionaryService()
 
     def suggest_mapping(
         self,
         pdf_fields: list[Any],
         master_keys: list[str],
         min_score: float = 0.72,
+        use_openai: bool = True,
     ) -> dict[str, str]:
         field_names = [self._field_name(field) for field in pdf_fields if self._field_name(field)]
         clean_master_keys = [str(key).strip() for key in master_keys if str(key).strip()]
-        if self.api_key:
-            return self._suggest_with_openai(field_names, clean_master_keys)
-        return self._suggest_with_similarity(field_names, clean_master_keys, min_score)
+        suggestions = self._suggest_with_dictionary(field_names, clean_master_keys)
+        pending_fields = [
+            field_name
+            for field_name in field_names
+            if not suggestions.get(field_name)
+        ]
+        if not pending_fields:
+            return suggestions
+        if use_openai and self.api_key:
+            suggestions.update(self._suggest_with_openai(pending_fields, clean_master_keys))
+            return suggestions
+        suggestions.update(
+            self._suggest_with_similarity(pending_fields, clean_master_keys, min_score)
+        )
+        return suggestions
+
+    def _suggest_with_dictionary(
+        self,
+        field_names: list[str],
+        master_keys: list[str],
+    ) -> dict[str, str]:
+        return {
+            field_name: self.field_dictionary.suggest_key(field_name, master_keys)
+            for field_name in field_names
+        }
 
     def _suggest_with_openai(
         self,
